@@ -1,27 +1,28 @@
-﻿using NUnit.Framework;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
 {
-    public class GrassyEarthBlockTest
+    public class EarthBlockTest
     {
         [UnityTest]
-        public IEnumerator BlockTypeIsGrassyEarth() 
+        public IEnumerator BlockTypeIsEarth() 
         {
-            GrassyEarthBlock testCandidate = GrassyEarthBlock.GetInstance();
+            EarthBlock testCandidate = EarthBlock.GetInstance();
 
             yield return null;
 
             Assert.That(testCandidate, Is.Not.Null);
-            Assert.That(testCandidate.GetBlockType(), Is.EqualTo(BlockTypes.GRASSY_EARTH));
+            Assert.That(testCandidate.GetBlockType(), Is.EqualTo(BlockTypes.EARTH));
         }
 
         [UnityTest]
         public IEnumerator AllBlockFacesAreCovering()
         {
-            GrassyEarthBlock testCandidate = GrassyEarthBlock.GetInstance();
+            EarthBlock testCandidate = EarthBlock.GetInstance();
 
             yield return null;
 
