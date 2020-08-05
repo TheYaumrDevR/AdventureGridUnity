@@ -5,23 +5,23 @@ using UnityEngine.TestTools;
 
 namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
 {
-    public class EarthBlockTest
+    public class RockBlockTest
     {
         [UnityTest]
-        public IEnumerator BlockTypeIsEarth() 
+        public IEnumerator BlockTypeIsRock() 
         {
-            EarthBlock testCandidate = EarthBlock.GetInstance();
+            RockBlock testCandidate = RockBlock.GetInstance();
 
             yield return null;
 
             Assert.That(testCandidate, Is.Not.Null);
-            Assert.That(testCandidate.GetBlockType(), Is.EqualTo(BlockTypes.EARTH));
+            Assert.That(testCandidate.GetBlockType(), Is.EqualTo(BlockTypes.ROCK));
         }
 
         [UnityTest]
         public IEnumerator AllBlockFacesAreCovering()
         {
-            EarthBlock testCandidate = EarthBlock.GetInstance();
+            RockBlock testCandidate = RockBlock.GetInstance();
 
             yield return null;
 

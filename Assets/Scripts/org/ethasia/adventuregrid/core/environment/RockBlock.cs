@@ -1,22 +1,22 @@
 ﻿namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
-    public class EarthBlock : Block
+    public class RockBlock : Block
     {
-        private EarthBlock() : base(BlockTypes.EARTH)
+        private RockBlock() : base(BlockTypes.ROCK)
         {
 
-        }   
+        }
 
-        private static EarthBlock instance;
+        private static RockBlock instance;
 
-        public static EarthBlock GetInstance() 
+        public static RockBlock GetInstance()
         {
-            if (null != instance) 
+            if (null != instance)
             {
                 return instance;
             }
 
-            instance = new EarthBlock();
+            instance = new RockBlock();
             return instance;
         }
 
