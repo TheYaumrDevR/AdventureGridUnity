@@ -4,7 +4,7 @@
     {
         private RockBlock() : base(BlockTypes.ROCK)
         {
-
+            faceHidingStrategy = new SolidBlockFaceHidingStrategy();
         }
 
         private static RockBlock instance;

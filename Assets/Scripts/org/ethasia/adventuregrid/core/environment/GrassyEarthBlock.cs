@@ -4,7 +4,7 @@
     {
         private GrassyEarthBlock() : base(BlockTypes.GRASSY_EARTH)
         {
-            
+            faceHidingStrategy = new SolidBlockFaceHidingStrategy();
         }
 
         private static GrassyEarthBlock instance;

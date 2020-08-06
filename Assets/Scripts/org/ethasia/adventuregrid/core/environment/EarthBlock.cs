@@ -4,7 +4,7 @@
     {
         private EarthBlock() : base(BlockTypes.EARTH)
         {
-
+            faceHidingStrategy = new SolidBlockFaceHidingStrategy();
         }   
 
         private static EarthBlock instance;
