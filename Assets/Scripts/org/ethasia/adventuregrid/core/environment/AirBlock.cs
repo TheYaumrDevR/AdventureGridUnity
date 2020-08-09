@@ -3,7 +3,9 @@
     public class AirBlock : Block
     {
         private AirBlock() : base(BlockTypes.AIR)
-        {}
+        {
+            faceHidingStrategy = new SolidBlockFaceHidingStrategy();
+        }
 
         private static AirBlock instance;
 
