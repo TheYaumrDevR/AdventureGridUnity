@@ -1,4 +1,6 @@
-﻿namespace Org.Ethasia.Adventuregrid.Interactors
+﻿using Org.Ethasia.Adventuregrid.Core.Environment;
+
+namespace Org.Ethasia.Adventuregrid.Interactors
 {
     public class MainMenuSceneInteractor
     {
