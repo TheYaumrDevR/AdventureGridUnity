@@ -1,7 +1,21 @@
-﻿namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
+﻿using Org.Ethasia.Adventuregrid.Core.Environment;
+using Org.Ethasia.Adventuregrid.Core.Math;
+
+namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 {
     public class StandardBlockVisualsBuilder
     {
+
+        public void SetBlockToCreateDataFrom(Block blockToRender)
+        {
+
+        }
+
+        public void SetPositionOfBlockInChunk(BlockPosition blockPositionInChunk)
+        {
+
+        }
+
         public void Build() 
         {
 
