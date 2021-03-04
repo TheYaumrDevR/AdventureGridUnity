@@ -36,6 +36,30 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
 
             testCandidate.SetBlockToCreateDataFrom(blockToRender);
             testCandidate.SetPositionOfBlockInChunk(blockPosition);
+
+            testCandidate.Build();
+
+            float[] expectedPositions = CalculateExpectedVertexPositionsBasedOnBlockPosition(blockPosition);
+
+            float[] shapePositions = testCandidate.GetShapePositions();
+        }
+
+        private float[] CalculateExpectedVertexPositionsBasedOnBlockPosition(BlockPosition blockPosition)
+        {
+            int x = blockPosition.X;
+            int y = blockPosition.Y;
+            int z = blockPosition.Z;
+
+            float[] result = {
+                x * 0.5f + 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f, z * 0.5f + 0.5f,
+                x * 0.5f + 0.5f, y * 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f, z * 0.5f + 0.5f,
+                x * 0.5f, y * 0.5f, z * 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f, z * 0.5f,
+                x * 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f, y * 0.5f, z * 0.5f,
+                x * 0.5f + 0.5f, y * 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f, z * 0.5f,
+                x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f
+            };  
+
+            return result;          
         }
     }
 }
