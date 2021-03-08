@@ -216,6 +216,25 @@ namespace Org.Ethasia.Adventuregrid.Core.Math.MathTests
             Assert.That(testCandidate.GetX(), Is.EqualTo(1.5f));
             Assert.That(testCandidate.GetY(), Is.EqualTo(9.1f));
             Assert.That(testCandidate.GetZ(), Is.EqualTo(4.3f));              
-        }                                                                         
+        }       
+
+        [Test]
+        public void AddingPositionBufferedAddsPositionComponentsToBuffer()
+        {
+            Vector3 testCandidate = new Vector3(5.2f, -1.1f, -3.1f);
+            Position3 toAdd = new Position3(1.5f, 1.1f, 2.8f);
+
+            float expectedZ = -3.1f + 2.8f;
+
+            testCandidate.AddImmutableBufferResult(toAdd);
+
+            Assert.That(testCandidate.GetBufferedResultX(), Is.EqualTo(6.7f));
+            Assert.That(testCandidate.GetBufferedResultY(), Is.EqualTo(0.0f));
+            Assert.That(testCandidate.GetBufferedResultZ(), Is.EqualTo(expectedZ));    
+
+            Assert.That(testCandidate.GetX(), Is.EqualTo(5.2f));
+            Assert.That(testCandidate.GetY(), Is.EqualTo(-1.1f));
+            Assert.That(testCandidate.GetZ(), Is.EqualTo(-3.1f));  
+        }                                                                  
     }
 }

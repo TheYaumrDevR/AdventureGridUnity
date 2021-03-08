@@ -42,6 +42,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             float[] expectedPositions = CalculateExpectedVertexPositionsBasedOnBlockPosition(blockPosition);
 
             float[] shapePositions = testCandidate.GetShapePositions();
+
+            Assert.That(shapePositions, Is.EqualTo(expectedPositions));
         }
 
         private float[] CalculateExpectedVertexPositionsBasedOnBlockPosition(BlockPosition blockPosition)

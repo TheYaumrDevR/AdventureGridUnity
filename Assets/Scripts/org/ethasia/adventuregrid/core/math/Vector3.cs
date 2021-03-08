@@ -115,7 +115,14 @@ namespace Org.Ethasia.Adventuregrid.Core.Math
             bufferedResultX = x + other.x;
             bufferedResultY = y + other.y;
             bufferedResultZ = z + other.z;
-        }             
+        }   
+
+        public void AddImmutableBufferResult(Position3 toAdd)
+        {
+            bufferedResultX = x + toAdd.X;
+            bufferedResultY = y + toAdd.Y;
+            bufferedResultZ = z + toAdd.Z;            
+        }          
 
         public Vector3 Subtract(Vector3 other) 
         {
