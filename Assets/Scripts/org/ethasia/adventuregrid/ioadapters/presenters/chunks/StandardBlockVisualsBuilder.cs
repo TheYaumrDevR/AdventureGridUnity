@@ -89,6 +89,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         private void BuildPositionsBuffer()
         {
             TranslateVertices();
+            FillVertexBuffer();
         }
 
         private void TranslateVertices()
@@ -105,6 +106,149 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             BV[5].AddImmutableBufferResult(cubeCenter);
             BV[6].AddImmutableBufferResult(cubeCenter);
             BV[7].AddImmutableBufferResult(cubeCenter);
+        }
+
+        private void FillVertexBuffer()
+        {
+            int amountOfUncoveredFaces = GetAmountOfUncoveredFaces();
+            positionsBuffer = new float[4 * 3 * amountOfUncoveredFaces];
+            int currentBufferPosition = 0;
+
+            SetFrontFaceVertices(currentBufferPosition);
+            currentBufferPosition += 12;
+
+            SetRightFaceVertices(currentBufferPosition);
+            currentBufferPosition += 12;
+
+            SetBackFaceVertices(currentBufferPosition);
+            currentBufferPosition += 12;
+
+            SetLeftFaceVertices(currentBufferPosition);
+            currentBufferPosition += 12;
+
+            SetBottomFaceVertices(currentBufferPosition);
+            currentBufferPosition += 12;
+
+            SetTopFaceVertices(currentBufferPosition);
+        }
+
+        private void SetFrontFaceVertices(int currentBufferPosition) 
+        {
+            positionsBuffer[currentBufferPosition] = BV[0].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 1] = BV[0].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 2] = BV[0].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 3] = BV[1].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 4] = BV[1].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 5] = BV[1].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 6] = BV[2].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 7] = BV[2].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 8] = BV[2].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 9] = BV[3].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 10] = BV[3].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 11] = BV[3].GetBufferedResultZ();              
+        }
+
+        private void SetRightFaceVertices(int currentBufferPosition)
+        {
+            positionsBuffer[currentBufferPosition] = BV[7].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 1] = BV[7].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 2] = BV[7].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 3] = BV[6].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 4] = BV[6].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 5] = BV[6].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 6] = BV[1].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 7] = BV[1].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 8] = BV[1].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 9] = BV[0].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 10] = BV[0].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 11] = BV[0].GetBufferedResultZ();  
+        }
+
+        private void SetBackFaceVertices(int currentBufferPosition) 
+        {
+            positionsBuffer[currentBufferPosition] = BV[4].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 1] = BV[4].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 2] = BV[4].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 3] = BV[5].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 4] = BV[5].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 5] = BV[5].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 6] = BV[6].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 7] = BV[6].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 8] = BV[6].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 9] = BV[7].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 10] = BV[7].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 11] = BV[7].GetBufferedResultZ();   
+        }
+
+        private void SetLeftFaceVertices(int currentBufferPosition)
+        {
+            positionsBuffer[currentBufferPosition] = BV[3].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 1] = BV[3].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 2] = BV[3].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 3] = BV[2].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 4] = BV[2].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 5] = BV[2].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 6] = BV[5].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 7] = BV[5].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 8] = BV[5].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 9] = BV[4].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 10] = BV[4].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 11] = BV[4].GetBufferedResultZ();   
+        }
+
+        private void SetBottomFaceVertices(int currentBufferPosition)
+        {
+            positionsBuffer[currentBufferPosition] = BV[7].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 1] = BV[7].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 2] = BV[7].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 3] = BV[0].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 4] = BV[0].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 5] = BV[0].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 6] = BV[3].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 7] = BV[3].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 8] = BV[3].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 9] = BV[4].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 10] = BV[4].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 11] = BV[4].GetBufferedResultZ();   
+        }
+
+        private void SetTopFaceVertices(int currentBufferPosition)
+        {
+            positionsBuffer[currentBufferPosition] = BV[1].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 1] = BV[1].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 2] = BV[1].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 3] = BV[6].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 4] = BV[6].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 5] = BV[6].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 6] = BV[5].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 7] = BV[5].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 8] = BV[5].GetBufferedResultZ();
+        
+            positionsBuffer[currentBufferPosition + 9] = BV[2].GetBufferedResultX();
+            positionsBuffer[currentBufferPosition + 10] = BV[2].GetBufferedResultY();
+            positionsBuffer[currentBufferPosition + 11] = BV[2].GetBufferedResultZ();      
+        }
+
+        private int GetAmountOfUncoveredFaces()
+        {
+            return 6;
         }
     }
 }
