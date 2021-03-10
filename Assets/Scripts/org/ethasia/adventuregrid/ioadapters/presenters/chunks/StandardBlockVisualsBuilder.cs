@@ -34,6 +34,10 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         private Block blockToRender;
         private BlockPosition blockPosition;
 
+        private bool frontFaceOfBlockIsHidden;
+        private bool rightFaceOfBlockIsHidden;
+        private bool backFaceOfBlockIsHidden;
+
         private float[] positionsBuffer;
         private int[] indexBuffer;
         private float[] normalsBuffer;
@@ -48,6 +52,24 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         public StandardBlockVisualsBuilder SetPositionOfBlockInChunk(BlockPosition value)
         {
             blockPosition = value;
+            return this;
+        }
+
+        public StandardBlockVisualsBuilder SetFrontFaceOfBlockIsHidden(bool value)
+        {
+            frontFaceOfBlockIsHidden = value;
+            return this;
+        }
+
+        public StandardBlockVisualsBuilder SetRightFaceOfBlockIsHidden(bool value)
+        {
+            rightFaceOfBlockIsHidden = value;
+            return this;
+        }
+
+        public StandardBlockVisualsBuilder SetBackFaceOfBlockIsHidden(bool value)
+        {
+            backFaceOfBlockIsHidden = value;
             return this;
         }
 
@@ -114,14 +136,23 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             positionsBuffer = new float[4 * 3 * amountOfUncoveredFaces];
             int currentBufferPosition = 0;
 
-            SetFrontFaceVertices(currentBufferPosition);
-            currentBufferPosition += 12;
+            if (!frontFaceOfBlockIsHidden)
+            {
+                SetFrontFaceVertices(currentBufferPosition);
+                currentBufferPosition += 12;
+            }
 
-            SetRightFaceVertices(currentBufferPosition);
-            currentBufferPosition += 12;
+            if (!rightFaceOfBlockIsHidden) 
+            {
+                SetRightFaceVertices(currentBufferPosition);
+                currentBufferPosition += 12;
+            }
 
-            SetBackFaceVertices(currentBufferPosition);
-            currentBufferPosition += 12;
+            if (!backFaceOfBlockIsHidden) 
+            {
+                SetBackFaceVertices(currentBufferPosition);
+                currentBufferPosition += 12;
+            }
 
             SetLeftFaceVertices(currentBufferPosition);
             currentBufferPosition += 12;
@@ -248,7 +279,28 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
         private int GetAmountOfUncoveredFaces()
         {
-            return 6;
+            int result = 0;
+
+            if (!frontFaceOfBlockIsHidden) 
+            {
+                result++;
+            }
+
+            if (!rightFaceOfBlockIsHidden)
+            {
+                result++;
+            }
+
+            if (!backFaceOfBlockIsHidden)
+            {
+                result++;
+            }
+
+            result++;
+            result++;
+            result++;
+
+            return result;
         }
     }
 }
