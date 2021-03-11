@@ -37,6 +37,9 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         private bool frontFaceOfBlockIsHidden;
         private bool rightFaceOfBlockIsHidden;
         private bool backFaceOfBlockIsHidden;
+        private bool leftFaceOfBlockIsHidden;
+        private bool bottomFaceOfBlockIsHidden;
+        private bool topFaceOfBlockIsHidden;
 
         private float[] positionsBuffer;
         private int[] indexBuffer;
@@ -70,6 +73,24 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         public StandardBlockVisualsBuilder SetBackFaceOfBlockIsHidden(bool value)
         {
             backFaceOfBlockIsHidden = value;
+            return this;
+        }
+
+        public StandardBlockVisualsBuilder SetLeftFaceOfBlockIsHidden(bool value)
+        {
+            leftFaceOfBlockIsHidden = value;
+            return this;
+        }
+
+        public StandardBlockVisualsBuilder SetBottomFaceOfBlockIsHidden(bool value)
+        {
+            bottomFaceOfBlockIsHidden = value;
+            return this;
+        }
+
+        public StandardBlockVisualsBuilder SetTopFaceOfBlockIsHidden(bool value)
+        {
+            topFaceOfBlockIsHidden = value;
             return this;
         }
 
@@ -154,13 +175,22 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                 currentBufferPosition += 12;
             }
 
-            SetLeftFaceVertices(currentBufferPosition);
-            currentBufferPosition += 12;
+            if (!leftFaceOfBlockIsHidden)
+            {
+                SetLeftFaceVertices(currentBufferPosition);
+                currentBufferPosition += 12;
+            }
 
-            SetBottomFaceVertices(currentBufferPosition);
-            currentBufferPosition += 12;
+            if (!bottomFaceOfBlockIsHidden)
+            {
+                SetBottomFaceVertices(currentBufferPosition);
+                currentBufferPosition += 12;
+            }
 
-            SetTopFaceVertices(currentBufferPosition);
+            if (!topFaceOfBlockIsHidden)
+            {
+                SetTopFaceVertices(currentBufferPosition);
+            }
         }
 
         private void SetFrontFaceVertices(int currentBufferPosition) 
@@ -296,9 +326,20 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                 result++;
             }
 
-            result++;
-            result++;
-            result++;
+            if (!leftFaceOfBlockIsHidden)
+            {
+                result++;
+            }
+
+            if (!bottomFaceOfBlockIsHidden)
+            {
+                result++;
+            }
+            
+            if (!topFaceOfBlockIsHidden)
+            {
+                result++;
+            }
 
             return result;
         }
