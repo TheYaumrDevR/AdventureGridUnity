@@ -206,7 +206,23 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             float[] shapePositions = testCandidate.GetShapePositions();
 
             Assert.That(shapePositions, Is.EqualTo(expectedPositions));
-        }                                
+        }            
+
+        [Test]
+        public void TestThatIndexBufferForFirstBlockInChunkIsCalculatedProperly()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            RockBlock blockToRender = RockBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+
+            testCandidate.Build();
+
+            int[] expectedIndices = CalculateExpectedIndicesBasedOnBlockNumberInChunk(0);
+            int[] shapeIndices = testCandidate.GetShapeIndices();
+
+            Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
+        }                  
 
         private float[] CalculateExpectedVertexPositionsBasedOnBlockPosition(BlockPosition blockPosition)
         {
@@ -224,6 +240,22 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             };  
 
             return result;          
+        }
+
+        private int[] CalculateExpectedIndicesBasedOnBlockNumberInChunk(int blockNumberInChunk)
+        {
+            int indexOffset = blockNumberInChunk * 24;
+
+            int[] result = {
+                blockNumberInChunk + 0, blockNumberInChunk + 1, blockNumberInChunk + 2, blockNumberInChunk + 2, blockNumberInChunk + 3, blockNumberInChunk + 0,
+                blockNumberInChunk + 4, blockNumberInChunk + 5, blockNumberInChunk + 6, blockNumberInChunk + 6, blockNumberInChunk + 7, blockNumberInChunk + 4,
+                blockNumberInChunk + 8, blockNumberInChunk + 9, blockNumberInChunk + 10, blockNumberInChunk + 10, blockNumberInChunk + 11, blockNumberInChunk + 8,
+                blockNumberInChunk + 12, blockNumberInChunk + 13, blockNumberInChunk + 14, blockNumberInChunk + 14, blockNumberInChunk + 15, blockNumberInChunk + 12,
+                blockNumberInChunk + 16, blockNumberInChunk + 17, blockNumberInChunk + 18, blockNumberInChunk + 18, blockNumberInChunk + 19, blockNumberInChunk + 16,
+                blockNumberInChunk + 20, blockNumberInChunk + 21, blockNumberInChunk + 22, blockNumberInChunk + 22, blockNumberInChunk + 23, blockNumberInChunk + 20                
+            };
+
+            return result;
         }
     }
 }

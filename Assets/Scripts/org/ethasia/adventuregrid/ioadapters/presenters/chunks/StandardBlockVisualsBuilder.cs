@@ -106,6 +106,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             else
             {
                 BuildPositionsBuffer();
+                BuildIndicesBuffer();
             }
         }
 
@@ -133,6 +134,38 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         {
             TranslateVertices();
             FillVertexBuffer();
+        }
+
+        private void BuildIndicesBuffer()
+        {
+            indexBuffer = new int[6 * 6];
+
+            int faceOffset = 0;
+            int currentBufferIndex = 0;
+
+            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+            currentBufferIndex += 6;
+            faceOffset += 4;
+
+            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+            currentBufferIndex += 6;
+            faceOffset += 4;
+
+            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+            currentBufferIndex += 6;
+            faceOffset += 4;
+
+            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+            currentBufferIndex += 6;
+            faceOffset += 4;
+
+            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+            currentBufferIndex += 6;
+            faceOffset += 4;
+
+            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+            currentBufferIndex += 6;
+            faceOffset += 4;
         }
 
         private void TranslateVertices()
@@ -305,6 +338,18 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             positionsBuffer[currentBufferPosition + 9] = BV[2].GetBufferedResultX();
             positionsBuffer[currentBufferPosition + 10] = BV[2].GetBufferedResultY();
             positionsBuffer[currentBufferPosition + 11] = BV[2].GetBufferedResultZ();      
+        }
+
+        private void AddNextFaceIndicesToBuffer(int currentBufferIndex, int faceOffset)
+        {
+            int renderIndexOffsetInChunk = 0;
+
+            indexBuffer[currentBufferIndex] = 0 + faceOffset + renderIndexOffsetInChunk;
+            indexBuffer[currentBufferIndex + 1] = 1 + faceOffset + renderIndexOffsetInChunk;
+            indexBuffer[currentBufferIndex + 2] = 2 + faceOffset + renderIndexOffsetInChunk;
+            indexBuffer[currentBufferIndex + 3] = 2 + faceOffset + renderIndexOffsetInChunk;
+            indexBuffer[currentBufferIndex + 4] = 3 + faceOffset + renderIndexOffsetInChunk;
+            indexBuffer[currentBufferIndex + 5] = 0 + faceOffset + renderIndexOffsetInChunk;  
         }
 
         private int GetAmountOfUncoveredFaces()
