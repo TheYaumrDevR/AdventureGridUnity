@@ -222,7 +222,24 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             int[] shapeIndices = testCandidate.GetShapeIndices();
 
             Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
-        }                  
+        } 
+
+        [Test]
+        public void TestThatIndexBufferForTenthBlockInChunkIsCalculatedProperly()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            RockBlock blockToRender = RockBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetIndexBufferOffsetInChunk(10);
+
+            testCandidate.Build();
+
+            int[] expectedIndices = CalculateExpectedIndicesBasedOnBlockNumberInChunk(10);
+            int[] shapeIndices = testCandidate.GetShapeIndices();
+
+            Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
+        }                    
 
         private float[] CalculateExpectedVertexPositionsBasedOnBlockPosition(BlockPosition blockPosition)
         {
