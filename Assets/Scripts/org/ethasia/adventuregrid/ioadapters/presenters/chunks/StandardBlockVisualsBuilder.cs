@@ -145,34 +145,53 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
         private void BuildIndicesBuffer()
         {
-            indexBuffer = new int[6 * 6];
+            int amountOfUncoveredFaces = GetAmountOfUncoveredFaces();
+            indexBuffer = new int[amountOfUncoveredFaces * 6];
 
             int faceOffset = 0;
             int currentBufferIndex = 0;
 
-            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
-            currentBufferIndex += 6;
-            faceOffset += 4;
+            if (!frontFaceOfBlockIsHidden)
+            {
+                AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+                currentBufferIndex += 6;
+                faceOffset += 4;
+            }
 
-            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
-            currentBufferIndex += 6;
-            faceOffset += 4;
+            if (!rightFaceOfBlockIsHidden)
+            {
+                AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+                currentBufferIndex += 6;
+                faceOffset += 4;
+            }
 
-            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
-            currentBufferIndex += 6;
-            faceOffset += 4;
+            if (!backFaceOfBlockIsHidden)
+            {
+                AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+                currentBufferIndex += 6;
+                faceOffset += 4;
+            }
 
-            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
-            currentBufferIndex += 6;
-            faceOffset += 4;
+            if (!leftFaceOfBlockIsHidden)
+            {
+                AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+                currentBufferIndex += 6;
+                faceOffset += 4;
+            }
 
-            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
-            currentBufferIndex += 6;
-            faceOffset += 4;
+            if (!bottomFaceOfBlockIsHidden)
+            {
+                AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+                currentBufferIndex += 6;
+                faceOffset += 4;
+            }
 
-            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
-            currentBufferIndex += 6;
-            faceOffset += 4;
+            if (!topFaceOfBlockIsHidden)
+            {
+                AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+                currentBufferIndex += 6;
+                faceOffset += 4;
+            }
         }
 
         private void TranslateVertices()

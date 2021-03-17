@@ -239,7 +239,157 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             int[] shapeIndices = testCandidate.GetShapeIndices();
 
             Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
-        }                    
+        }         
+
+        [Test]
+        public void TestThatIndexBufferHasReducedIndicesIfFrontFaceIsHidden()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            GrassyEarthBlock blockToRender = GrassyEarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetIndexBufferOffsetInChunk(13);
+            testCandidate.SetFrontFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int[] fullIndices = CalculateExpectedIndicesBasedOnBlockNumberInChunk(13);
+            int[] expectedIndices = {
+                fullIndices[0], fullIndices[1], fullIndices[2], fullIndices[3], fullIndices[4], fullIndices[5],
+                fullIndices[6], fullIndices[7], fullIndices[8], fullIndices[9], fullIndices[10], fullIndices[11],
+                fullIndices[12], fullIndices[13], fullIndices[14], fullIndices[15], fullIndices[16], fullIndices[17],
+                fullIndices[18], fullIndices[19], fullIndices[20], fullIndices[21], fullIndices[22], fullIndices[23],
+                fullIndices[24], fullIndices[25], fullIndices[26], fullIndices[27], fullIndices[28], fullIndices[29]
+            };
+            int[] shapeIndices = testCandidate.GetShapeIndices();
+
+            Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
+        } 
+
+        [Test]
+        public void TestThatIndexBufferHasReducedIndicesIfRightFaceIsHidden()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            EarthBlock blockToRender = EarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetIndexBufferOffsetInChunk(3);
+            testCandidate.SetRightFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int[] fullIndices = CalculateExpectedIndicesBasedOnBlockNumberInChunk(3);
+            int[] expectedIndices = {
+                fullIndices[0], fullIndices[1], fullIndices[2], fullIndices[3], fullIndices[4], fullIndices[5],
+                fullIndices[6], fullIndices[7], fullIndices[8], fullIndices[9], fullIndices[10], fullIndices[11],
+                fullIndices[12], fullIndices[13], fullIndices[14], fullIndices[15], fullIndices[16], fullIndices[17],
+                fullIndices[18], fullIndices[19], fullIndices[20], fullIndices[21], fullIndices[22], fullIndices[23],
+                fullIndices[24], fullIndices[25], fullIndices[26], fullIndices[27], fullIndices[28], fullIndices[29]
+            };
+            int[] shapeIndices = testCandidate.GetShapeIndices();
+
+            Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
+        } 
+
+        [Test]
+        public void TestThatIndexBufferHasReducedIndicesIfBackFaceIsHidden()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            RockBlock blockToRender = RockBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetIndexBufferOffsetInChunk(17);
+            testCandidate.SetBackFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int[] fullIndices = CalculateExpectedIndicesBasedOnBlockNumberInChunk(17);
+            int[] expectedIndices = {
+                fullIndices[0], fullIndices[1], fullIndices[2], fullIndices[3], fullIndices[4], fullIndices[5],
+                fullIndices[6], fullIndices[7], fullIndices[8], fullIndices[9], fullIndices[10], fullIndices[11],
+                fullIndices[12], fullIndices[13], fullIndices[14], fullIndices[15], fullIndices[16], fullIndices[17],
+                fullIndices[18], fullIndices[19], fullIndices[20], fullIndices[21], fullIndices[22], fullIndices[23],
+                fullIndices[24], fullIndices[25], fullIndices[26], fullIndices[27], fullIndices[28], fullIndices[29]
+            };
+            int[] shapeIndices = testCandidate.GetShapeIndices();
+
+            Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
+        }  
+
+        [Test]
+        public void TestThatIndexBufferHasReducedIndicesIfLeftFaceIsHidden()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            RockBlock blockToRender = RockBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetIndexBufferOffsetInChunk(54);
+            testCandidate.SetLeftFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int[] fullIndices = CalculateExpectedIndicesBasedOnBlockNumberInChunk(54);
+            int[] expectedIndices = {
+                fullIndices[0], fullIndices[1], fullIndices[2], fullIndices[3], fullIndices[4], fullIndices[5],
+                fullIndices[6], fullIndices[7], fullIndices[8], fullIndices[9], fullIndices[10], fullIndices[11],
+                fullIndices[12], fullIndices[13], fullIndices[14], fullIndices[15], fullIndices[16], fullIndices[17],
+                fullIndices[18], fullIndices[19], fullIndices[20], fullIndices[21], fullIndices[22], fullIndices[23],
+                fullIndices[24], fullIndices[25], fullIndices[26], fullIndices[27], fullIndices[28], fullIndices[29]
+            };
+            int[] shapeIndices = testCandidate.GetShapeIndices();
+
+            Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
+        }   
+
+        [Test]
+        public void TestThatIndexBufferHasReducedIndicesIfBottomFaceIsHidden()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            EarthBlock blockToRender = EarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetIndexBufferOffsetInChunk(67);
+            testCandidate.SetBottomFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int[] fullIndices = CalculateExpectedIndicesBasedOnBlockNumberInChunk(67);
+            int[] expectedIndices = {
+                fullIndices[0], fullIndices[1], fullIndices[2], fullIndices[3], fullIndices[4], fullIndices[5],
+                fullIndices[6], fullIndices[7], fullIndices[8], fullIndices[9], fullIndices[10], fullIndices[11],
+                fullIndices[12], fullIndices[13], fullIndices[14], fullIndices[15], fullIndices[16], fullIndices[17],
+                fullIndices[18], fullIndices[19], fullIndices[20], fullIndices[21], fullIndices[22], fullIndices[23],
+                fullIndices[24], fullIndices[25], fullIndices[26], fullIndices[27], fullIndices[28], fullIndices[29]
+            };
+            int[] shapeIndices = testCandidate.GetShapeIndices();
+
+            Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
+        }     
+
+        [Test]
+        public void TestThatIndexBufferHasReducedIndicesIfTopFaceIsHidden()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            GrassyEarthBlock blockToRender = GrassyEarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetIndexBufferOffsetInChunk(21);
+            testCandidate.SetTopFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int[] fullIndices = CalculateExpectedIndicesBasedOnBlockNumberInChunk(21);
+            int[] expectedIndices = {
+                fullIndices[0], fullIndices[1], fullIndices[2], fullIndices[3], fullIndices[4], fullIndices[5],
+                fullIndices[6], fullIndices[7], fullIndices[8], fullIndices[9], fullIndices[10], fullIndices[11],
+                fullIndices[12], fullIndices[13], fullIndices[14], fullIndices[15], fullIndices[16], fullIndices[17],
+                fullIndices[18], fullIndices[19], fullIndices[20], fullIndices[21], fullIndices[22], fullIndices[23],
+                fullIndices[24], fullIndices[25], fullIndices[26], fullIndices[27], fullIndices[28], fullIndices[29]
+            };
+            int[] shapeIndices = testCandidate.GetShapeIndices();
+
+            Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
+        }                               
 
         private float[] CalculateExpectedVertexPositionsBasedOnBlockPosition(BlockPosition blockPosition)
         {
