@@ -114,6 +114,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             {
                 BuildPositionsBuffer();
                 BuildIndicesBuffer();
+                BuildNormalsBuffer();
             }
         }
 
@@ -191,6 +192,51 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                 AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
                 currentBufferIndex += 6;
                 faceOffset += 4;
+            }
+        }
+
+        private void BuildNormalsBuffer()
+        {
+            int amountOfUncoveredFaces = GetAmountOfUncoveredFaces();
+            int vectorsPerFace = 4;
+
+            normalsBuffer = new float[amountOfUncoveredFaces * vectorsPerFace * 3];
+
+            int currentBufferIndex = 0;
+
+            if (!frontFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, -1.0f, currentBufferIndex); 
+                currentBufferIndex += 12;
+            }
+
+            if (!rightFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(1.0f, 0.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;
+            }
+
+            if (!backFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, 1.0f, currentBufferIndex); 
+                currentBufferIndex += 12;  
+            }     
+
+            if (!leftFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(-1.0f, 0.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;   
+            }    
+
+            if (!bottomFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, -1.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;  
+            }        
+
+            if (!topFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 1.0f, 0.0f, currentBufferIndex); 
             }
         }
 
@@ -374,6 +420,22 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             indexBuffer[currentBufferIndex + 3] = 2 + faceOffset + indexBufferOffsetInChunk;
             indexBuffer[currentBufferIndex + 4] = 3 + faceOffset + indexBufferOffsetInChunk;
             indexBuffer[currentBufferIndex + 5] = 0 + faceOffset + indexBufferOffsetInChunk;  
+        }
+
+        private void AddNormalForFaceWithGivenValuesStartingAtIndex(float normalX, float normalY, float normalZ, int startIndex)
+        {
+            normalsBuffer[startIndex] = normalX;
+            normalsBuffer[startIndex + 1] = normalY;
+            normalsBuffer[startIndex + 2] = normalZ;
+            normalsBuffer[startIndex + 3] = normalX;
+            normalsBuffer[startIndex + 4] = normalY;
+            normalsBuffer[startIndex + 5] = normalZ;
+            normalsBuffer[startIndex + 6] = normalX;
+            normalsBuffer[startIndex + 7] = normalY;
+            normalsBuffer[startIndex + 8] = normalZ;
+            normalsBuffer[startIndex + 9] = normalX;
+            normalsBuffer[startIndex + 10] = normalY;
+            normalsBuffer[startIndex + 11] = normalZ;    
         }
 
         private int GetAmountOfUncoveredFaces()

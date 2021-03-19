@@ -414,7 +414,167 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             int[] shapeIndices = testCandidate.GetShapeIndices();
 
             Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
-        }                 
+        }   
+
+        [Test]
+        public void TestThatCorrectNormalsAreSetForUncoveredBlock()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            RockBlock blockToRender = RockBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+
+            testCandidate.Build();
+
+            float[] shapeNormals = testCandidate.GetShapeNormals();
+            float[] expectedNormals = CalculateExpectedShapeNormals();
+
+            Assert.That(shapeNormals, Is.EqualTo(expectedNormals));
+        }  
+
+        [Test]
+        public void TestThatCorrectNormalsAreSetForCoveredFrontFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            RockBlock blockToRender = RockBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetFrontFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] shapeNormals = testCandidate.GetShapeNormals();
+            float[] fullExpectedNormals = CalculateExpectedShapeNormals();
+            float[] expectedNormals = {
+                fullExpectedNormals[12], fullExpectedNormals[13], fullExpectedNormals[14], fullExpectedNormals[15], fullExpectedNormals[16], fullExpectedNormals[17], fullExpectedNormals[18], fullExpectedNormals[19], fullExpectedNormals[20], fullExpectedNormals[21], fullExpectedNormals[22], fullExpectedNormals[23],
+                fullExpectedNormals[24], fullExpectedNormals[25], fullExpectedNormals[26], fullExpectedNormals[27], fullExpectedNormals[28], fullExpectedNormals[29], fullExpectedNormals[30], fullExpectedNormals[31], fullExpectedNormals[32], fullExpectedNormals[33], fullExpectedNormals[34], fullExpectedNormals[35],
+                fullExpectedNormals[36], fullExpectedNormals[37], fullExpectedNormals[38], fullExpectedNormals[39], fullExpectedNormals[40], fullExpectedNormals[41], fullExpectedNormals[42], fullExpectedNormals[43], fullExpectedNormals[44], fullExpectedNormals[45], fullExpectedNormals[46], fullExpectedNormals[47],
+                fullExpectedNormals[48], fullExpectedNormals[49], fullExpectedNormals[50], fullExpectedNormals[51], fullExpectedNormals[52], fullExpectedNormals[53], fullExpectedNormals[54], fullExpectedNormals[55], fullExpectedNormals[56], fullExpectedNormals[57], fullExpectedNormals[58], fullExpectedNormals[59],
+                fullExpectedNormals[60], fullExpectedNormals[61], fullExpectedNormals[62], fullExpectedNormals[63], fullExpectedNormals[64], fullExpectedNormals[65], fullExpectedNormals[66], fullExpectedNormals[67], fullExpectedNormals[68], fullExpectedNormals[69], fullExpectedNormals[70], fullExpectedNormals[71]
+            };
+
+            Assert.That(shapeNormals, Is.EqualTo(expectedNormals));
+        }  
+
+        [Test]
+        public void TestThatCorrectNormalsAreSetForCoveredRightFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            EarthBlock blockToRender = EarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetRightFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] shapeNormals = testCandidate.GetShapeNormals();
+            float[] fullExpectedNormals = CalculateExpectedShapeNormals();
+            float[] expectedNormals = {
+                fullExpectedNormals[0], fullExpectedNormals[1], fullExpectedNormals[2], fullExpectedNormals[3], fullExpectedNormals[4], fullExpectedNormals[5], fullExpectedNormals[6], fullExpectedNormals[7], fullExpectedNormals[8], fullExpectedNormals[9], fullExpectedNormals[10], fullExpectedNormals[11],
+                fullExpectedNormals[24], fullExpectedNormals[25], fullExpectedNormals[26], fullExpectedNormals[27], fullExpectedNormals[28], fullExpectedNormals[29], fullExpectedNormals[30], fullExpectedNormals[31], fullExpectedNormals[32], fullExpectedNormals[33], fullExpectedNormals[34], fullExpectedNormals[35],
+                fullExpectedNormals[36], fullExpectedNormals[37], fullExpectedNormals[38], fullExpectedNormals[39], fullExpectedNormals[40], fullExpectedNormals[41], fullExpectedNormals[42], fullExpectedNormals[43], fullExpectedNormals[44], fullExpectedNormals[45], fullExpectedNormals[46], fullExpectedNormals[47],
+                fullExpectedNormals[48], fullExpectedNormals[49], fullExpectedNormals[50], fullExpectedNormals[51], fullExpectedNormals[52], fullExpectedNormals[53], fullExpectedNormals[54], fullExpectedNormals[55], fullExpectedNormals[56], fullExpectedNormals[57], fullExpectedNormals[58], fullExpectedNormals[59],
+                fullExpectedNormals[60], fullExpectedNormals[61], fullExpectedNormals[62], fullExpectedNormals[63], fullExpectedNormals[64], fullExpectedNormals[65], fullExpectedNormals[66], fullExpectedNormals[67], fullExpectedNormals[68], fullExpectedNormals[69], fullExpectedNormals[70], fullExpectedNormals[71]
+            };
+
+            Assert.That(shapeNormals, Is.EqualTo(expectedNormals));
+        }  
+
+        [Test]
+        public void TestThatCorrectNormalsAreSetForCoveredBackFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            GrassyEarthBlock blockToRender = GrassyEarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetBackFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] shapeNormals = testCandidate.GetShapeNormals();
+            float[] fullExpectedNormals = CalculateExpectedShapeNormals();
+            float[] expectedNormals = {
+                fullExpectedNormals[0], fullExpectedNormals[1], fullExpectedNormals[2], fullExpectedNormals[3], fullExpectedNormals[4], fullExpectedNormals[5], fullExpectedNormals[6], fullExpectedNormals[7], fullExpectedNormals[8], fullExpectedNormals[9], fullExpectedNormals[10], fullExpectedNormals[11],
+                fullExpectedNormals[12], fullExpectedNormals[13], fullExpectedNormals[14], fullExpectedNormals[15], fullExpectedNormals[16], fullExpectedNormals[17], fullExpectedNormals[18], fullExpectedNormals[19], fullExpectedNormals[20], fullExpectedNormals[21], fullExpectedNormals[22], fullExpectedNormals[23],
+                fullExpectedNormals[36], fullExpectedNormals[37], fullExpectedNormals[38], fullExpectedNormals[39], fullExpectedNormals[40], fullExpectedNormals[41], fullExpectedNormals[42], fullExpectedNormals[43], fullExpectedNormals[44], fullExpectedNormals[45], fullExpectedNormals[46], fullExpectedNormals[47],
+                fullExpectedNormals[48], fullExpectedNormals[49], fullExpectedNormals[50], fullExpectedNormals[51], fullExpectedNormals[52], fullExpectedNormals[53], fullExpectedNormals[54], fullExpectedNormals[55], fullExpectedNormals[56], fullExpectedNormals[57], fullExpectedNormals[58], fullExpectedNormals[59],
+                fullExpectedNormals[60], fullExpectedNormals[61], fullExpectedNormals[62], fullExpectedNormals[63], fullExpectedNormals[64], fullExpectedNormals[65], fullExpectedNormals[66], fullExpectedNormals[67], fullExpectedNormals[68], fullExpectedNormals[69], fullExpectedNormals[70], fullExpectedNormals[71]
+            };
+
+            Assert.That(shapeNormals, Is.EqualTo(expectedNormals));
+        }    
+
+        [Test]
+        public void TestThatCorrectNormalsAreSetForCoveredLeftFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            GrassyEarthBlock blockToRender = GrassyEarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetLeftFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] shapeNormals = testCandidate.GetShapeNormals();
+            float[] fullExpectedNormals = CalculateExpectedShapeNormals();
+            float[] expectedNormals = {
+                fullExpectedNormals[0], fullExpectedNormals[1], fullExpectedNormals[2], fullExpectedNormals[3], fullExpectedNormals[4], fullExpectedNormals[5], fullExpectedNormals[6], fullExpectedNormals[7], fullExpectedNormals[8], fullExpectedNormals[9], fullExpectedNormals[10], fullExpectedNormals[11],
+                fullExpectedNormals[12], fullExpectedNormals[13], fullExpectedNormals[14], fullExpectedNormals[15], fullExpectedNormals[16], fullExpectedNormals[17], fullExpectedNormals[18], fullExpectedNormals[19], fullExpectedNormals[20], fullExpectedNormals[21], fullExpectedNormals[22], fullExpectedNormals[23],
+                fullExpectedNormals[24], fullExpectedNormals[25], fullExpectedNormals[26], fullExpectedNormals[27], fullExpectedNormals[28], fullExpectedNormals[29], fullExpectedNormals[30], fullExpectedNormals[31], fullExpectedNormals[32], fullExpectedNormals[33], fullExpectedNormals[34], fullExpectedNormals[35],
+                fullExpectedNormals[48], fullExpectedNormals[49], fullExpectedNormals[50], fullExpectedNormals[51], fullExpectedNormals[52], fullExpectedNormals[53], fullExpectedNormals[54], fullExpectedNormals[55], fullExpectedNormals[56], fullExpectedNormals[57], fullExpectedNormals[58], fullExpectedNormals[59],
+                fullExpectedNormals[60], fullExpectedNormals[61], fullExpectedNormals[62], fullExpectedNormals[63], fullExpectedNormals[64], fullExpectedNormals[65], fullExpectedNormals[66], fullExpectedNormals[67], fullExpectedNormals[68], fullExpectedNormals[69], fullExpectedNormals[70], fullExpectedNormals[71]
+            };
+
+            Assert.That(shapeNormals, Is.EqualTo(expectedNormals));
+        } 
+
+        [Test]
+        public void TestThatCorrectNormalsAreSetForCoveredBottomFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            EarthBlock blockToRender = EarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetBottomFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] shapeNormals = testCandidate.GetShapeNormals();
+            float[] fullExpectedNormals = CalculateExpectedShapeNormals();
+            float[] expectedNormals = {
+                fullExpectedNormals[0], fullExpectedNormals[1], fullExpectedNormals[2], fullExpectedNormals[3], fullExpectedNormals[4], fullExpectedNormals[5], fullExpectedNormals[6], fullExpectedNormals[7], fullExpectedNormals[8], fullExpectedNormals[9], fullExpectedNormals[10], fullExpectedNormals[11],
+                fullExpectedNormals[12], fullExpectedNormals[13], fullExpectedNormals[14], fullExpectedNormals[15], fullExpectedNormals[16], fullExpectedNormals[17], fullExpectedNormals[18], fullExpectedNormals[19], fullExpectedNormals[20], fullExpectedNormals[21], fullExpectedNormals[22], fullExpectedNormals[23],
+                fullExpectedNormals[24], fullExpectedNormals[25], fullExpectedNormals[26], fullExpectedNormals[27], fullExpectedNormals[28], fullExpectedNormals[29], fullExpectedNormals[30], fullExpectedNormals[31], fullExpectedNormals[32], fullExpectedNormals[33], fullExpectedNormals[34], fullExpectedNormals[35],
+                fullExpectedNormals[36], fullExpectedNormals[37], fullExpectedNormals[38], fullExpectedNormals[39], fullExpectedNormals[40], fullExpectedNormals[41], fullExpectedNormals[42], fullExpectedNormals[43], fullExpectedNormals[44], fullExpectedNormals[45], fullExpectedNormals[46], fullExpectedNormals[47],
+                fullExpectedNormals[60], fullExpectedNormals[61], fullExpectedNormals[62], fullExpectedNormals[63], fullExpectedNormals[64], fullExpectedNormals[65], fullExpectedNormals[66], fullExpectedNormals[67], fullExpectedNormals[68], fullExpectedNormals[69], fullExpectedNormals[70], fullExpectedNormals[71]
+            };
+
+            Assert.That(shapeNormals, Is.EqualTo(expectedNormals));
+        }   
+
+        [Test]
+        public void TestThatCorrectNormalsAreSetForCoveredTopFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            EarthBlock blockToRender = EarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetTopFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] shapeNormals = testCandidate.GetShapeNormals();
+            float[] fullExpectedNormals = CalculateExpectedShapeNormals();
+            float[] expectedNormals = {
+                fullExpectedNormals[0], fullExpectedNormals[1], fullExpectedNormals[2], fullExpectedNormals[3], fullExpectedNormals[4], fullExpectedNormals[5], fullExpectedNormals[6], fullExpectedNormals[7], fullExpectedNormals[8], fullExpectedNormals[9], fullExpectedNormals[10], fullExpectedNormals[11],
+                fullExpectedNormals[12], fullExpectedNormals[13], fullExpectedNormals[14], fullExpectedNormals[15], fullExpectedNormals[16], fullExpectedNormals[17], fullExpectedNormals[18], fullExpectedNormals[19], fullExpectedNormals[20], fullExpectedNormals[21], fullExpectedNormals[22], fullExpectedNormals[23],
+                fullExpectedNormals[24], fullExpectedNormals[25], fullExpectedNormals[26], fullExpectedNormals[27], fullExpectedNormals[28], fullExpectedNormals[29], fullExpectedNormals[30], fullExpectedNormals[31], fullExpectedNormals[32], fullExpectedNormals[33], fullExpectedNormals[34], fullExpectedNormals[35],
+                fullExpectedNormals[36], fullExpectedNormals[37], fullExpectedNormals[38], fullExpectedNormals[39], fullExpectedNormals[40], fullExpectedNormals[41], fullExpectedNormals[42], fullExpectedNormals[43], fullExpectedNormals[44], fullExpectedNormals[45], fullExpectedNormals[46], fullExpectedNormals[47],
+                fullExpectedNormals[48], fullExpectedNormals[49], fullExpectedNormals[50], fullExpectedNormals[51], fullExpectedNormals[52], fullExpectedNormals[53], fullExpectedNormals[54], fullExpectedNormals[55], fullExpectedNormals[56], fullExpectedNormals[57], fullExpectedNormals[58], fullExpectedNormals[59]
+            };
+
+            Assert.That(shapeNormals, Is.EqualTo(expectedNormals));
+        }                                                    
 
         private float[] CalculateExpectedVertexPositionsBasedOnBlockPosition(BlockPosition blockPosition)
         {
@@ -446,6 +606,20 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
                 blockNumberInChunk + 16, blockNumberInChunk + 17, blockNumberInChunk + 18, blockNumberInChunk + 18, blockNumberInChunk + 19, blockNumberInChunk + 16,
                 blockNumberInChunk + 20, blockNumberInChunk + 21, blockNumberInChunk + 22, blockNumberInChunk + 22, blockNumberInChunk + 23, blockNumberInChunk + 20                
             };
+
+            return result;
+        }
+
+        private float[] CalculateExpectedShapeNormals()
+        {
+            float[] result = {
+                0.0f, 0.0f, -1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, -1.0f,
+                1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+                -1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+                0.0f, -1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, -1.0f, 0.0f,
+                0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f
+            }; 
 
             return result;
         }
