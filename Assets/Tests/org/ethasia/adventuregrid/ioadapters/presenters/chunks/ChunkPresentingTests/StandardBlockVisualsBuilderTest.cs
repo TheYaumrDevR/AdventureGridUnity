@@ -389,7 +389,32 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             int[] shapeIndices = testCandidate.GetShapeIndices();
 
             Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
-        }                               
+        }         
+
+        [Test]       
+        public void TestThatIndexBufferHasReducedIndicesForFourHiddenFaces()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+
+            GrassyEarthBlock blockToRender = GrassyEarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetIndexBufferOffsetInChunk(4);
+            testCandidate.SetTopFaceOfBlockIsHidden(true);
+            testCandidate.SetBackFaceOfBlockIsHidden(true);
+            testCandidate.SetLeftFaceOfBlockIsHidden(true);
+            testCandidate.SetRightFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int[] fullIndices = CalculateExpectedIndicesBasedOnBlockNumberInChunk(4);
+            int[] expectedIndices = {
+                fullIndices[0], fullIndices[1], fullIndices[2], fullIndices[3], fullIndices[4], fullIndices[5],
+                fullIndices[6], fullIndices[7], fullIndices[8], fullIndices[9], fullIndices[10], fullIndices[11]
+            };
+            int[] shapeIndices = testCandidate.GetShapeIndices();
+
+            Assert.That(shapeIndices, Is.EqualTo(expectedIndices));
+        }                 
 
         private float[] CalculateExpectedVertexPositionsBasedOnBlockPosition(BlockPosition blockPosition)
         {
