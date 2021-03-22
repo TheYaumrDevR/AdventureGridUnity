@@ -206,25 +206,25 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
             if (!frontFaceOfBlockIsHidden)
             {
-                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, -1.0f, currentBufferIndex); 
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, 1.0f, currentBufferIndex); 
                 currentBufferIndex += 12;
             }
 
             if (!rightFaceOfBlockIsHidden)
             {
-                AddNormalForFaceWithGivenValuesStartingAtIndex(1.0f, 0.0f, 0.0f, currentBufferIndex); 
+                AddNormalForFaceWithGivenValuesStartingAtIndex(-1.0f, 0.0f, 0.0f, currentBufferIndex); 
                 currentBufferIndex += 12;
             }
 
             if (!backFaceOfBlockIsHidden)
             {
-                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, 1.0f, currentBufferIndex); 
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, -1.0f, currentBufferIndex); 
                 currentBufferIndex += 12;  
             }     
 
             if (!leftFaceOfBlockIsHidden)
             {
-                AddNormalForFaceWithGivenValuesStartingAtIndex(-1.0f, 0.0f, 0.0f, currentBufferIndex); 
+                AddNormalForFaceWithGivenValuesStartingAtIndex(1.0f, 0.0f, 0.0f, currentBufferIndex); 
                 currentBufferIndex += 12;   
             }    
 
