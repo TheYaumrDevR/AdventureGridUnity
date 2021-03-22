@@ -583,12 +583,12 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             int z = blockPosition.Z;
 
             float[] result = {
-                x * 0.5f + 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f, z * 0.5f + 0.5f,
-                x * 0.5f + 0.5f, y * 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f, z * 0.5f + 0.5f,
-                x * 0.5f, y * 0.5f, z * 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f, z * 0.5f,
-                x * 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f, y * 0.5f, z * 0.5f,
-                x * 0.5f + 0.5f, y * 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f, z * 0.5f,
-                x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f
+                x * 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f, z * 0.5f + 0.5f,
+                x * 0.5f, y * 0.5f, z * 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f, z * 0.5f + 0.5f,
+                x * 0.5f + 0.5f, y * 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f, y * 0.5f, z * 0.5f,
+                x * 0.5f + 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f, z * 0.5f,
+                x * 0.5f, y * 0.5f, z * 0.5f, x * 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f, z * 0.5f + 0.5f, x * 0.5f + 0.5f, y * 0.5f, z * 0.5f,
+                x * 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f, x * 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f, x * 0.5f + 0.5f, y * 0.5f + 0.5f, z * 0.5f + 0.5f
             };  
 
             return result;          
