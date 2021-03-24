@@ -574,7 +574,160 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             };
 
             Assert.That(shapeNormals, Is.EqualTo(expectedNormals));
-        }                                                    
+        }    
+
+        [Test]
+        public void TestThatUvCoordinatesAreEqualToBlockUvCoordinatesForUncoveredFaces()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            RockBlock blockToRender = RockBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+
+            testCandidate.Build();
+
+            float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
+            float[] expectedUvCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
+
+            Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
+        }
+
+        [Test]
+        public void TestThatUvCoordinatesHaveAllUvCoordinatesExceptCoveredFrontFaceCoordinates()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            RockBlock blockToRender = RockBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetFrontFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
+            float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
+            float[] expectedUvCoordinates = {
+                allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11], allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15],
+                allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
+                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31],
+                allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35], allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39],
+                allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47]
+            };
+
+            Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
+        } 
+
+        [Test]
+        public void TestThatUvCoordinatesHaveAllUvCoordinatesExceptCoveredRightFaceCoordinates()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            GrassyEarthBlock blockToRender = GrassyEarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetRightFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
+            float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
+            float[] expectedUvCoordinates = {
+                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7],
+                allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
+                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31],
+                allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35], allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39],
+                allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47]
+            };
+
+            Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
+        }
+
+        [Test]
+        public void TestThatUvCoordinatesHaveAllUvCoordinatesExceptCoveredBackFaceCoordinates()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            GrassyEarthBlock blockToRender = GrassyEarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetBackFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
+            float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
+            float[] expectedUvCoordinates = {
+                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7],
+                allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11], allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15],
+                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31],
+                allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35], allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39],
+                allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47]
+            };
+
+            Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
+        }   
+
+        [Test]
+        public void TestThatUvCoordinatesHaveAllUvCoordinatesExceptCoveredLeftFaceCoordinates()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            EarthBlock blockToRender = EarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetLeftFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
+            float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
+            float[] expectedUvCoordinates = {
+                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7],
+                allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11], allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15],
+                allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
+                allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35], allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39],
+                allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47]
+            };
+
+            Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
+        } 
+
+        [Test]
+        public void TestThatUvCoordinatesHaveAllUvCoordinatesExceptCoveredBottomFaceCoordinates()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            EarthBlock blockToRender = EarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetBottomFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
+            float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
+            float[] expectedUvCoordinates = {
+                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7],
+                allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11], allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15],
+                allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
+                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31],
+                allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47]
+            };
+
+            Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
+        }     
+
+        [Test]
+        public void TestThatUvCoordinatesHaveAllUvCoordinatesExceptCoveredTopFaceCoordinates()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            RockBlock blockToRender = RockBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetTopFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
+            float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
+            float[] expectedUvCoordinates = {
+                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7],
+                allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11], allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15],
+                allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
+                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31],
+                allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35], allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39],
+            };
+
+            Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
+        }                                                                                              
 
         private float[] CalculateExpectedVertexPositionsBasedOnBlockPosition(BlockPosition blockPosition)
         {

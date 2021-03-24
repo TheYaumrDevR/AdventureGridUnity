@@ -115,6 +115,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                 BuildPositionsBuffer();
                 BuildIndicesBuffer();
                 BuildNormalsBuffer();
+                BuildUvBuffer();
             }
         }
 
@@ -437,6 +438,81 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             normalsBuffer[startIndex + 10] = normalY;
             normalsBuffer[startIndex + 11] = normalZ;    
         }
+
+        private void BuildUvBuffer()
+        {
+            int faces = GetAmountOfUncoveredFaces();
+            int uvPerFace = 4;
+            float[] blockUvCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
+
+            if (6 == faces) 
+            {
+                uvBuffer = blockUvCoordinates;
+            }
+            else
+            {
+                uvBuffer = new float[faces * uvPerFace * 2];
+                int currentTargetBufferIndex = 0;
+                int currentSourceBufferIndex = 0;
+
+                if (!frontFaceOfBlockIsHidden) 
+                {
+                    CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);
+                
+                    currentTargetBufferIndex += 8;
+                }
+
+                if (!rightFaceOfBlockIsHidden) 
+                {
+                    currentSourceBufferIndex = 8;
+                    CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);
+                
+                    currentTargetBufferIndex += 8;
+                }
+
+                if (!backFaceOfBlockIsHidden) 
+                {
+                    currentSourceBufferIndex = 16;
+                    CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);
+                
+                    currentTargetBufferIndex += 8;
+                }
+
+                if (!leftFaceOfBlockIsHidden) 
+                {
+                    currentSourceBufferIndex = 24;
+                    CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);
+                
+                    currentTargetBufferIndex += 8;   
+                }  
+
+                if (!bottomFaceOfBlockIsHidden) 
+                {
+                    currentSourceBufferIndex = 32;
+                    CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);
+                
+                    currentTargetBufferIndex += 8;
+                }
+
+                if (!topFaceOfBlockIsHidden) 
+                {
+                    currentSourceBufferIndex = 40;
+                    CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);   
+                }                                                        
+            }
+        }
+
+        private void CopyUvCoordinatesFromSourceBufferToUvBuffer(int destintationBufferStartingIndex, float[] sourceBuffer, int sourceDataStartingIndex) 
+        {
+            uvBuffer[destintationBufferStartingIndex] = sourceBuffer[sourceDataStartingIndex];
+            uvBuffer[destintationBufferStartingIndex + 1] = sourceBuffer[sourceDataStartingIndex + 1];
+            uvBuffer[destintationBufferStartingIndex + 2] = sourceBuffer[sourceDataStartingIndex + 2];
+            uvBuffer[destintationBufferStartingIndex + 3] = sourceBuffer[sourceDataStartingIndex + 3];
+            uvBuffer[destintationBufferStartingIndex + 4] = sourceBuffer[sourceDataStartingIndex + 4];
+            uvBuffer[destintationBufferStartingIndex + 5] = sourceBuffer[sourceDataStartingIndex + 5];
+            uvBuffer[destintationBufferStartingIndex + 6] = sourceBuffer[sourceDataStartingIndex + 6];
+            uvBuffer[destintationBufferStartingIndex + 7] = sourceBuffer[sourceDataStartingIndex + 7];        
+        }        
 
         private int GetAmountOfUncoveredFaces()
         {
