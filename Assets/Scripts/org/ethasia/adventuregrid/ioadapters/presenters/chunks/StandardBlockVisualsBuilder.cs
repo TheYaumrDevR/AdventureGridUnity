@@ -3,7 +3,7 @@ using Org.Ethasia.Adventuregrid.Core.Math;
 
 namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 {
-    public class StandardBlockVisualsBuilder
+    public class StandardBlockVisualsBuilder : BlockVisualsBuilder
     {
 
         // Base vertices
@@ -47,61 +47,61 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         private float[] normalsBuffer;
         private float[] uvBuffer;
 
-        public StandardBlockVisualsBuilder SetBlockToCreateDataFrom(Block value)
+        public override StandardBlockVisualsBuilder SetBlockToCreateDataFrom(Block value)
         {
             blockToRender = value;
             return this;
         }
 
-        public StandardBlockVisualsBuilder SetPositionOfBlockInChunk(BlockPosition value)
+        public override StandardBlockVisualsBuilder SetPositionOfBlockInChunk(BlockPosition value)
         {
             blockPosition = value;
             return this;
         }
 
-        public StandardBlockVisualsBuilder SetFrontFaceOfBlockIsHidden(bool value)
+        public override StandardBlockVisualsBuilder SetFrontFaceOfBlockIsHidden(bool value)
         {
             frontFaceOfBlockIsHidden = value;
             return this;
         }
 
-        public StandardBlockVisualsBuilder SetRightFaceOfBlockIsHidden(bool value)
+        public override StandardBlockVisualsBuilder SetRightFaceOfBlockIsHidden(bool value)
         {
             rightFaceOfBlockIsHidden = value;
             return this;
         }
 
-        public StandardBlockVisualsBuilder SetBackFaceOfBlockIsHidden(bool value)
+        public override StandardBlockVisualsBuilder SetBackFaceOfBlockIsHidden(bool value)
         {
             backFaceOfBlockIsHidden = value;
             return this;
         }
 
-        public StandardBlockVisualsBuilder SetLeftFaceOfBlockIsHidden(bool value)
+        public override StandardBlockVisualsBuilder SetLeftFaceOfBlockIsHidden(bool value)
         {
             leftFaceOfBlockIsHidden = value;
             return this;
         }
 
-        public StandardBlockVisualsBuilder SetBottomFaceOfBlockIsHidden(bool value)
+        public override StandardBlockVisualsBuilder SetBottomFaceOfBlockIsHidden(bool value)
         {
             bottomFaceOfBlockIsHidden = value;
             return this;
         }
 
-        public StandardBlockVisualsBuilder SetTopFaceOfBlockIsHidden(bool value)
+        public override StandardBlockVisualsBuilder SetTopFaceOfBlockIsHidden(bool value)
         {
             topFaceOfBlockIsHidden = value;
             return this;
         }
 
-        public StandardBlockVisualsBuilder SetIndexBufferOffsetInChunk(int value)
+        public override StandardBlockVisualsBuilder SetIndexBufferOffsetInChunk(int value)
         {
             indexBufferOffsetInChunk = value;
             return this;
         }
 
-        public void Build() 
+        public override void Build() 
         {
             if (null == blockToRender)
             {
@@ -119,24 +119,29 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             }
         }
 
-        public float[] GetShapePositions() 
+        public override float[] GetShapePositions() 
         {
             return positionsBuffer;
         }
 
-        public int[] GetShapeIndices() 
+        public override int[] GetShapeIndices() 
         {
             return indexBuffer;
         }
 
-        public float[] GetShapeNormals()
+        public override float[] GetShapeNormals()
         {
             return normalsBuffer;
         }
 
-        public float[] GetShapeUvCoordinates()
+        public override float[] GetShapeUvCoordinates()
         {
             return uvBuffer;
+        }
+
+        public override int GetNumberOfAddedVertices()
+        {
+            return GetAmountOfUncoveredFaces() * 4;
         }
 
         private void BuildPositionsBuffer()

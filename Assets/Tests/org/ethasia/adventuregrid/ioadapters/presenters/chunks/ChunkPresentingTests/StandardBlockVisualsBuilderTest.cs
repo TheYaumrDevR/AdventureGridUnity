@@ -727,7 +727,133 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             };
 
             Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
-        }                                                                                              
+        }  
+
+        [Test]
+        public void TestNumberOfAddedVerticesIsCorrectForNoHiddenFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            GrassyEarthBlock blockToRender = GrassyEarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+
+            testCandidate.Build();
+
+            int numberOfAddedVertices = testCandidate.GetNumberOfAddedVertices();
+            int expectedNumberOfAddedVertices = 4 * 6;
+
+            Assert.That(numberOfAddedVertices, Is.EqualTo(expectedNumberOfAddedVertices));
+        }  
+
+        [Test]
+        public void TestNumberOfAddedVerticesIsCorrectForOneHiddenFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            GrassyEarthBlock blockToRender = GrassyEarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetLeftFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int numberOfAddedVertices = testCandidate.GetNumberOfAddedVertices();
+            int expectedNumberOfAddedVertices = 4 * 5;
+
+            Assert.That(numberOfAddedVertices, Is.EqualTo(expectedNumberOfAddedVertices));
+        }  
+
+        [Test]
+        public void TestNumberOfAddedVerticesIsCorrectForTwoHiddenFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            EarthBlock blockToRender = EarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetRightFaceOfBlockIsHidden(true);
+            testCandidate.SetTopFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int numberOfAddedVertices = testCandidate.GetNumberOfAddedVertices();
+            int expectedNumberOfAddedVertices = 4 * 4;
+
+            Assert.That(numberOfAddedVertices, Is.EqualTo(expectedNumberOfAddedVertices));
+        }                                                                                                   
+
+        [Test]
+        public void TestNumberOfAddedVerticesIsCorrectForThreeHiddenFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            EarthBlock blockToRender = EarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetBottomFaceOfBlockIsHidden(true);
+            testCandidate.SetBackFaceOfBlockIsHidden(true);
+            testCandidate.SetTopFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int numberOfAddedVertices = testCandidate.GetNumberOfAddedVertices();
+            int expectedNumberOfAddedVertices = 4 * 3;
+
+            Assert.That(numberOfAddedVertices, Is.EqualTo(expectedNumberOfAddedVertices));
+        }  
+
+        [Test]
+        public void TestNumberOfAddedVerticesIsCorrectForFourHiddenFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            RockBlock blockToRender = RockBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetBottomFaceOfBlockIsHidden(true);
+            testCandidate.SetBackFaceOfBlockIsHidden(true);
+            testCandidate.SetTopFaceOfBlockIsHidden(true);
+            testCandidate.SetFrontFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int numberOfAddedVertices = testCandidate.GetNumberOfAddedVertices();
+            int expectedNumberOfAddedVertices = 4 * 2;
+
+            Assert.That(numberOfAddedVertices, Is.EqualTo(expectedNumberOfAddedVertices));
+        }   
+
+        [Test]
+        public void TestNumberOfAddedVerticesIsCorrectForFiveHiddenFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            RockBlock blockToRender = RockBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetBottomFaceOfBlockIsHidden(true);
+            testCandidate.SetBackFaceOfBlockIsHidden(true);
+            testCandidate.SetTopFaceOfBlockIsHidden(true);
+            testCandidate.SetFrontFaceOfBlockIsHidden(true);
+            testCandidate.SetRightFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int numberOfAddedVertices = testCandidate.GetNumberOfAddedVertices();
+            int expectedNumberOfAddedVertices = 4 * 1;
+
+            Assert.That(numberOfAddedVertices, Is.EqualTo(expectedNumberOfAddedVertices));
+        }          
+
+        [Test]
+        public void TestNumberOfAddedVerticesIsCorrectForAllHiddenFace()
+        {
+            StandardBlockVisualsBuilder testCandidate = new StandardBlockVisualsBuilder();
+            EarthBlock blockToRender = EarthBlock.GetInstance();
+            testCandidate.SetBlockToCreateDataFrom(blockToRender);
+            testCandidate.SetBottomFaceOfBlockIsHidden(true);
+            testCandidate.SetBackFaceOfBlockIsHidden(true);
+            testCandidate.SetTopFaceOfBlockIsHidden(true);
+            testCandidate.SetFrontFaceOfBlockIsHidden(true);
+            testCandidate.SetRightFaceOfBlockIsHidden(true);
+            testCandidate.SetLeftFaceOfBlockIsHidden(true);
+
+            testCandidate.Build();
+
+            int numberOfAddedVertices = testCandidate.GetNumberOfAddedVertices();
+            int expectedNumberOfAddedVertices = 4 * 0;
+
+            Assert.That(numberOfAddedVertices, Is.EqualTo(expectedNumberOfAddedVertices));
+        }                 
 
         private float[] CalculateExpectedVertexPositionsBasedOnBlockPosition(BlockPosition blockPosition)
         {
