@@ -5,6 +5,13 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 {
     public abstract class BlockVisualsBuilder
     {
+        private static StandardBlockVisualsBuilder standardBlockVisualsBuilder = new StandardBlockVisualsBuilder();
+
+        public static BlockVisualsBuilder FromBlockType(BlockTypes blockType)
+        {
+            return standardBlockVisualsBuilder;
+        }
+
         public abstract StandardBlockVisualsBuilder SetBlockToCreateDataFrom(Block value);
         public abstract StandardBlockVisualsBuilder SetPositionOfBlockInChunk(BlockPosition value);
         public abstract StandardBlockVisualsBuilder SetFrontFaceOfBlockIsHidden(bool value);
@@ -14,6 +21,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         public abstract StandardBlockVisualsBuilder SetBottomFaceOfBlockIsHidden(bool value);
         public abstract StandardBlockVisualsBuilder SetTopFaceOfBlockIsHidden(bool value);
         public abstract StandardBlockVisualsBuilder SetIndexBufferOffsetInChunk(int value);
+
         public abstract void Build();
         public abstract float[] GetShapePositions();
         public abstract int[] GetShapeIndices();
