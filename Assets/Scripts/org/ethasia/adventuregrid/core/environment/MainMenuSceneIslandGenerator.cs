@@ -1,4 +1,6 @@
-﻿namespace Org.Ethasia.Adventuregrid.Core.Environment
+﻿using Org.Ethasia.Adventuregrid.Core.Math;
+
+namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
 
     public class MainMenuSceneIslandGenerator
@@ -18,17 +20,19 @@
                 {
                     for (int k = 0; k < 3; k++)
                     {
+                        BlockPosition blockPosition = new BlockPosition(i, k, j);
+
                         if (k == 0)
                         {
-                            result.PlaceBlockAt(rockBlock, i, k, j);
+                            result.PlaceBlockAt(rockBlock, blockPosition);
                         }
                         else if (k == 1)
                         {
-                            result.PlaceBlockAt(earthBlock, i, k, j);
+                            result.PlaceBlockAt(earthBlock, blockPosition);
                         }
                         else 
                         {
-                            result.PlaceBlockAt(grassBlock, i, k, j);
+                            result.PlaceBlockAt(grassBlock, blockPosition);
                         }
                     }
                 }

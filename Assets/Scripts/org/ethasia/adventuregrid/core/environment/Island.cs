@@ -1,4 +1,6 @@
-﻿namespace Org.Ethasia.Adventuregrid.Core.Environment
+﻿using Org.Ethasia.Adventuregrid.Core.Math;
+
+namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
     public class Island
     {
@@ -20,28 +22,32 @@
             InitializeAllBlocksToAir();
         }
 
-        public Block GetBlockAt(int x, int y, int z)
+        public Block GetBlockAt(BlockPosition position)
         {
-            if (PositionIsOutOfIslandBounds(x, y, z))
+            if (PositionIsOutOfIslandBounds(position))
             {
                 throw new BlockPositionOutOfBoundsException();
             }
 
-            return blocks[x, y, z];
+            return blocks[position.X, position.Y, position.Z];
         }
 
-        public void PlaceBlockAt(Block toPlace, int x, int y, int z)
+        public void PlaceBlockAt(Block toPlace, BlockPosition position)
         {
-            if (PositionIsOutOfIslandBounds(x, y, z))
+            if (PositionIsOutOfIslandBounds(position))
             {
                 throw new BlockPositionOutOfBoundsException();
             }
 
-            blocks[x, y, z] = toPlace;
+            blocks[position.X, position.Y, position.Z] = toPlace;
         }
 
-        public bool BlockFaceAtPositionIsHidden(BlockFaceDirections faceType, int x, int y, int z)
+        public bool BlockFaceAtPositionIsHidden(BlockFaceDirections faceType, BlockPosition position)
         {
+            int x = position.X;
+            int y = position.Y;
+            int z = position.Z;
+
             switch(faceType)
             {
                 case BlockFaceDirections.LEFT:
@@ -123,11 +129,11 @@
             }
         }
 
-        private bool PositionIsOutOfIslandBounds(int x, int y, int z)
+        private bool PositionIsOutOfIslandBounds(BlockPosition position)
         {
-            return x >= xzDimension
-                || y >= HEIGHT_IN_BLOCKS
-                || z >= xzDimension;
+            return position.X >= xzDimension
+                || position.Y >= HEIGHT_IN_BLOCKS
+                || position.Z >= xzDimension;
         }
     }
 }
