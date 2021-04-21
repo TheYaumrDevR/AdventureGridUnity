@@ -51,10 +51,10 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
             switch(faceType)
             {
                 case BlockFaceDirections.LEFT:
-                    if (x > 0) 
+                    if (x < xzDimension - 1) 
                     {
                         Block currentBlock = blocks[x, y, z];
-                        Block neighborBlock = blocks[x - 1, y, z];              
+                        Block neighborBlock = blocks[x + 1, y, z];              
         
                         return currentBlock.GetFaceHidingStrategy().FaceIsHidden(currentBlock, neighborBlock, faceType);
                     } 
@@ -71,10 +71,10 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
                 
                     break; 
                 case BlockFaceDirections.RIGHT:
-                    if (x < xzDimension - 1) 
+                    if (x > 0) 
                     {
                         Block currentBlock = blocks[x, y, z];
-                        Block neighborBlock = blocks[x + 1, y, z];
+                        Block neighborBlock = blocks[x - 1, y, z];
                 
                         return currentBlock.GetFaceHidingStrategy().FaceIsHidden(currentBlock, neighborBlock, faceType);                   
                     }

@@ -139,8 +139,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         public IEnumerator LeftFaceOfRockBlockIsHiddenWhenCovered() 
         {
             Island testCandidate = new Island(64);
-            BlockPosition blockPositionOne = new BlockPosition(5, 0, 0);
-            BlockPosition blockPositionTwo = new BlockPosition(4, 0, 0);
+            BlockPosition blockPositionOne = new BlockPosition(4, 0, 0);
+            BlockPosition blockPositionTwo = new BlockPosition(5, 0, 0);
         
             Block testBlock = RockBlock.GetInstance();
             Block neighbor = EarthBlock.GetInstance();
@@ -159,8 +159,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         public IEnumerator LeftFaceOfRockBlockIsVisibleWhenNotCovered() 
         {
             Island testCandidate = new Island(64);
-            BlockPosition blockPositionOne = new BlockPosition(5, 0, 0);
-            BlockPosition blockPositionTwo = new BlockPosition(4, 0, 0);            
+            BlockPosition blockPositionOne = new BlockPosition(4, 0, 0);
+            BlockPosition blockPositionTwo = new BlockPosition(5, 0, 0);            
         
             Block testBlock = RockBlock.GetInstance();
             Block neighbor = AirBlock.GetInstance();
@@ -179,8 +179,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         public IEnumerator BlockFaceIsVisibleWhenItsNotCovering() 
         {
             Island testCandidate = new Island(64);
-            BlockPosition blockPositionOne = new BlockPosition(5, 0, 0);
-            BlockPosition blockPositionTwo = new BlockPosition(4, 0, 0);              
+            BlockPosition blockPositionOne = new BlockPosition(4, 0, 0);
+            BlockPosition blockPositionTwo = new BlockPosition(5, 0, 0);              
         
             Block testBlock = AirBlock.GetInstance();
             Block neighbor = GrassyEarthBlock.GetInstance();
@@ -199,7 +199,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         public IEnumerator LeftBlockFaceIsVisibleWhenOnLeftIslandEdge() 
         {
             Island testCandidate = new Island(64);
-            BlockPosition blockPosition = new BlockPosition(0, 0, 0);
+            BlockPosition blockPosition = new BlockPosition(63, 0, 0);
         
             Block testBlock = RockBlock.GetInstance();
             testCandidate.PlaceBlockAt(testBlock, blockPosition);
@@ -291,8 +291,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         public IEnumerator RightFaceOfBlockIsHiddenWhenCovered() 
         {  
             Island testCandidate = new Island(64);
-            BlockPosition blockPositionOne = new BlockPosition(45, 0, 0);
-            BlockPosition blockPositionTwo = new BlockPosition(46, 0, 0);              
+            BlockPosition blockPositionOne = new BlockPosition(46, 0, 0);
+            BlockPosition blockPositionTwo = new BlockPosition(45, 0, 0);              
         
             Block testBlock = GrassyEarthBlock.GetInstance();
             Block neighbor = RockBlock.GetInstance();
@@ -311,8 +311,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         public IEnumerator RightFaceOfBlockIsVisibleWhenNotCovered() 
         {  
             Island testCandidate = new Island(64);
-            BlockPosition blockPositionOne = new BlockPosition(45, 0, 0);
-            BlockPosition blockPositionTwo = new BlockPosition(46, 0, 0);               
+            BlockPosition blockPositionOne = new BlockPosition(46, 0, 0);
+            BlockPosition blockPositionTwo = new BlockPosition(45, 0, 0);               
         
             Block testBlock = GrassyEarthBlock.GetInstance();
             Block neighbor = AirBlock.GetInstance();
@@ -331,8 +331,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         public IEnumerator RightFaceOfBlockIsVisibleWhenNotFullyCovering() 
         {  
             Island testCandidate = new Island(64);
-            BlockPosition blockPositionOne = new BlockPosition(45, 0, 0);
-            BlockPosition blockPositionTwo = new BlockPosition(46, 0, 0);             
+            BlockPosition blockPositionOne = new BlockPosition(46, 0, 0);
+            BlockPosition blockPositionTwo = new BlockPosition(45, 0, 0);             
         
             Block testBlock = AirBlock.GetInstance();
             Block neighbor = EarthBlock.GetInstance();
@@ -351,7 +351,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         public IEnumerator RightFaceOfBlockIsVisibleWhenAtRightEdgeOfIsland() 
         { 
             Island testCandidate = new Island(64);
-            BlockPosition blockPosition = new BlockPosition(63, 0, 0);
+            BlockPosition blockPosition = new BlockPosition(0, 0, 0);
         
             Block testBlock = GrassyEarthBlock.GetInstance();
             testCandidate.PlaceBlockAt(testBlock, blockPosition);
