@@ -1,4 +1,4 @@
-﻿using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.interfaces.Technical;
+﻿using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Interfaces.Technical;
 
 namespace Org.Ethasia.Adventuregrid.Ioadapters
 {

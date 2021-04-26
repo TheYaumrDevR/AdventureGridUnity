@@ -1,6 +1,6 @@
 ﻿using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks;
 
-namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.interfaces.Technical
+namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Interfaces.Technical
 {
     public interface ChunkRenderer
     {
