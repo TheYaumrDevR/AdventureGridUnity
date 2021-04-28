@@ -3,11 +3,26 @@ using NUnit.Framework;
 using Org.Ethasia.Adventuregrid.Core.Environment;
 using Org.Ethasia.Adventuregrid.Core.Math;
 using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks;
+using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresentingTests.Mocks;
 
 namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresentingTests
 {
+    [TestFixture]
     public class ChunkPresenterTest
     {
+
+        [OneTimeSetUp]
+        public void InitDependencies()
+        {
+            TechnicalsFactory.SetInstance(new TechnicalsMockFactory());
+        }
+
+        [SetUp]
+        public void ResetMocks()
+        {
+            ChunkRendererMock.ResetMock();
+        }
+
         [Test]
         public void TestThatRenderingBlocksInZeroZeroChunkIsDoneProperly()
         {
@@ -25,6 +40,10 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             ChunkPresenter testCandidate = new ChunkPresenter();
 
             testCandidate.PresentChunk(islandToRender, 0, 0);
+
+            VisualChunkData lastRenderedChunkData = ChunkRendererMock.GetLastRenderChunkCallData();
+
+            Assert.That(lastRenderedChunkData, Is.Not.Null);
         }
     }
 }

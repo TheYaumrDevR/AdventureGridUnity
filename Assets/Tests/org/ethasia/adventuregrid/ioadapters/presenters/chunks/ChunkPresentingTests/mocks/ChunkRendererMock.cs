@@ -2,7 +2,7 @@
 
 using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Interfaces.Technical;
 
-namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.Mocks
+namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresentingTests.Mocks
 {
     public class ChunkRendererMock : ChunkRenderer
     {
