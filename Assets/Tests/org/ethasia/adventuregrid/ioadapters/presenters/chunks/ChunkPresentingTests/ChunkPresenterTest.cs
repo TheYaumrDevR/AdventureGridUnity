@@ -44,6 +44,9 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             VisualChunkData lastRenderedChunkData = ChunkRendererMock.GetLastRenderChunkCallData();
 
             Assert.That(lastRenderedChunkData, Is.Not.Null);
+            Assert.That(lastRenderedChunkData.GetWorldX(), Is.EqualTo(0));
+            Assert.That(lastRenderedChunkData.GetWorldY(), Is.EqualTo(0));
+            Assert.That(lastRenderedChunkData.GetVertices().Length, Is.EqualTo(288));
         }
     }
 }
