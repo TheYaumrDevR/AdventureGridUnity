@@ -25,7 +25,10 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
             FillRenderDataForOneChunk(island, chunkCoordinateX, chunkCoordinateY);
 
-            RenderChunk(chunkRenderData, chunkCoordinateX, chunkCoordinateY);
+            if (intBuffersOfOpaqueBlocksInChunk.Count > 0) 
+            {
+                RenderChunk(chunkRenderData, chunkCoordinateX, chunkCoordinateY);
+            }
         }
 
         private VisualChunkData ClearRenderDataForNewChunk()
@@ -83,7 +86,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
             for (int k = 0; k < intBuffersOfOpaqueBlocksInChunk.Count; k++) 
             {
-                chunkToRender.AddIndicesToTemporaryBuffer(new int[0]);
+                chunkToRender.AddIndicesToTemporaryBuffer(intBuffersOfOpaqueBlocksInChunk[k]);
             }
 
             chunkToRender.BuildChunkData();
@@ -113,8 +116,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         private void FillOpaqueBlockBuffersWithVisualRenderData(BlockVisualsBuilder blockRenderDataBuilder) 
         {
             floatBuffersOfOpaqueBlocksInChunk.Add(blockRenderDataBuilder.GetShapePositions());
-            floatBuffersOfOpaqueBlocksInChunk.Add(new float[0]);
-            floatBuffersOfOpaqueBlocksInChunk.Add(new float[0]);
+            floatBuffersOfOpaqueBlocksInChunk.Add(blockRenderDataBuilder.GetShapeNormals());
+            floatBuffersOfOpaqueBlocksInChunk.Add(blockRenderDataBuilder.GetShapeUvCoordinates());
             intBuffersOfOpaqueBlocksInChunk.Add(blockRenderDataBuilder.GetShapeIndices()); 
         }
     }
