@@ -2,24 +2,54 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
 {
     public class OneHandedSword : Armament
     {
-        public override bool CanBeEquippedInMainHand()
+        public override bool CanFitInMainHandSlot()
         {
             return true;
         }
 
-        public override bool CanBeEquippedInOffHand()
+        public override bool CanFitInOffHandSlot()
         {
             return true;
         }
 
-        public override int GetAddedMinimumPhysicalDamage()
+        public override bool CanFitInHeadSlot()
         {
-            return 10;
+            return false;
         }
 
-        public override int GetAddedMaximumPhysicalDamage()
+        public override bool CanFitInChestSlot()
         {
-            return 20;
+            return false;
+        }
+
+        public override bool CanFitInLegSlot()
+        {
+            return false;
+        }
+
+        public override bool CanFitInFeetSlot()
+        {
+            return false;
+        }
+
+        public override bool CanFitInHandsSlot()
+        {
+            return false;
+        }
+
+        public override bool CanFitInLeftRingSlot()
+        {
+            return false;
+        }
+
+        public override bool CanFitInRightRingSlot()
+        {
+            return false;
+        }
+
+        public override bool CanFitInAmuletSlot()
+        {
+            return false;
         }
     }
 }
