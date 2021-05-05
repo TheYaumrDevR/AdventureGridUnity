@@ -82,7 +82,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
         }
 
         [Test]
-        public void TestThatCoveredMiddleBlockIsNotRendered() {
+        public void TestThatCoveredMiddleBlockIsNotRendered() 
+        {
             Island islandToRender = new Island(46);  
         
             islandToRender.PlaceBlockAt(GrassyEarthBlock.GetInstance(), new BlockPosition(34, 3, 18));
