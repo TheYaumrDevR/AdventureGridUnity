@@ -1,6 +1,6 @@
 namespace Org.Ethasia.Adventuregrid.Core.Items
 {
-    public class PlayerEquipment
+    public class PlayerEquipmentSlots
     {
         public bool IsMainHandSlotEmpty()
         {

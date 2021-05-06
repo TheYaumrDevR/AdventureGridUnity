@@ -1,15 +1,15 @@
-namespace Org.Ethasia.Adventuregrid.Core.Items
+﻿namespace Org.Ethasia.Adventuregrid.Core.Items
 {
-    public class OneHandedSword : Armament
+    public class Shoes : Equipment
     {
         public override bool CanFitInMainHandSlot()
         {
-            return true;
+            return false;
         }
 
         public override bool CanFitInOffHandSlot()
         {
-            return true;
+            return false;
         }
 
         public override bool CanFitInHeadSlot()
@@ -29,7 +29,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
 
         public override bool CanFitInFeetSlot()
         {
-            return false;
+            return true;
         }
 
         public override bool CanFitInHandsSlot()

@@ -6,13 +6,13 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.ItemsTests
 {
 
     [TestFixture]
-    public class PlayerEquipmentTest
+    public class PlayerEquipmentSlotsTest
     {
 
         [Test]
         public void TestThatNewPlayerEquipmentHasEmptySlots()
         {
-            PlayerEquipment testCandidate = new PlayerEquipment();
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
             bool isMainHandSlotEmpty = testCandidate.IsMainHandSlotEmpty();
             bool isOffHandSlotEmpty = testCandidate.IsOffHandSlotEmpty();
