@@ -77,6 +77,56 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
             return amuletEquipmentSlot is EmptyEquipment;
         }
 
+        public Equipment GetEquipmentInMainHand()
+        {
+            return mainHandSlotEquipment;
+        }
+
+        public Equipment GetEquipmentInOffHand()
+        {
+            return offHandEquipmentSlot;
+        }      
+
+        public Equipment GetEquipmentOnHead()
+        {
+            return headEquipmentSlot;
+        }  
+
+        public Equipment GetEquipmentOnChest()
+        {
+            return chestEquipmentSlot;
+        }
+
+        public Equipment GetEquipmentOnLegs()
+        {
+            return legsEquipmentSlot;
+        }
+
+        public Equipment GetEquipmentOnFeet()
+        {
+            return feetEquipmentSlot;
+        }
+
+        public Equipment GetEquipmentOnHands()
+        {
+            return handsEquipmentSlot;
+        }
+
+        public Equipment GetEquipmentOnLeftRing()
+        {
+            return leftRingEquipmentSlot;
+        }     
+
+        public Equipment GetEquipmentOnRightRing()
+        {
+            return rightRingEquipmentSlot;
+        }   
+
+        public Equipment GetEquipmentOnAmulet()
+        {
+            return amuletEquipmentSlot;
+        }        
+
         public void EquipInMainHand(Equipment value)
         {
             mainHandSlotEquipment = value;
