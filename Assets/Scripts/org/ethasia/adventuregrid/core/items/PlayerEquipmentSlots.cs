@@ -129,52 +129,82 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
 
         public void EquipInMainHand(Equipment value)
         {
-            mainHandSlotEquipment = value;
+            if (value.CanFitInMainHandSlot())
+            {
+                mainHandSlotEquipment = value;
+            }            
         }
 
         public void EquipInOffHand(Equipment value)
         {
-            offHandEquipmentSlot = value;
+            if (value.CanFitInOffHandSlot())
+            {
+                offHandEquipmentSlot = value;
+            }            
         }
 
         public void EquipInHead(Equipment value)
         {
-            headEquipmentSlot = value;
+            if (value.CanFitInHeadSlot())
+            {
+                headEquipmentSlot = value;
+            }
         }     
 
         public void EquipInChest(Equipment value)
         {
-            chestEquipmentSlot = value;
+            if (value.CanFitInChestSlot())
+            {
+                chestEquipmentSlot = value;
+            }
         }   
 
         public void EquipInLegs(Equipment value)
         {
-            legsEquipmentSlot = value;
+            if (value.CanFitInLegSlot())
+            {
+                legsEquipmentSlot = value;
+            }
         }
 
         public void EquipInFeet(Equipment value)
         {
-            feetEquipmentSlot = value;
+            if (value.CanFitInFeetSlot())
+            {
+                feetEquipmentSlot = value;
+            }
         }
 
         public void EquipInHands(Equipment value)
         {
-            handsEquipmentSlot = value;
+            if (value.CanFitInHandsSlot())
+            {
+                handsEquipmentSlot = value;
+            }            
         }
 
         public void EquipInLeftRing(Equipment value)
         {
-            leftRingEquipmentSlot = value;
+            if (value.CanFitInLeftRingSlot())
+            {
+                leftRingEquipmentSlot = value;
+            }            
         }
 
         public void EquipInRightRing(Equipment value)
         {
-            rightRingEquipmentSlot = value;
+            if (value.CanFitInRightRingSlot())
+            {
+                rightRingEquipmentSlot = value;
+            }            
         }
 
         public void EquipInAmulet(Equipment value)
         {
-            amuletEquipmentSlot = value;
+            if (value.CanFitInAmuletSlot())
+            {   
+                amuletEquipmentSlot = value;
+            }      
         }                
     }
 }
