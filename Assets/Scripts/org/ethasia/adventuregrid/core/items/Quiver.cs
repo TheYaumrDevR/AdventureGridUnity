@@ -1,6 +1,6 @@
 ﻿namespace Org.Ethasia.Adventuregrid.Core.Items
 {
-    public class Quiver : Equipment
+    public class Quiver : EquipmentBase
     {
         public override bool CanFitInMainHandSlot()
         {

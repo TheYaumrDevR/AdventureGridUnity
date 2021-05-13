@@ -1,6 +1,6 @@
 ﻿namespace Org.Ethasia.Adventuregrid.Core.Items
 {
-    public class Shoes : Equipment
+    public class Shoes : EquipmentBase
     {
         public override bool CanFitInMainHandSlot()
         {

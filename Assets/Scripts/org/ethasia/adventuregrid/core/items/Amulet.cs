@@ -1,6 +1,6 @@
-﻿namespace Org.Ethasia.Adventuregrid.Core.Items
+namespace Org.Ethasia.Adventuregrid.Core.Items
 {
-    public class Amulet : Equipment
+    public class Amulet : EquipmentBase
     {
         public override bool CanFitInMainHandSlot()
         {

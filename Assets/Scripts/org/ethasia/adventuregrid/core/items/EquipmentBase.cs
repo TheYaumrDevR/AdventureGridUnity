@@ -1,6 +1,6 @@
 namespace Org.Ethasia.Adventuregrid.Core.Items
 {
-    public abstract class Equipment
+    public abstract class EquipmentBase
     {
         public abstract bool CanFitInMainHandSlot();
         public abstract bool CanFitInOffHandSlot();

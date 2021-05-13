@@ -115,16 +115,16 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.ItemsTests
             testCandidate.EquipInRightRing(rightRingToEquip);
             testCandidate.EquipInAmulet(amuletToEquip);
 
-            Equipment equippedMainHandEquipment = testCandidate.GetEquipmentInMainHand();
-            Equipment equippedOffHandEquipment = testCandidate.GetEquipmentInOffHand();
-            Equipment equippedHeadEquipment = testCandidate.GetEquipmentOnHead();
-            Equipment equippedChestEquipment = testCandidate.GetEquipmentOnChest();
-            Equipment equippedLegsEquipment = testCandidate.GetEquipmentOnLegs();
-            Equipment equippedShoes = testCandidate.GetEquipmentOnFeet();
-            Equipment equippedGloves = testCandidate.GetEquipmentOnHands();
-            Equipment equippedLeftRing = testCandidate.GetEquipmentOnLeftRing();
-            Equipment equippedRightRing = testCandidate.GetEquipmentOnRightRing();
-            Equipment equippedAmulet = testCandidate.GetEquipmentOnAmulet();
+            EquipmentBase equippedMainHandEquipment = testCandidate.GetEquipmentInMainHand();
+            EquipmentBase equippedOffHandEquipment = testCandidate.GetEquipmentInOffHand();
+            EquipmentBase equippedHeadEquipment = testCandidate.GetEquipmentOnHead();
+            EquipmentBase equippedChestEquipment = testCandidate.GetEquipmentOnChest();
+            EquipmentBase equippedLegsEquipment = testCandidate.GetEquipmentOnLegs();
+            EquipmentBase equippedShoes = testCandidate.GetEquipmentOnFeet();
+            EquipmentBase equippedGloves = testCandidate.GetEquipmentOnHands();
+            EquipmentBase equippedLeftRing = testCandidate.GetEquipmentOnLeftRing();
+            EquipmentBase equippedRightRing = testCandidate.GetEquipmentOnRightRing();
+            EquipmentBase equippedAmulet = testCandidate.GetEquipmentOnAmulet();
  
             Assert.That(weaponToEquip, Is.EqualTo(equippedMainHandEquipment));
             Assert.That(shieldToEquip, Is.EqualTo(equippedOffHandEquipment));
@@ -156,16 +156,16 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.ItemsTests
             testCandidate.EquipInRightRing(rightSword);
             testCandidate.EquipInAmulet(rightSword); 
 
-            Equipment equippedMainHandEquipment = testCandidate.GetEquipmentInMainHand();
-            Equipment equippedOffHandEquipment = testCandidate.GetEquipmentInOffHand();
-            Equipment equippedHeadEquipment = testCandidate.GetEquipmentOnHead();
-            Equipment equippedChestEquipment = testCandidate.GetEquipmentOnChest();
-            Equipment equippedLegsEquipment = testCandidate.GetEquipmentOnLegs();
-            Equipment equippedShoes = testCandidate.GetEquipmentOnFeet();
-            Equipment equippedGloves = testCandidate.GetEquipmentOnHands();
-            Equipment equippedLeftRing = testCandidate.GetEquipmentOnLeftRing();
-            Equipment equippedRightRing = testCandidate.GetEquipmentOnRightRing();
-            Equipment equippedAmulet = testCandidate.GetEquipmentOnAmulet();     
+            EquipmentBase equippedMainHandEquipment = testCandidate.GetEquipmentInMainHand();
+            EquipmentBase equippedOffHandEquipment = testCandidate.GetEquipmentInOffHand();
+            EquipmentBase equippedHeadEquipment = testCandidate.GetEquipmentOnHead();
+            EquipmentBase equippedChestEquipment = testCandidate.GetEquipmentOnChest();
+            EquipmentBase equippedLegsEquipment = testCandidate.GetEquipmentOnLegs();
+            EquipmentBase equippedShoes = testCandidate.GetEquipmentOnFeet();
+            EquipmentBase equippedGloves = testCandidate.GetEquipmentOnHands();
+            EquipmentBase equippedLeftRing = testCandidate.GetEquipmentOnLeftRing();
+            EquipmentBase equippedRightRing = testCandidate.GetEquipmentOnRightRing();
+            EquipmentBase equippedAmulet = testCandidate.GetEquipmentOnAmulet();     
 
             Assert.That(leftSword, Is.EqualTo(equippedMainHandEquipment));
             Assert.That(rightSword, Is.EqualTo(equippedOffHandEquipment));
@@ -199,8 +199,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.ItemsTests
             testCandidate.EquipInHead(helmetToEquip);
             testCandidate.EquipInMainHand(helmetToEquip);
 
-            Equipment equippedHeadEquipment = testCandidate.GetEquipmentOnHead();
-            Equipment equippedMainHandEquipment = testCandidate.GetEquipmentInMainHand();
+            EquipmentBase equippedHeadEquipment = testCandidate.GetEquipmentOnHead();
+            EquipmentBase equippedMainHandEquipment = testCandidate.GetEquipmentInMainHand();
 
             Assert.That(helmetToEquip, Is.EqualTo(equippedHeadEquipment));
             Assert.That(helmetToEquip, Is.Not.EqualTo(equippedMainHandEquipment));
@@ -216,8 +216,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.ItemsTests
             testCandidate.EquipInChest(bodyArmorToEquip);
             testCandidate.EquipInOffHand(bodyArmorToEquip);
 
-            Equipment equippedChestEquipment = testCandidate.GetEquipmentOnChest();
-            Equipment equippedOffHandEquipment = testCandidate.GetEquipmentInOffHand();
+            EquipmentBase equippedChestEquipment = testCandidate.GetEquipmentOnChest();
+            EquipmentBase equippedOffHandEquipment = testCandidate.GetEquipmentInOffHand();
 
             Assert.That(bodyArmorToEquip, Is.EqualTo(equippedChestEquipment));
             Assert.That(bodyArmorToEquip, Is.Not.EqualTo(equippedOffHandEquipment));

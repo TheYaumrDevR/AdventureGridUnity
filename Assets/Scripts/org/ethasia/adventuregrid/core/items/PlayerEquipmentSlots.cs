@@ -2,16 +2,16 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
 {
     public class PlayerEquipmentSlots
     {
-        private Equipment mainHandSlotEquipment;
-        private Equipment offHandEquipmentSlot;
-        private Equipment headEquipmentSlot;
-        private Equipment chestEquipmentSlot;
-        private Equipment legsEquipmentSlot;
-        private Equipment feetEquipmentSlot;
-        private Equipment handsEquipmentSlot;
-        private Equipment leftRingEquipmentSlot;
-        private Equipment rightRingEquipmentSlot;
-        private Equipment amuletEquipmentSlot;
+        private EquipmentBase mainHandSlotEquipment;
+        private EquipmentBase offHandEquipmentSlot;
+        private EquipmentBase headEquipmentSlot;
+        private EquipmentBase chestEquipmentSlot;
+        private EquipmentBase legsEquipmentSlot;
+        private EquipmentBase feetEquipmentSlot;
+        private EquipmentBase handsEquipmentSlot;
+        private EquipmentBase leftRingEquipmentSlot;
+        private EquipmentBase rightRingEquipmentSlot;
+        private EquipmentBase amuletEquipmentSlot;
 
         public PlayerEquipmentSlots()
         {
@@ -77,57 +77,57 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
             return amuletEquipmentSlot is EmptyEquipment;
         }
 
-        public Equipment GetEquipmentInMainHand()
+        public EquipmentBase GetEquipmentInMainHand()
         {
             return mainHandSlotEquipment;
         }
 
-        public Equipment GetEquipmentInOffHand()
+        public EquipmentBase GetEquipmentInOffHand()
         {
             return offHandEquipmentSlot;
         }      
 
-        public Equipment GetEquipmentOnHead()
+        public EquipmentBase GetEquipmentOnHead()
         {
             return headEquipmentSlot;
         }  
 
-        public Equipment GetEquipmentOnChest()
+        public EquipmentBase GetEquipmentOnChest()
         {
             return chestEquipmentSlot;
         }
 
-        public Equipment GetEquipmentOnLegs()
+        public EquipmentBase GetEquipmentOnLegs()
         {
             return legsEquipmentSlot;
         }
 
-        public Equipment GetEquipmentOnFeet()
+        public EquipmentBase GetEquipmentOnFeet()
         {
             return feetEquipmentSlot;
         }
 
-        public Equipment GetEquipmentOnHands()
+        public EquipmentBase GetEquipmentOnHands()
         {
             return handsEquipmentSlot;
         }
 
-        public Equipment GetEquipmentOnLeftRing()
+        public EquipmentBase GetEquipmentOnLeftRing()
         {
             return leftRingEquipmentSlot;
         }     
 
-        public Equipment GetEquipmentOnRightRing()
+        public EquipmentBase GetEquipmentOnRightRing()
         {
             return rightRingEquipmentSlot;
         }   
 
-        public Equipment GetEquipmentOnAmulet()
+        public EquipmentBase GetEquipmentOnAmulet()
         {
             return amuletEquipmentSlot;
         }        
 
-        public void EquipInMainHand(Equipment value)
+        public void EquipInMainHand(EquipmentBase value)
         {
             if (value.CanFitInMainHandSlot())
             {
@@ -135,7 +135,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
             }            
         }
 
-        public void EquipInOffHand(Equipment value)
+        public void EquipInOffHand(EquipmentBase value)
         {
             if (value.CanFitInOffHandSlot())
             {
@@ -143,7 +143,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
             }            
         }
 
-        public void EquipInHead(Equipment value)
+        public void EquipInHead(EquipmentBase value)
         {
             if (value.CanFitInHeadSlot())
             {
@@ -151,7 +151,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
             }
         }     
 
-        public void EquipInChest(Equipment value)
+        public void EquipInChest(EquipmentBase value)
         {
             if (value.CanFitInChestSlot())
             {
@@ -159,7 +159,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
             }
         }   
 
-        public void EquipInLegs(Equipment value)
+        public void EquipInLegs(EquipmentBase value)
         {
             if (value.CanFitInLegSlot())
             {
@@ -167,7 +167,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
             }
         }
 
-        public void EquipInFeet(Equipment value)
+        public void EquipInFeet(EquipmentBase value)
         {
             if (value.CanFitInFeetSlot())
             {
@@ -175,7 +175,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
             }
         }
 
-        public void EquipInHands(Equipment value)
+        public void EquipInHands(EquipmentBase value)
         {
             if (value.CanFitInHandsSlot())
             {
@@ -183,7 +183,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
             }            
         }
 
-        public void EquipInLeftRing(Equipment value)
+        public void EquipInLeftRing(EquipmentBase value)
         {
             if (value.CanFitInLeftRingSlot())
             {
@@ -191,7 +191,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
             }            
         }
 
-        public void EquipInRightRing(Equipment value)
+        public void EquipInRightRing(EquipmentBase value)
         {
             if (value.CanFitInRightRingSlot())
             {
@@ -199,7 +199,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items
             }            
         }
 
-        public void EquipInAmulet(Equipment value)
+        public void EquipInAmulet(EquipmentBase value)
         {
             if (value.CanFitInAmuletSlot())
             {   
