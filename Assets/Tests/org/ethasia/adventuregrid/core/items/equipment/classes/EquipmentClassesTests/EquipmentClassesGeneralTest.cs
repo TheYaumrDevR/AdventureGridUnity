@@ -27,9 +27,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
             EquipmentClass boltQuiver = new BoltQuiver();
 
             EquipmentClass helmet = new Helmet();
-            EquipmentClass bodyArmour = new BodyArmour();
+            EquipmentClass bodyArmor = new BodyArmor();
             EquipmentClass pants = new Pants();
-            EquipmentClass boots = new Boots();
+            EquipmentClass shoes = new Shoes();
             EquipmentClass gloves = new Gloves();
 
             EquipmentClass ring = new Ring();
