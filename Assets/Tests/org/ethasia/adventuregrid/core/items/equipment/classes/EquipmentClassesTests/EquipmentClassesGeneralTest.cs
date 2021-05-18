@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes;
+using Org.Ethasia.Adventuregrid.Core.Items.Equipment;
 
 namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClassesTests
 {
@@ -35,5 +36,107 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
             EquipmentClass ring = new Ring();
             EquipmentClass amulet = new Amulet();
         }
+
+        [Test]
+        public void TestThatOneHandedSwordCanBeEquippedInMainHandWithNothingPresent()
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            EquipmentClass testCandidate = new OneHandedSword();
+
+            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            Assert.That(isMainHandOccupied, Is.False);
+
+            playerEquipment.EquipInMainHand(testCandidate);
+            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+
+            Assert.That(isMainHandOccupied, Is.True);
+            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+        }
+
+        [Test]
+        public void TestThatOneHandedMaceCanBeEquippedInMainHandWithNothingPresent()
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            EquipmentClass testCandidate = new OneHandedMace();
+
+            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            Assert.That(isMainHandOccupied, Is.False);
+
+            playerEquipment.EquipInMainHand(testCandidate);
+            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+
+            Assert.That(isMainHandOccupied, Is.True);
+            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+        }     
+
+        [Test]
+        public void TestThatBowCanBeEquippedInMainHandWithNothingPresent()
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            EquipmentClass testCandidate = new Bow();
+
+            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            Assert.That(isMainHandOccupied, Is.False);
+
+            playerEquipment.EquipInMainHand(testCandidate);
+            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+
+            Assert.That(isMainHandOccupied, Is.True);
+            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+        }   
+
+        [Test]
+        public void TestThatCrossbowCanBeEquippedInMainHandWithNothingPresent()
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            EquipmentClass testCandidate = new CrossBow();
+
+            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            Assert.That(isMainHandOccupied, Is.False);
+
+            playerEquipment.EquipInMainHand(testCandidate);
+            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+
+            Assert.That(isMainHandOccupied, Is.True);
+            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+        } 
+
+        [Test]
+        public void TestThatWandCanBeEquippedInMainHandWithNothingPresent()
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            EquipmentClass testCandidate = new Wand();
+
+            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            Assert.That(isMainHandOccupied, Is.False);
+
+            playerEquipment.EquipInMainHand(testCandidate);
+            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+
+            Assert.That(isMainHandOccupied, Is.True);
+            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+        } 
+
+        [Test]
+        public void TestThatMagicStaffCanBeEquippedInMainHandWithNothingPresent()
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            EquipmentClass testCandidate = new MagicStaff();
+
+            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            Assert.That(isMainHandOccupied, Is.False);
+
+            playerEquipment.EquipInMainHand(testCandidate);
+            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+
+            Assert.That(isMainHandOccupied, Is.True);
+            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+        }                                          
     }
 }
