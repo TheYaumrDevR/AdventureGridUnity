@@ -2,6 +2,7 @@
 {
     public interface EquipmentClass
     {
-        
+        bool CanEquipInMainHand();
+        bool CanEquipInOffHand();
     }
 }
