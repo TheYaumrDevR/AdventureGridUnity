@@ -2,7 +2,7 @@
 {
     public interface EquipmentClass
     {
-        bool CanEquipInMainHand();
+        bool CanEquipInMainHand(PlayerEquipmentSlots otherEquipments);
         bool CanEquipInOffHand();
     }
 }

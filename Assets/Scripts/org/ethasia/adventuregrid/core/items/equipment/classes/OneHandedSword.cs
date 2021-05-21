@@ -2,8 +2,15 @@
 {
     public class OneHandedSword : EquipmentClass
     {
-        public bool CanEquipInMainHand()
+        public bool CanEquipInMainHand(PlayerEquipmentSlots otherEquipments)
         {
+            EquipmentClass offHandEquipment = otherEquipments.GetOffHandEquipment();
+
+            if (offHandEquipment is ArrowQuiver || offHandEquipment is BoltQuiver)
+            {
+                return false;
+            }
+
             return true;
         }
 

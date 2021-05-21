@@ -29,7 +29,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
 
         public void EquipInMainHand(EquipmentClass value)
         {
-            if (value.CanEquipInMainHand())
+            if (value.CanEquipInMainHand(this))
             {
                 mainHandEquipment = value;
             }
