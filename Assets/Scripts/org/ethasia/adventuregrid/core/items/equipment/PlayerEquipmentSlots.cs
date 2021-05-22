@@ -37,7 +37,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
 
         public void EquipInOffHand(EquipmentClass value)
         {
-            if (value.CanEquipInOffHand())
+            if (value.CanEquipInOffHand(this))
             {
                 offHandEquipment = value;
             }

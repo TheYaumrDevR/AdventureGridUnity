@@ -14,9 +14,23 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes
             return true;
         }
 
-        public bool CanEquipInOffHand()
+        public bool CanEquipInOffHand(PlayerEquipmentSlots otherEquipments)
         {
-            return true;
-        }           
+            EquipmentClass mainHandEquipment = otherEquipments.GetMainHandEquipment();
+
+            if (null == mainHandEquipment || EquipmentIsOneHandedWeapon(mainHandEquipment))
+            {
+                return true;
+            }
+
+            return false;
+        }      
+
+        private bool EquipmentIsOneHandedWeapon(EquipmentClass mainHandEquipment)
+        {
+            return mainHandEquipment is OneHandedSword 
+                || mainHandEquipment is OneHandedMace 
+                || mainHandEquipment is Wand;
+        }          
     }
 }

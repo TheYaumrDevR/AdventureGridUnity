@@ -7,7 +7,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes
             return false;
         }        
 
-        public bool CanEquipInOffHand()
+        public bool CanEquipInOffHand(PlayerEquipmentSlots otherEquipments)
         {
             return false;
         }           

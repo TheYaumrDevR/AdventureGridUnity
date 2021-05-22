@@ -7,8 +7,15 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes
             return false;
         }
 
-        public bool CanEquipInOffHand()
+        public bool CanEquipInOffHand(PlayerEquipmentSlots otherEquipments)
         {
+            EquipmentClass mainHandEquipment = otherEquipments.GetMainHandEquipment();
+
+            if (!(null == mainHandEquipment || mainHandEquipment is CrossBow))
+            {
+                return false;
+            }
+
             return true;
         }                   
     }
