@@ -10,6 +10,21 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes
         public bool CanEquipInOffHand(PlayerEquipmentSlots otherEquipments)
         {
             return false;
-        }        
+        }   
+
+        public bool CanEquipOnHead()
+        {
+            return false;
+        }    
+
+        public bool CanEquipOnChest()
+        {
+            return false;
+        }
+
+        public bool CanEquipOnLegs()
+        {
+            return false;
+        } 
     }
 }

@@ -4,5 +4,8 @@
     {
         bool CanEquipInMainHand(PlayerEquipmentSlots otherEquipments);
         bool CanEquipInOffHand(PlayerEquipmentSlots otherEquipments);
+        bool CanEquipOnHead();
+        bool CanEquipOnChest();
+        bool CanEquipOnLegs();
     }
 }

@@ -17,6 +17,21 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes
             }
 
             return true;
-        }              
+        }     
+
+        public bool CanEquipOnHead()
+        {
+            return false;
+        }   
+
+        public bool CanEquipOnChest()
+        {
+            return false;
+        }   
+
+        public bool CanEquipOnLegs()
+        {
+            return false;
+        }                               
     }
 }

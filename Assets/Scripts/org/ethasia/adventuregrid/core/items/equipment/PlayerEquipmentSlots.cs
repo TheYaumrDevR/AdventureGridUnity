@@ -6,6 +6,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
     {
         private EquipmentClass mainHandEquipment;
         private EquipmentClass offHandEquipment;
+        private EquipmentClass headEquipment;
+        private EquipmentClass chestEquipment;
+        private EquipmentClass legEquipment;
         
         public bool IsMainHandOccupied()
         {
@@ -17,6 +20,21 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
             return offHandEquipment != null;
         }        
 
+        public bool IsHeadSlotOccupied()
+        {
+            return headEquipment != null;
+        }
+
+        public bool IsChestSlotOccupied()
+        {
+            return chestEquipment != null;
+        } 
+
+        public bool IsLegSlotOccupied()
+        {
+            return legEquipment != null;
+        }                 
+
         public EquipmentClass GetMainHandEquipment()
         {
             return mainHandEquipment;
@@ -25,7 +43,22 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
         public EquipmentClass GetOffHandEquipment()
         {
             return offHandEquipment;
-        }        
+        }   
+
+        public EquipmentClass GetHeadEquipment()
+        {
+            return headEquipment;
+        } 
+
+        public EquipmentClass GetChestEquipment()
+        {
+            return chestEquipment;
+        }  
+
+        public EquipmentClass GetLegEquipment()
+        {
+            return legEquipment;
+        }                             
 
         public void EquipInMainHand(EquipmentClass value)
         {
@@ -41,6 +74,30 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
             {
                 offHandEquipment = value;
             }
-        }        
+        }  
+
+        public void EquipOnHead(EquipmentClass value)
+        {
+            if (value.CanEquipOnHead())
+            {
+                headEquipment = value;
+            }            
+        }   
+
+        public void EquipOnChest(EquipmentClass value)
+        {
+            if (value.CanEquipOnChest())
+            {
+                chestEquipment = value;
+            }            
+        }  
+
+        public void EquipOnLegs(EquipmentClass value)
+        {
+            if (value.CanEquipOnLegs())
+            {
+                legEquipment = value;
+            }            
+        }                   
     }
 }

@@ -24,6 +24,21 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes
             return mainHandEquipment is OneHandedSword 
                 || mainHandEquipment is OneHandedMace 
                 || mainHandEquipment is Wand;
-        }          
+        }     
+
+        public bool CanEquipOnHead()
+        {
+            return false;
+        }  
+
+        public bool CanEquipOnChest()
+        {
+            return false;
+        }    
+
+        public bool CanEquipOnLegs()
+        {
+            return false;
+        }                           
     }
 }
