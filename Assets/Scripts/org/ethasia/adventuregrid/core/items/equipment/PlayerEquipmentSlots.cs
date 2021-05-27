@@ -9,6 +9,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
         private EquipmentClass headEquipment;
         private EquipmentClass chestEquipment;
         private EquipmentClass legEquipment;
+        private EquipmentClass feetEquipment;
+        private EquipmentClass handsEquipment;
+        private EquipmentClass rightRingEquipment;
         
         public bool IsMainHandOccupied()
         {
@@ -33,7 +36,22 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
         public bool IsLegSlotOccupied()
         {
             return legEquipment != null;
-        }                 
+        } 
+
+        public bool IsFeetSlotOccupied()
+        {
+            return feetEquipment != null;
+        }  
+
+        public bool IsHandsSlotOccupied()
+        {
+            return handsEquipment != null;
+        }
+
+        public bool IsRightRingSlotOccupied()
+        {
+            return rightRingEquipment != null;
+        }                                          
 
         public EquipmentClass GetMainHandEquipment()
         {
@@ -58,7 +76,22 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
         public EquipmentClass GetLegEquipment()
         {
             return legEquipment;
-        }                             
+        }
+
+        public EquipmentClass GetFeetEquipment()
+        {
+            return feetEquipment;
+        }  
+
+        public EquipmentClass GetHandsEquipment()
+        {
+            return handsEquipment;
+        }   
+
+        public EquipmentClass GetRightRingEquipment()
+        {
+            return rightRingEquipment;
+        }                                                   
 
         public void EquipInMainHand(EquipmentClass value)
         {
@@ -98,6 +131,30 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
             {
                 legEquipment = value;
             }            
-        }                   
+        }  
+
+        public void EquipOnFeet(EquipmentClass value)
+        {
+            if (value.CanEquipOnFeet())
+            {
+                feetEquipment = value;
+            }            
+        } 
+
+        public void EquipOnHands(EquipmentClass value)
+        {
+            if (value.CanEquipOnHands())
+            {
+                handsEquipment = value;
+            }            
+        }  
+
+        public void EquipOnRightRing(EquipmentClass value)
+        {
+            if (value.CanEquipOnRightRing())
+            {
+                rightRingEquipment = value;
+            }            
+        }                                         
     }
 }

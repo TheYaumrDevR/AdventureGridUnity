@@ -7,5 +7,8 @@
         bool CanEquipOnHead();
         bool CanEquipOnChest();
         bool CanEquipOnLegs();
+        bool CanEquipOnFeet();
+        bool CanEquipOnHands();
+        bool CanEquipOnRightRing();
     }
 }

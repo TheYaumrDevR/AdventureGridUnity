@@ -1742,6 +1742,210 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
             EquipmentClass legEquipment = playerEquipment.GetLegEquipment();  
             Assert.That(isLegSlotOccupied, Is.True);
             Assert.That(legEquipment, Is.EqualTo(pants));          
-        }                                                
+        }  
+
+        [Test]
+        public void TestThatOnlyShoesCanBeEquippedOnFeet()
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            
+            EquipmentClass shoes = new Shoes();
+            playerEquipment.EquipOnFeet(shoes);
+
+            EquipmentClass oneHandedSword = new OneHandedSword();
+            playerEquipment.EquipOnFeet(oneHandedSword);
+
+            EquipmentClass oneHandedMace = new OneHandedMace();
+            playerEquipment.EquipOnFeet(oneHandedMace);
+
+            EquipmentClass wand = new Wand();
+            playerEquipment.EquipOnFeet(wand);
+            
+            EquipmentClass twoHandedSword = new TwoHandedSword();
+            playerEquipment.EquipOnFeet(twoHandedSword);
+
+            EquipmentClass twoHandedMace = new TwoHandedMace();
+            playerEquipment.EquipOnFeet(twoHandedMace);
+
+            EquipmentClass bow = new Bow();
+            playerEquipment.EquipOnFeet(bow);
+
+            EquipmentClass crossBow = new CrossBow();
+            playerEquipment.EquipOnFeet(crossBow);
+
+            EquipmentClass magicStaff = new MagicStaff();
+            playerEquipment.EquipOnFeet(magicStaff);
+
+            EquipmentClass shield = new Shield();
+            playerEquipment.EquipOnFeet(shield);
+
+            EquipmentClass forceShield = new ForceShield();
+            playerEquipment.EquipOnFeet(forceShield);
+
+            EquipmentClass arrowQuiver = new ArrowQuiver();
+            playerEquipment.EquipOnFeet(arrowQuiver);
+
+            EquipmentClass boltQuiver = new BoltQuiver();
+            playerEquipment.EquipOnFeet(boltQuiver);
+
+            EquipmentClass helmet = new Helmet();
+            playerEquipment.EquipOnFeet(helmet);
+
+            EquipmentClass bodyArmor = new BodyArmor();
+            playerEquipment.EquipOnFeet(bodyArmor);
+
+            EquipmentClass pants = new Pants();
+            playerEquipment.EquipOnFeet(pants);
+
+            EquipmentClass gloves = new Gloves();
+            playerEquipment.EquipOnFeet(gloves);
+
+            EquipmentClass ring = new Ring();
+            playerEquipment.EquipOnFeet(ring);
+
+            EquipmentClass amulet = new Amulet();
+            playerEquipment.EquipOnFeet(amulet);
+
+            bool isFeetSlotOccupied = playerEquipment.IsFeetSlotOccupied();
+            EquipmentClass feetEquipment = playerEquipment.GetFeetEquipment();  
+            Assert.That(isFeetSlotOccupied, Is.True);
+            Assert.That(feetEquipment, Is.EqualTo(shoes));          
+        } 
+
+        [Test]
+        public void TestThatOnlyGlovesCanBeEquippedOnHands()
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            
+            EquipmentClass gloves = new Gloves();
+            playerEquipment.EquipOnHands(gloves);
+
+            EquipmentClass oneHandedSword = new OneHandedSword();
+            playerEquipment.EquipOnHands(oneHandedSword);
+
+            EquipmentClass oneHandedMace = new OneHandedMace();
+            playerEquipment.EquipOnHands(oneHandedMace);
+
+            EquipmentClass wand = new Wand();
+            playerEquipment.EquipOnHands(wand);
+            
+            EquipmentClass twoHandedSword = new TwoHandedSword();
+            playerEquipment.EquipOnHands(twoHandedSword);
+
+            EquipmentClass twoHandedMace = new TwoHandedMace();
+            playerEquipment.EquipOnHands(twoHandedMace);
+
+            EquipmentClass bow = new Bow();
+            playerEquipment.EquipOnHands(bow);
+
+            EquipmentClass crossBow = new CrossBow();
+            playerEquipment.EquipOnHands(crossBow);
+
+            EquipmentClass magicStaff = new MagicStaff();
+            playerEquipment.EquipOnHands(magicStaff);
+
+            EquipmentClass shield = new Shield();
+            playerEquipment.EquipOnHands(shield);
+
+            EquipmentClass forceShield = new ForceShield();
+            playerEquipment.EquipOnHands(forceShield);
+
+            EquipmentClass arrowQuiver = new ArrowQuiver();
+            playerEquipment.EquipOnHands(arrowQuiver);
+
+            EquipmentClass boltQuiver = new BoltQuiver();
+            playerEquipment.EquipOnHands(boltQuiver);
+
+            EquipmentClass helmet = new Helmet();
+            playerEquipment.EquipOnHands(helmet);
+
+            EquipmentClass bodyArmor = new BodyArmor();
+            playerEquipment.EquipOnHands(bodyArmor);
+
+            EquipmentClass pants = new Pants();
+            playerEquipment.EquipOnHands(pants);
+
+            EquipmentClass shoes = new Shoes();
+            playerEquipment.EquipOnHands(shoes);
+
+            EquipmentClass ring = new Ring();
+            playerEquipment.EquipOnHands(ring);
+
+            EquipmentClass amulet = new Amulet();
+            playerEquipment.EquipOnHands(amulet);
+
+            bool isHandsSlotOccupied = playerEquipment.IsHandsSlotOccupied();
+            EquipmentClass handsEquipment = playerEquipment.GetHandsEquipment();  
+            Assert.That(isHandsSlotOccupied, Is.True);
+            Assert.That(handsEquipment, Is.EqualTo(gloves));          
+        } 
+
+        [Test]
+        public void TestThatOnlyRingsCanBeEquippedOnRightRingSlot()
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            
+            EquipmentClass ring = new Ring();
+            playerEquipment.EquipOnRightRing(ring);
+
+            EquipmentClass oneHandedSword = new OneHandedSword();
+            playerEquipment.EquipOnRightRing(oneHandedSword);
+
+            EquipmentClass oneHandedMace = new OneHandedMace();
+            playerEquipment.EquipOnRightRing(oneHandedMace);
+
+            EquipmentClass wand = new Wand();
+            playerEquipment.EquipOnRightRing(wand);
+            
+            EquipmentClass twoHandedSword = new TwoHandedSword();
+            playerEquipment.EquipOnRightRing(twoHandedSword);
+
+            EquipmentClass twoHandedMace = new TwoHandedMace();
+            playerEquipment.EquipOnRightRing(twoHandedMace);
+
+            EquipmentClass bow = new Bow();
+            playerEquipment.EquipOnRightRing(bow);
+
+            EquipmentClass crossBow = new CrossBow();
+            playerEquipment.EquipOnRightRing(crossBow);
+
+            EquipmentClass magicStaff = new MagicStaff();
+            playerEquipment.EquipOnRightRing(magicStaff);
+
+            EquipmentClass shield = new Shield();
+            playerEquipment.EquipOnRightRing(shield);
+
+            EquipmentClass forceShield = new ForceShield();
+            playerEquipment.EquipOnRightRing(forceShield);
+
+            EquipmentClass arrowQuiver = new ArrowQuiver();
+            playerEquipment.EquipOnRightRing(arrowQuiver);
+
+            EquipmentClass boltQuiver = new BoltQuiver();
+            playerEquipment.EquipOnRightRing(boltQuiver);
+
+            EquipmentClass helmet = new Helmet();
+            playerEquipment.EquipOnRightRing(helmet);
+
+            EquipmentClass bodyArmor = new BodyArmor();
+            playerEquipment.EquipOnRightRing(bodyArmor);
+
+            EquipmentClass pants = new Pants();
+            playerEquipment.EquipOnRightRing(pants);
+
+            EquipmentClass shoes = new Shoes();
+            playerEquipment.EquipOnRightRing(shoes);
+
+            EquipmentClass gloves = new Gloves();
+            playerEquipment.EquipOnRightRing(gloves);
+
+            EquipmentClass amulet = new Amulet();
+            playerEquipment.EquipOnRightRing(amulet);
+
+            bool isRightRingSlotOccupied = playerEquipment.IsRightRingSlotOccupied();
+            EquipmentClass rightRingEquipment = playerEquipment.GetRightRingEquipment();  
+            Assert.That(isRightRingSlotOccupied, Is.True);
+            Assert.That(rightRingEquipment, Is.EqualTo(ring));          
+        }                                                                         
     }
 }
