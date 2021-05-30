@@ -9,6 +9,8 @@
         bool CanEquipOnLegs();
         bool CanEquipOnFeet();
         bool CanEquipOnHands();
-        bool CanEquipOnRightRing();
+        bool CanEquipOnRightRingSlot();
+        bool CanEquipOnLeftRingSlot();
+        bool CanEquipOnAmuletSlot();
     }
 }

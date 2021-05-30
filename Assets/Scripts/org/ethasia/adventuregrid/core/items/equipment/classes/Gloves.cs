@@ -37,9 +37,19 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes
             return true;
         }  
 
-        public bool CanEquipOnRightRing()
+        public bool CanEquipOnRightRingSlot()
         {
             return false;
-        }                                       
+        }  
+
+        public bool CanEquipOnLeftRingSlot()
+        {
+            return false;
+        }  
+
+        public bool CanEquipOnAmuletSlot()
+        {
+            return false;
+        }                                   
     }
 }

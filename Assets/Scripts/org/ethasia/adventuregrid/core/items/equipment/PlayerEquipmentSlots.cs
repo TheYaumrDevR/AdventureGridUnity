@@ -12,6 +12,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
         private EquipmentClass feetEquipment;
         private EquipmentClass handsEquipment;
         private EquipmentClass rightRingEquipment;
+        private EquipmentClass leftRingEquipment;
+        private EquipmentClass amuletEquipment;
         
         public bool IsMainHandOccupied()
         {
@@ -51,7 +53,17 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
         public bool IsRightRingSlotOccupied()
         {
             return rightRingEquipment != null;
-        }                                          
+        }    
+
+        public bool IsLeftRingSlotOccupied()
+        {
+            return leftRingEquipment != null;
+        } 
+
+        public bool IsAmuletSlotOccupied()
+        {
+            return amuletEquipment != null;
+        }                                       
 
         public EquipmentClass GetMainHandEquipment()
         {
@@ -91,7 +103,17 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
         public EquipmentClass GetRightRingEquipment()
         {
             return rightRingEquipment;
-        }                                                   
+        }   
+
+        public EquipmentClass GetLeftRingEquipment()
+        {
+            return leftRingEquipment;
+        }   
+
+        public EquipmentClass GetAmuletEquipment()
+        {
+            return amuletEquipment;
+        }                                                         
 
         public void EquipInMainHand(EquipmentClass value)
         {
@@ -149,12 +171,28 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment
             }            
         }  
 
-        public void EquipOnRightRing(EquipmentClass value)
+        public void EquipOnRightRingSlot(EquipmentClass value)
         {
-            if (value.CanEquipOnRightRing())
+            if (value.CanEquipOnRightRingSlot())
             {
                 rightRingEquipment = value;
             }            
-        }                                         
+        }   
+
+        public void EquipOnLeftRingSlot(EquipmentClass value)
+        {
+            if (value.CanEquipOnLeftRingSlot())
+            {
+                leftRingEquipment = value;
+            }            
+        }  
+
+        public void EquipOnAmuletSlot(EquipmentClass value)
+        {
+            if (value.CanEquipOnAmuletSlot())
+            {
+                amuletEquipment = value;
+            }            
+        }                                              
     }
 }
