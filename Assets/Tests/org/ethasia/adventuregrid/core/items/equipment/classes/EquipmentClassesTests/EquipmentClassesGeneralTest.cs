@@ -6,35 +6,55 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
 {
     public class EquipmentClassesGeneralTest
     {
-        [Test]
-        public void TestThatAllEquipmentClassesExist()
-        {   
-            EquipmentClass oneHandedSword = new OneHandedSword();
-            EquipmentClass twoHandedSword = new TwoHandedSword();
+        private EquipmentClass oneHandedSword;
+        private EquipmentClass twoHandedSword;
+        private EquipmentClass oneHandedMace;
+        private EquipmentClass twoHandedMace;
+        private EquipmentClass bow;
+        private EquipmentClass crossBow;
+        private EquipmentClass wand;
+        private EquipmentClass magicStaff;
+        private EquipmentClass shield;
+        private EquipmentClass forceShield;
+        private EquipmentClass arrowQuiver;
+        private EquipmentClass boltQuiver;
+        private EquipmentClass helmet;
+        private EquipmentClass bodyArmor;
+        private EquipmentClass pants;
+        private EquipmentClass shoes;
+        private EquipmentClass gloves;
+        private EquipmentClass ring;
+        private EquipmentClass amulet;
 
-            EquipmentClass oneHandedMace = new OneHandedMace();
-            EquipmentClass twoHandedMace = new TwoHandedMace();
+        [SetUp]
+        public void SetUpEquipment()
+        {
+            oneHandedSword = new OneHandedSword();
+            twoHandedSword = new TwoHandedSword();
 
-            EquipmentClass bow = new Bow();
-            EquipmentClass crossBow = new CrossBow();
+            oneHandedMace = new OneHandedMace();
+            twoHandedMace = new TwoHandedMace();
 
-            EquipmentClass wand = new Wand();
-            EquipmentClass magicStaff = new MagicStaff();
+            bow = new Bow();
+            crossBow = new CrossBow();
 
-            EquipmentClass shield = new Shield();
-            EquipmentClass forceShield = new ForceShield();
+            wand = new Wand();
+            magicStaff = new MagicStaff();
 
-            EquipmentClass arrowQuiver = new ArrowQuiver();
-            EquipmentClass boltQuiver = new BoltQuiver();
+            shield = new Shield();
+            forceShield = new ForceShield();
 
-            EquipmentClass helmet = new Helmet();
-            EquipmentClass bodyArmor = new BodyArmor();
-            EquipmentClass pants = new Pants();
-            EquipmentClass shoes = new Shoes();
-            EquipmentClass gloves = new Gloves();
+            arrowQuiver = new ArrowQuiver();
+            boltQuiver = new BoltQuiver();
 
-            EquipmentClass ring = new Ring();
-            EquipmentClass amulet = new Amulet();
+            helmet = new Helmet();
+            bodyArmor = new BodyArmor();
+            pants = new Pants();
+            shoes = new Shoes();
+            gloves = new Gloves();
+
+            ring = new Ring();
+            amulet = new Amulet();
         }
 
         [Test]
@@ -734,18 +754,6 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
 
-            EquipmentClass amulet = new Amulet();
-            EquipmentClass arrowQuiver = new ArrowQuiver();
-            EquipmentClass bodyArmor = new BodyArmor();
-            EquipmentClass boltQuiver = new BoltQuiver();
-            EquipmentClass forceShield = new ForceShield();
-            EquipmentClass gloves = new Gloves();
-            EquipmentClass helmet = new Helmet();
-            EquipmentClass pants = new Pants();
-            EquipmentClass ring = new Ring();
-            EquipmentClass shield = new Shield();
-            EquipmentClass shoes = new Shoes();
-
             playerEquipment.EquipInMainHand(amulet);
             bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
             Assert.That(isMainHandOccupied, Is.False);
@@ -914,19 +922,6 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         public void TestThatOnlyOffHandsAndOneHandersCanBeEquippedInOffHand()
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
-
-            EquipmentClass amulet = new Amulet();
-            EquipmentClass bodyArmor = new BodyArmor();
-            EquipmentClass bow = new Bow();
-            EquipmentClass crossBow = new CrossBow();
-            EquipmentClass gloves = new Gloves();
-            EquipmentClass helmet = new Helmet();
-            EquipmentClass magicStaff = new MagicStaff();
-            EquipmentClass pants = new Pants();
-            EquipmentClass ring = new Ring();
-            EquipmentClass shoes = new Shoes();
-            EquipmentClass twoHandedMace = new TwoHandedMace();
-            EquipmentClass twoHandedSword = new TwoHandedSword();
 
             playerEquipment.EquipInOffHand(amulet);
             bool isOffHandOccupied = playerEquipment.IsOffHandOccupied();
@@ -1545,61 +1540,24 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             
-            EquipmentClass helmet = new Helmet();
             playerEquipment.EquipOnHead(helmet);
-
-            EquipmentClass oneHandedSword = new OneHandedSword();
             playerEquipment.EquipOnHead(oneHandedSword);
-
-            EquipmentClass oneHandedMace = new OneHandedMace();
             playerEquipment.EquipOnHead(oneHandedMace);
-
-            EquipmentClass wand = new Wand();
             playerEquipment.EquipOnHead(wand);
-            
-            EquipmentClass twoHandedSword = new TwoHandedSword();
             playerEquipment.EquipOnHead(twoHandedSword);
-
-            EquipmentClass twoHandedMace = new TwoHandedMace();
             playerEquipment.EquipOnHead(twoHandedMace);
-
-            EquipmentClass bow = new Bow();
             playerEquipment.EquipOnHead(bow);
-
-            EquipmentClass crossBow = new CrossBow();
             playerEquipment.EquipOnHead(crossBow);
-
-            EquipmentClass magicStaff = new MagicStaff();
             playerEquipment.EquipOnHead(magicStaff);
-
-            EquipmentClass shield = new Shield();
             playerEquipment.EquipOnHead(shield);
-
-            EquipmentClass forceShield = new ForceShield();
             playerEquipment.EquipOnHead(forceShield);
-
-            EquipmentClass arrowQuiver = new ArrowQuiver();
             playerEquipment.EquipOnHead(arrowQuiver);
-
-            EquipmentClass boltQuiver = new BoltQuiver();
             playerEquipment.EquipOnHead(boltQuiver);
-
-            EquipmentClass bodyArmor = new BodyArmor();
             playerEquipment.EquipOnHead(bodyArmor);
-
-            EquipmentClass pants = new Pants();
             playerEquipment.EquipOnHead(pants);
-
-            EquipmentClass shoes = new Shoes();
             playerEquipment.EquipOnHead(shoes);
-
-            EquipmentClass gloves = new Gloves();
             playerEquipment.EquipOnHead(gloves);
-
-            EquipmentClass ring = new Ring();
             playerEquipment.EquipOnHead(ring);
-
-            EquipmentClass amulet = new Amulet();
             playerEquipment.EquipOnHead(amulet);
 
             bool isHeadSlotOccupied = playerEquipment.IsHeadSlotOccupied();
@@ -1613,61 +1571,24 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             
-            EquipmentClass bodyArmor = new BodyArmor();
             playerEquipment.EquipOnChest(bodyArmor);
-
-            EquipmentClass oneHandedSword = new OneHandedSword();
             playerEquipment.EquipOnChest(oneHandedSword);
-
-            EquipmentClass oneHandedMace = new OneHandedMace();
             playerEquipment.EquipOnChest(oneHandedMace);
-
-            EquipmentClass wand = new Wand();
             playerEquipment.EquipOnChest(wand);
-            
-            EquipmentClass twoHandedSword = new TwoHandedSword();
             playerEquipment.EquipOnChest(twoHandedSword);
-
-            EquipmentClass twoHandedMace = new TwoHandedMace();
             playerEquipment.EquipOnChest(twoHandedMace);
-
-            EquipmentClass bow = new Bow();
             playerEquipment.EquipOnChest(bow);
-
-            EquipmentClass crossBow = new CrossBow();
             playerEquipment.EquipOnChest(crossBow);
-
-            EquipmentClass magicStaff = new MagicStaff();
             playerEquipment.EquipOnChest(magicStaff);
-
-            EquipmentClass shield = new Shield();
             playerEquipment.EquipOnChest(shield);
-
-            EquipmentClass forceShield = new ForceShield();
             playerEquipment.EquipOnChest(forceShield);
-
-            EquipmentClass arrowQuiver = new ArrowQuiver();
             playerEquipment.EquipOnChest(arrowQuiver);
-
-            EquipmentClass boltQuiver = new BoltQuiver();
             playerEquipment.EquipOnChest(boltQuiver);
-
-            EquipmentClass helmet = new Helmet();
             playerEquipment.EquipOnChest(helmet);
-
-            EquipmentClass pants = new Pants();
             playerEquipment.EquipOnChest(pants);
-
-            EquipmentClass shoes = new Shoes();
             playerEquipment.EquipOnChest(shoes);
-
-            EquipmentClass gloves = new Gloves();
             playerEquipment.EquipOnChest(gloves);
-
-            EquipmentClass ring = new Ring();
             playerEquipment.EquipOnChest(ring);
-
-            EquipmentClass amulet = new Amulet();
             playerEquipment.EquipOnChest(amulet);
 
             bool isChestSlotOccupied = playerEquipment.IsChestSlotOccupied();
@@ -1681,61 +1602,24 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             
-            EquipmentClass pants = new Pants();
             playerEquipment.EquipOnLegs(pants);
-
-            EquipmentClass oneHandedSword = new OneHandedSword();
             playerEquipment.EquipOnLegs(oneHandedSword);
-
-            EquipmentClass oneHandedMace = new OneHandedMace();
             playerEquipment.EquipOnLegs(oneHandedMace);
-
-            EquipmentClass wand = new Wand();
             playerEquipment.EquipOnLegs(wand);
-            
-            EquipmentClass twoHandedSword = new TwoHandedSword();
             playerEquipment.EquipOnLegs(twoHandedSword);
-
-            EquipmentClass twoHandedMace = new TwoHandedMace();
             playerEquipment.EquipOnLegs(twoHandedMace);
-
-            EquipmentClass bow = new Bow();
             playerEquipment.EquipOnLegs(bow);
-
-            EquipmentClass crossBow = new CrossBow();
             playerEquipment.EquipOnLegs(crossBow);
-
-            EquipmentClass magicStaff = new MagicStaff();
             playerEquipment.EquipOnLegs(magicStaff);
-
-            EquipmentClass shield = new Shield();
             playerEquipment.EquipOnLegs(shield);
-
-            EquipmentClass forceShield = new ForceShield();
             playerEquipment.EquipOnLegs(forceShield);
-
-            EquipmentClass arrowQuiver = new ArrowQuiver();
             playerEquipment.EquipOnLegs(arrowQuiver);
-
-            EquipmentClass boltQuiver = new BoltQuiver();
             playerEquipment.EquipOnLegs(boltQuiver);
-
-            EquipmentClass helmet = new Helmet();
             playerEquipment.EquipOnLegs(helmet);
-
-            EquipmentClass bodyArmor = new BodyArmor();
             playerEquipment.EquipOnLegs(bodyArmor);
-
-            EquipmentClass shoes = new Shoes();
             playerEquipment.EquipOnLegs(shoes);
-
-            EquipmentClass gloves = new Gloves();
             playerEquipment.EquipOnLegs(gloves);
-
-            EquipmentClass ring = new Ring();
             playerEquipment.EquipOnLegs(ring);
-
-            EquipmentClass amulet = new Amulet();
             playerEquipment.EquipOnLegs(amulet);
 
             bool isLegSlotOccupied = playerEquipment.IsLegSlotOccupied();
@@ -1749,61 +1633,24 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             
-            EquipmentClass shoes = new Shoes();
             playerEquipment.EquipOnFeet(shoes);
-
-            EquipmentClass oneHandedSword = new OneHandedSword();
             playerEquipment.EquipOnFeet(oneHandedSword);
-
-            EquipmentClass oneHandedMace = new OneHandedMace();
             playerEquipment.EquipOnFeet(oneHandedMace);
-
-            EquipmentClass wand = new Wand();
             playerEquipment.EquipOnFeet(wand);
-            
-            EquipmentClass twoHandedSword = new TwoHandedSword();
             playerEquipment.EquipOnFeet(twoHandedSword);
-
-            EquipmentClass twoHandedMace = new TwoHandedMace();
             playerEquipment.EquipOnFeet(twoHandedMace);
-
-            EquipmentClass bow = new Bow();
             playerEquipment.EquipOnFeet(bow);
-
-            EquipmentClass crossBow = new CrossBow();
             playerEquipment.EquipOnFeet(crossBow);
-
-            EquipmentClass magicStaff = new MagicStaff();
             playerEquipment.EquipOnFeet(magicStaff);
-
-            EquipmentClass shield = new Shield();
             playerEquipment.EquipOnFeet(shield);
-
-            EquipmentClass forceShield = new ForceShield();
             playerEquipment.EquipOnFeet(forceShield);
-
-            EquipmentClass arrowQuiver = new ArrowQuiver();
             playerEquipment.EquipOnFeet(arrowQuiver);
-
-            EquipmentClass boltQuiver = new BoltQuiver();
             playerEquipment.EquipOnFeet(boltQuiver);
-
-            EquipmentClass helmet = new Helmet();
             playerEquipment.EquipOnFeet(helmet);
-
-            EquipmentClass bodyArmor = new BodyArmor();
             playerEquipment.EquipOnFeet(bodyArmor);
-
-            EquipmentClass pants = new Pants();
             playerEquipment.EquipOnFeet(pants);
-
-            EquipmentClass gloves = new Gloves();
             playerEquipment.EquipOnFeet(gloves);
-
-            EquipmentClass ring = new Ring();
             playerEquipment.EquipOnFeet(ring);
-
-            EquipmentClass amulet = new Amulet();
             playerEquipment.EquipOnFeet(amulet);
 
             bool isFeetSlotOccupied = playerEquipment.IsFeetSlotOccupied();
@@ -1817,61 +1664,24 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             
-            EquipmentClass gloves = new Gloves();
             playerEquipment.EquipOnHands(gloves);
-
-            EquipmentClass oneHandedSword = new OneHandedSword();
             playerEquipment.EquipOnHands(oneHandedSword);
-
-            EquipmentClass oneHandedMace = new OneHandedMace();
             playerEquipment.EquipOnHands(oneHandedMace);
-
-            EquipmentClass wand = new Wand();
             playerEquipment.EquipOnHands(wand);
-            
-            EquipmentClass twoHandedSword = new TwoHandedSword();
             playerEquipment.EquipOnHands(twoHandedSword);
-
-            EquipmentClass twoHandedMace = new TwoHandedMace();
             playerEquipment.EquipOnHands(twoHandedMace);
-
-            EquipmentClass bow = new Bow();
             playerEquipment.EquipOnHands(bow);
-
-            EquipmentClass crossBow = new CrossBow();
             playerEquipment.EquipOnHands(crossBow);
-
-            EquipmentClass magicStaff = new MagicStaff();
             playerEquipment.EquipOnHands(magicStaff);
-
-            EquipmentClass shield = new Shield();
             playerEquipment.EquipOnHands(shield);
-
-            EquipmentClass forceShield = new ForceShield();
             playerEquipment.EquipOnHands(forceShield);
-
-            EquipmentClass arrowQuiver = new ArrowQuiver();
             playerEquipment.EquipOnHands(arrowQuiver);
-
-            EquipmentClass boltQuiver = new BoltQuiver();
             playerEquipment.EquipOnHands(boltQuiver);
-
-            EquipmentClass helmet = new Helmet();
             playerEquipment.EquipOnHands(helmet);
-
-            EquipmentClass bodyArmor = new BodyArmor();
             playerEquipment.EquipOnHands(bodyArmor);
-
-            EquipmentClass pants = new Pants();
             playerEquipment.EquipOnHands(pants);
-
-            EquipmentClass shoes = new Shoes();
             playerEquipment.EquipOnHands(shoes);
-
-            EquipmentClass ring = new Ring();
             playerEquipment.EquipOnHands(ring);
-
-            EquipmentClass amulet = new Amulet();
             playerEquipment.EquipOnHands(amulet);
 
             bool isHandsSlotOccupied = playerEquipment.IsHandsSlotOccupied();
@@ -1885,61 +1695,24 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             
-            EquipmentClass ring = new Ring();
             playerEquipment.EquipOnRightRingSlot(ring);
-
-            EquipmentClass oneHandedSword = new OneHandedSword();
             playerEquipment.EquipOnRightRingSlot(oneHandedSword);
-
-            EquipmentClass oneHandedMace = new OneHandedMace();
             playerEquipment.EquipOnRightRingSlot(oneHandedMace);
-
-            EquipmentClass wand = new Wand();
             playerEquipment.EquipOnRightRingSlot(wand);
-            
-            EquipmentClass twoHandedSword = new TwoHandedSword();
             playerEquipment.EquipOnRightRingSlot(twoHandedSword);
-
-            EquipmentClass twoHandedMace = new TwoHandedMace();
             playerEquipment.EquipOnRightRingSlot(twoHandedMace);
-
-            EquipmentClass bow = new Bow();
             playerEquipment.EquipOnRightRingSlot(bow);
-
-            EquipmentClass crossBow = new CrossBow();
             playerEquipment.EquipOnRightRingSlot(crossBow);
-
-            EquipmentClass magicStaff = new MagicStaff();
             playerEquipment.EquipOnRightRingSlot(magicStaff);
-
-            EquipmentClass shield = new Shield();
             playerEquipment.EquipOnRightRingSlot(shield);
-
-            EquipmentClass forceShield = new ForceShield();
             playerEquipment.EquipOnRightRingSlot(forceShield);
-
-            EquipmentClass arrowQuiver = new ArrowQuiver();
             playerEquipment.EquipOnRightRingSlot(arrowQuiver);
-
-            EquipmentClass boltQuiver = new BoltQuiver();
             playerEquipment.EquipOnRightRingSlot(boltQuiver);
-
-            EquipmentClass helmet = new Helmet();
             playerEquipment.EquipOnRightRingSlot(helmet);
-
-            EquipmentClass bodyArmor = new BodyArmor();
             playerEquipment.EquipOnRightRingSlot(bodyArmor);
-
-            EquipmentClass pants = new Pants();
             playerEquipment.EquipOnRightRingSlot(pants);
-
-            EquipmentClass shoes = new Shoes();
             playerEquipment.EquipOnRightRingSlot(shoes);
-
-            EquipmentClass gloves = new Gloves();
             playerEquipment.EquipOnRightRingSlot(gloves);
-
-            EquipmentClass amulet = new Amulet();
             playerEquipment.EquipOnRightRingSlot(amulet);
 
             bool isRightRingSlotOccupied = playerEquipment.IsRightRingSlotOccupied();
@@ -1952,62 +1725,25 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         public void TestThatOnlyRingsCanBeEquippedOnLeftRingSlot()
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
-            
-            EquipmentClass ring = new Ring();
+        
             playerEquipment.EquipOnLeftRingSlot(ring);
-
-            EquipmentClass oneHandedSword = new OneHandedSword();
             playerEquipment.EquipOnLeftRingSlot(oneHandedSword);
-
-            EquipmentClass oneHandedMace = new OneHandedMace();
             playerEquipment.EquipOnLeftRingSlot(oneHandedMace);
-
-            EquipmentClass wand = new Wand();
             playerEquipment.EquipOnLeftRingSlot(wand);
-            
-            EquipmentClass twoHandedSword = new TwoHandedSword();
             playerEquipment.EquipOnLeftRingSlot(twoHandedSword);
-
-            EquipmentClass twoHandedMace = new TwoHandedMace();
             playerEquipment.EquipOnLeftRingSlot(twoHandedMace);
-
-            EquipmentClass bow = new Bow();
             playerEquipment.EquipOnLeftRingSlot(bow);
-
-            EquipmentClass crossBow = new CrossBow();
             playerEquipment.EquipOnLeftRingSlot(crossBow);
-
-            EquipmentClass magicStaff = new MagicStaff();
             playerEquipment.EquipOnLeftRingSlot(magicStaff);
-
-            EquipmentClass shield = new Shield();
             playerEquipment.EquipOnLeftRingSlot(shield);
-
-            EquipmentClass forceShield = new ForceShield();
             playerEquipment.EquipOnLeftRingSlot(forceShield);
-
-            EquipmentClass arrowQuiver = new ArrowQuiver();
             playerEquipment.EquipOnLeftRingSlot(arrowQuiver);
-
-            EquipmentClass boltQuiver = new BoltQuiver();
             playerEquipment.EquipOnLeftRingSlot(boltQuiver);
-
-            EquipmentClass helmet = new Helmet();
             playerEquipment.EquipOnLeftRingSlot(helmet);
-
-            EquipmentClass bodyArmor = new BodyArmor();
             playerEquipment.EquipOnLeftRingSlot(bodyArmor);
-
-            EquipmentClass pants = new Pants();
             playerEquipment.EquipOnLeftRingSlot(pants);
-
-            EquipmentClass shoes = new Shoes();
             playerEquipment.EquipOnLeftRingSlot(shoes);
-
-            EquipmentClass gloves = new Gloves();
             playerEquipment.EquipOnLeftRingSlot(gloves);
-
-            EquipmentClass amulet = new Amulet();
             playerEquipment.EquipOnLeftRingSlot(amulet);
 
             bool isLeftRingSlotOccupied = playerEquipment.IsLeftRingSlotOccupied();
@@ -2021,61 +1757,24 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             
-            EquipmentClass amulet = new Amulet();
             playerEquipment.EquipOnAmuletSlot(amulet);
-
-            EquipmentClass oneHandedSword = new OneHandedSword();
             playerEquipment.EquipOnAmuletSlot(oneHandedSword);
-
-            EquipmentClass oneHandedMace = new OneHandedMace();
             playerEquipment.EquipOnAmuletSlot(oneHandedMace);
-
-            EquipmentClass wand = new Wand();
             playerEquipment.EquipOnAmuletSlot(wand);
-            
-            EquipmentClass twoHandedSword = new TwoHandedSword();
             playerEquipment.EquipOnAmuletSlot(twoHandedSword);
-
-            EquipmentClass twoHandedMace = new TwoHandedMace();
             playerEquipment.EquipOnAmuletSlot(twoHandedMace);
-
-            EquipmentClass bow = new Bow();
             playerEquipment.EquipOnAmuletSlot(bow);
-
-            EquipmentClass crossBow = new CrossBow();
             playerEquipment.EquipOnAmuletSlot(crossBow);
-
-            EquipmentClass magicStaff = new MagicStaff();
             playerEquipment.EquipOnAmuletSlot(magicStaff);
-
-            EquipmentClass shield = new Shield();
             playerEquipment.EquipOnAmuletSlot(shield);
-
-            EquipmentClass forceShield = new ForceShield();
             playerEquipment.EquipOnAmuletSlot(forceShield);
-
-            EquipmentClass arrowQuiver = new ArrowQuiver();
             playerEquipment.EquipOnAmuletSlot(arrowQuiver);
-
-            EquipmentClass boltQuiver = new BoltQuiver();
             playerEquipment.EquipOnAmuletSlot(boltQuiver);
-
-            EquipmentClass helmet = new Helmet();
             playerEquipment.EquipOnAmuletSlot(helmet);
-
-            EquipmentClass bodyArmor = new BodyArmor();
             playerEquipment.EquipOnAmuletSlot(bodyArmor);
-
-            EquipmentClass pants = new Pants();
             playerEquipment.EquipOnAmuletSlot(pants);
-
-            EquipmentClass shoes = new Shoes();
             playerEquipment.EquipOnAmuletSlot(shoes);
-
-            EquipmentClass gloves = new Gloves();
             playerEquipment.EquipOnAmuletSlot(gloves);
-
-            EquipmentClass ring = new Ring();
             playerEquipment.EquipOnAmuletSlot(ring);
 
             bool isAmuletSlotOccupied = playerEquipment.IsAmuletSlotOccupied();
