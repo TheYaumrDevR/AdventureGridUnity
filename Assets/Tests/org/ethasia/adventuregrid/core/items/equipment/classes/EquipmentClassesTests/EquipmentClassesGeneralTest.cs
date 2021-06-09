@@ -60,137 +60,57 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         [Test]
         public void TestThatOneHandedSwordCanBeEquippedInMainHandWithNothingPresent()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new OneHandedSword();
-
-            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            Assert.That(isMainHandOccupied, Is.False);
-
-            playerEquipment.EquipInMainHand(testCandidate);
-            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-
-            Assert.That(isMainHandOccupied, Is.True);
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+            EquipInMainHandAndTestThatItIsOccupied(testCandidate);
         }
 
         [Test]
         public void TestThatOneHandedMaceCanBeEquippedInMainHandWithNothingPresent()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new OneHandedMace();
-
-            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            Assert.That(isMainHandOccupied, Is.False);
-
-            playerEquipment.EquipInMainHand(testCandidate);
-            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-
-            Assert.That(isMainHandOccupied, Is.True);
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+            EquipInMainHandAndTestThatItIsOccupied(testCandidate);
         }     
 
         [Test]
         public void TestThatTwoHandedSwordCanBeEquippedInMainHandWithNothingPresent()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new TwoHandedSword();
-
-            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            Assert.That(isMainHandOccupied, Is.False);
-
-            playerEquipment.EquipInMainHand(testCandidate);
-            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-
-            Assert.That(isMainHandOccupied, Is.True);
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+            EquipInMainHandAndTestThatItIsOccupied(testCandidate);
         }        
 
         [Test]
         public void TestThatTwoHandedMaceCanBeEquippedInMainHandWithNothingPresent()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new TwoHandedMace();
-
-            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            Assert.That(isMainHandOccupied, Is.False);
-
-            playerEquipment.EquipInMainHand(testCandidate);
-            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-
-            Assert.That(isMainHandOccupied, Is.True);
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+            EquipInMainHandAndTestThatItIsOccupied(testCandidate);
         }         
 
         [Test]
         public void TestThatBowCanBeEquippedInMainHandWithNothingPresent()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new Bow();
-
-            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            Assert.That(isMainHandOccupied, Is.False);
-
-            playerEquipment.EquipInMainHand(testCandidate);
-            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-
-            Assert.That(isMainHandOccupied, Is.True);
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+            EquipInMainHandAndTestThatItIsOccupied(testCandidate);
         }   
 
         [Test]
         public void TestThatCrossbowCanBeEquippedInMainHandWithNothingPresent()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new CrossBow();
-
-            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            Assert.That(isMainHandOccupied, Is.False);
-
-            playerEquipment.EquipInMainHand(testCandidate);
-            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-
-            Assert.That(isMainHandOccupied, Is.True);
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+            EquipInMainHandAndTestThatItIsOccupied(testCandidate);
         } 
 
         [Test]
         public void TestThatWandCanBeEquippedInMainHandWithNothingPresent()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new Wand();
-
-            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            Assert.That(isMainHandOccupied, Is.False);
-
-            playerEquipment.EquipInMainHand(testCandidate);
-            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-
-            Assert.That(isMainHandOccupied, Is.True);
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+            EquipInMainHandAndTestThatItIsOccupied(testCandidate);
         } 
 
         [Test]
         public void TestThatMagicStaffCanBeEquippedInMainHandWithNothingPresent()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new MagicStaff();
-
-            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            Assert.That(isMainHandOccupied, Is.False);
-
-            playerEquipment.EquipInMainHand(testCandidate);
-            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-
-            Assert.That(isMainHandOccupied, Is.True);
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+            EquipInMainHandAndTestThatItIsOccupied(testCandidate);
         }    
 
         [Test]
@@ -198,31 +118,14 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new OneHandedSword();
-            EquipmentClass offHandSword = new OneHandedSword();
 
-            playerEquipment.EquipInOffHand(offHandSword);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+            TestThatMainHandEquipmentCanBeEquippedWithSword(testCandidate, playerEquipment);
 
             testCandidate = new OneHandedSword();
-            EquipmentClass offHandMace = new OneHandedMace();
-
-            playerEquipment.EquipInOffHand(offHandMace);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));    
+            TestThatMainHandEquipmentCanBeEquippedWithMace(testCandidate, playerEquipment); 
 
             testCandidate = new OneHandedSword();
-            EquipmentClass offHandWand = new Wand();
-
-            playerEquipment.EquipInOffHand(offHandWand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));                      
+            TestThatMainHandEquipmentCanBeEquippedWithWand(testCandidate, playerEquipment);                   
         }
 
         [Test]
@@ -230,31 +133,14 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new OneHandedMace();
-            EquipmentClass offHandSword = new OneHandedSword();
 
-            playerEquipment.EquipInOffHand(offHandSword);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+            TestThatMainHandEquipmentCanBeEquippedWithSword(testCandidate, playerEquipment);
 
             testCandidate = new OneHandedMace();
-            EquipmentClass offHandMace = new OneHandedMace();
-
-            playerEquipment.EquipInOffHand(offHandMace);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));    
+            TestThatMainHandEquipmentCanBeEquippedWithMace(testCandidate, playerEquipment); 
 
             testCandidate = new OneHandedMace();
-            EquipmentClass offHandWand = new Wand();
-
-            playerEquipment.EquipInOffHand(offHandWand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));                      
+            TestThatMainHandEquipmentCanBeEquippedWithWand(testCandidate, playerEquipment);       
         }   
 
         [Test]
@@ -262,31 +148,14 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         {
             PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new Wand();
-            EquipmentClass offHandSword = new OneHandedSword();
 
-            playerEquipment.EquipInOffHand(offHandSword);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
+            TestThatMainHandEquipmentCanBeEquippedWithSword(testCandidate, playerEquipment);
 
             testCandidate = new Wand();
-            EquipmentClass offHandMace = new OneHandedMace();
-
-            playerEquipment.EquipInOffHand(offHandMace);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));    
+            TestThatMainHandEquipmentCanBeEquippedWithMace(testCandidate, playerEquipment); 
 
             testCandidate = new Wand();
-            EquipmentClass offHandWand = new Wand();
-
-            playerEquipment.EquipInOffHand(offHandWand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));                      
+            TestThatMainHandEquipmentCanBeEquippedWithWand(testCandidate, playerEquipment);                       
         } 
 
         [Test]
@@ -1781,6 +1650,54 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
             EquipmentClass amuletEquipment = playerEquipment.GetAmuletEquipment();  
             Assert.That(isAmuletSlotOccupied, Is.True);
             Assert.That(amuletEquipment, Is.EqualTo(amulet));          
-        }                                                                                      
+        } 
+
+        private void EquipInMainHandAndTestThatItIsOccupied(EquipmentClass testCandidate)
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+
+            bool isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            Assert.That(isMainHandOccupied, Is.False);
+
+            playerEquipment.EquipInMainHand(testCandidate);
+            isMainHandOccupied = playerEquipment.IsMainHandOccupied();
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+
+            Assert.That(isMainHandOccupied, Is.True);
+            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));            
+        }   
+
+        public void TestThatMainHandEquipmentCanBeEquippedWithSword(EquipmentClass testCandidate, PlayerEquipmentSlots playerEquipment)
+        {
+            EquipmentClass offHandSword = new OneHandedSword();
+
+            playerEquipment.EquipInOffHand(offHandSword);
+            playerEquipment.EquipInMainHand(testCandidate);
+
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));            
+        }
+
+        public void TestThatMainHandEquipmentCanBeEquippedWithMace(EquipmentClass testCandidate, PlayerEquipmentSlots playerEquipment)
+        {
+            EquipmentClass offHandMace = new OneHandedMace();
+
+            playerEquipment.EquipInOffHand(offHandMace);
+            playerEquipment.EquipInMainHand(testCandidate);
+
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));             
+        }
+
+        public void TestThatMainHandEquipmentCanBeEquippedWithWand(EquipmentClass testCandidate, PlayerEquipmentSlots playerEquipment)
+        {
+            EquipmentClass offHandWand = new Wand();
+
+            playerEquipment.EquipInOffHand(offHandWand);
+            playerEquipment.EquipInMainHand(testCandidate);
+
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));                
+        }                                                                                                  
     }
 }
