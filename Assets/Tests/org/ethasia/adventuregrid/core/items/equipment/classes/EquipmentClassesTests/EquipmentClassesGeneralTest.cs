@@ -161,343 +161,70 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
         [Test]
         public void TestThatOneHandedSwordsCanBeEquippedWithShieldsAndForceShields()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
-            EquipmentClass testCandidate = new OneHandedSword();
-            EquipmentClass shield = new Shield();
-
-            playerEquipment.EquipInOffHand(shield);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
-
-            testCandidate = new OneHandedSword();
-            EquipmentClass forceShield = new ForceShield();
-
-            playerEquipment.EquipInOffHand(forceShield);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));                         
+            EquipmentClass firstTestCandidate = new OneHandedSword();
+            EquipmentClass secondTestCandidate = new OneHandedSword();
+            TestThatOneHandedWeaponCanBeEquippedWithShieldAndForceShield(firstTestCandidate, secondTestCandidate);                        
         }  
 
         [Test]
         public void TestThatOneHandedMacesCanBeEquippedWithShieldsAndForceShields()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
-            EquipmentClass testCandidate = new OneHandedMace();
-            EquipmentClass shield = new Shield();
-
-            playerEquipment.EquipInOffHand(shield);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
-
-            testCandidate = new OneHandedMace();
-            EquipmentClass forceShield = new ForceShield();
-
-            playerEquipment.EquipInOffHand(forceShield);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));                         
+            EquipmentClass firstTestCandidate = new OneHandedMace();
+            EquipmentClass secondTestCandidate = new OneHandedMace();
+            TestThatOneHandedWeaponCanBeEquippedWithShieldAndForceShield(firstTestCandidate, secondTestCandidate);                                    
         } 
 
         [Test]
         public void TestThatWandsCanBeEquippedWithShieldsAndForceShields()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
-            EquipmentClass testCandidate = new Wand();
-            EquipmentClass shield = new Shield();
-
-            playerEquipment.EquipInOffHand(shield);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));
-
-            testCandidate = new Wand();
-            EquipmentClass forceShield = new ForceShield();
-
-            playerEquipment.EquipInOffHand(forceShield);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));                         
+            EquipmentClass firstTestCandidate = new Wand();
+            EquipmentClass secondTestCandidate = new Wand();
+            TestThatOneHandedWeaponCanBeEquippedWithShieldAndForceShield(firstTestCandidate, secondTestCandidate);                                      
         }    
 
         [Test]
         public void TestThatOneHandedSwordsCannotBeEquippedWithQuivers()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
-            EquipmentClass testCandidate = new OneHandedSword();
-            EquipmentClass arrowQuiver = new ArrowQuiver();
-
-            playerEquipment.EquipInOffHand(arrowQuiver);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);
-
-            testCandidate = new OneHandedSword();
-            EquipmentClass boltQuiver = new BoltQuiver();
-
-            playerEquipment.EquipInOffHand(boltQuiver);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);                         
+            EquipmentClass firstTestCandidate = new OneHandedSword();
+            EquipmentClass secondTestCandidate = new OneHandedSword();
+            TestThatOneHandedWeaponCannotBeEquippedWithQuivers(firstTestCandidate, secondTestCandidate);                       
         }      
 
         [Test]
         public void TestThatOneHandedMacesCannotBeEquippedWithQuivers()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
-            EquipmentClass testCandidate = new OneHandedMace();
-            EquipmentClass arrowQuiver = new ArrowQuiver();
-
-            playerEquipment.EquipInOffHand(arrowQuiver);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);
-
-            testCandidate = new OneHandedMace();
-            EquipmentClass boltQuiver = new BoltQuiver();
-
-            playerEquipment.EquipInOffHand(boltQuiver);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);                         
+            EquipmentClass firstTestCandidate = new OneHandedMace();
+            EquipmentClass secondTestCandidate = new OneHandedMace();
+            TestThatOneHandedWeaponCannotBeEquippedWithQuivers(firstTestCandidate, secondTestCandidate);                         
         }     
 
         [Test]
         public void TestThatWandsCannotBeEquippedWithQuivers()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
-            EquipmentClass testCandidate = new Wand();
-            EquipmentClass arrowQuiver = new ArrowQuiver();
-
-            playerEquipment.EquipInOffHand(arrowQuiver);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);
-
-            testCandidate = new Wand();
-            EquipmentClass boltQuiver = new BoltQuiver();
-
-            playerEquipment.EquipInOffHand(boltQuiver);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);                         
+            EquipmentClass firstTestCandidate = new Wand();
+            EquipmentClass secondTestCandidate = new Wand();
+            TestThatOneHandedWeaponCannotBeEquippedWithQuivers(firstTestCandidate, secondTestCandidate);                                      
         }   
 
         [Test]
         public void TestThatTwoHandedSwordsCannotBeEquippedWithOffHands()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new TwoHandedSword();
-            EquipmentClass offHand = new OneHandedSword();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);
-
-            testCandidate = new TwoHandedSword();
-            offHand = new OneHandedMace();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null); 
-
-            testCandidate = new TwoHandedSword();
-            offHand = new Wand();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);             
-
-            testCandidate = new TwoHandedSword();
-            offHand = new Shield();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);   
-
-            testCandidate = new TwoHandedSword();
-            offHand = new ForceShield();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);     
-
-            testCandidate = new TwoHandedSword();
-            offHand = new ArrowQuiver();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);  
-
-            testCandidate = new TwoHandedSword();
-            offHand = new BoltQuiver();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);                                                                    
+            TestThatTwoHandedWeaponsCannotBeEquippedWithOffHands(testCandidate);
         }      
 
         [Test]
         public void TestThatTwoHandedMacesCannotBeEquippedWithOffHands()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new TwoHandedMace();
-            EquipmentClass offHand = new OneHandedSword();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);
-
-            testCandidate = new TwoHandedMace();
-            offHand = new OneHandedMace();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null); 
-
-            testCandidate = new TwoHandedMace();
-            offHand = new Wand();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);             
-
-            testCandidate = new TwoHandedMace();
-            offHand = new Shield();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);   
-
-            testCandidate = new TwoHandedMace();
-            offHand = new ForceShield();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);     
-
-            testCandidate = new TwoHandedMace();
-            offHand = new ArrowQuiver();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);  
-
-            testCandidate = new TwoHandedMace();
-            offHand = new BoltQuiver();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);                                                                    
+            TestThatTwoHandedWeaponsCannotBeEquippedWithOffHands(testCandidate);                                                                      
         }   
 
         [Test]
         public void TestThatMagicStaffsCannotBeEquippedWithOffHands()
         {
-            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
             EquipmentClass testCandidate = new MagicStaff();
-            EquipmentClass offHand = new OneHandedSword();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);
-
-            testCandidate = new MagicStaff();
-            offHand = new OneHandedMace();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null); 
-
-            testCandidate = new MagicStaff();
-            offHand = new Wand();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);             
-
-            testCandidate = new MagicStaff();
-            offHand = new Shield();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);   
-
-            testCandidate = new MagicStaff();
-            offHand = new ForceShield();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);     
-
-            testCandidate = new MagicStaff();
-            offHand = new ArrowQuiver();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);  
-
-            testCandidate = new MagicStaff();
-            offHand = new BoltQuiver();
-
-            playerEquipment.EquipInOffHand(offHand);
-            playerEquipment.EquipInMainHand(testCandidate);
-
-            mainHandEquipment = playerEquipment.GetMainHandEquipment();
-            Assert.That(mainHandEquipment, Is.Null);                                                                    
+            TestThatTwoHandedWeaponsCannotBeEquippedWithOffHands(testCandidate);                                                                          
         }     
 
         [Test]
@@ -1698,6 +1425,106 @@ namespace Org.Ethasia.Adventuregrid.Core.Items.Equipment.Classes.EquipmentClasse
 
             EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
             Assert.That(mainHandEquipment, Is.EqualTo(testCandidate));                
-        }                                                                                                  
+        }    
+
+        public void TestThatOneHandedWeaponCanBeEquippedWithShieldAndForceShield(EquipmentClass equipmentWithShield, EquipmentClass equipmentWithForceShield)
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            EquipmentClass shield = new Shield();
+
+            playerEquipment.EquipInOffHand(shield);
+            playerEquipment.EquipInMainHand(equipmentWithShield);
+
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.EqualTo(equipmentWithShield));
+
+            EquipmentClass forceShield = new ForceShield();
+
+            playerEquipment.EquipInOffHand(forceShield);
+            playerEquipment.EquipInMainHand(equipmentWithForceShield);
+
+            mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.EqualTo(equipmentWithForceShield));  
+        } 
+
+        public void TestThatOneHandedWeaponCannotBeEquippedWithQuivers(EquipmentClass equipmentWithQuiver, EquipmentClass equipmentWithBoltQuiver)
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            EquipmentClass arrowQuiver = new ArrowQuiver();
+
+            playerEquipment.EquipInOffHand(arrowQuiver);
+            playerEquipment.EquipInMainHand(equipmentWithQuiver);
+
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.Null);
+
+            EquipmentClass boltQuiver = new BoltQuiver();
+
+            playerEquipment.EquipInOffHand(boltQuiver);
+            playerEquipment.EquipInMainHand(equipmentWithBoltQuiver);
+
+            mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.Null);    
+        }   
+
+        public void TestThatTwoHandedWeaponsCannotBeEquippedWithOffHands(EquipmentClass testCandidate)
+        {
+            PlayerEquipmentSlots playerEquipment = new PlayerEquipmentSlots();
+            EquipmentClass offHand = new OneHandedSword();
+
+            playerEquipment.EquipInOffHand(offHand);
+            playerEquipment.EquipInMainHand(testCandidate);
+
+            EquipmentClass mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.Null);
+
+            offHand = new OneHandedMace();
+
+            playerEquipment.EquipInOffHand(offHand);
+            playerEquipment.EquipInMainHand(testCandidate);
+
+            mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.Null); 
+
+            offHand = new Wand();
+
+            playerEquipment.EquipInOffHand(offHand);
+            playerEquipment.EquipInMainHand(testCandidate);
+
+            mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.Null);             
+
+            offHand = new Shield();
+
+            playerEquipment.EquipInOffHand(offHand);
+            playerEquipment.EquipInMainHand(testCandidate);
+
+            mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.Null);   
+
+            offHand = new ForceShield();
+
+            playerEquipment.EquipInOffHand(offHand);
+            playerEquipment.EquipInMainHand(testCandidate);
+
+            mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.Null);     
+
+            offHand = new ArrowQuiver();
+
+            playerEquipment.EquipInOffHand(offHand);
+            playerEquipment.EquipInMainHand(testCandidate);
+
+            mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.Null);  
+
+            offHand = new BoltQuiver();
+
+            playerEquipment.EquipInOffHand(offHand);
+            playerEquipment.EquipInMainHand(testCandidate);
+
+            mainHandEquipment = playerEquipment.GetMainHandEquipment();
+            Assert.That(mainHandEquipment, Is.Null);              
+        }                                                                                          
     }
 }
