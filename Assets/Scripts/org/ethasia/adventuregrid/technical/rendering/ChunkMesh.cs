@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Collections;
 
 using Org.Ethasia.Adventuregrid.Core.Environment;
+using Org.Ethasia.Adventuregrid.Core.Environment.Mapgen;
 using Org.Ethasia.Adventuregrid.Core.Math;
 using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks;
 
@@ -19,6 +20,9 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
         void Start()
         {
             Mesh mesh = new Mesh();
+
+            TemperatePlainIslandGenerator islandGenerator = new TemperatePlainIslandGenerator();
+            islandGenerator.GenerateIsland(16);
 
             Block testBlockToRender = RockBlock.GetInstance();
             StandardBlockVisualsBuilder testBlockBuilder = new StandardBlockVisualsBuilder();
