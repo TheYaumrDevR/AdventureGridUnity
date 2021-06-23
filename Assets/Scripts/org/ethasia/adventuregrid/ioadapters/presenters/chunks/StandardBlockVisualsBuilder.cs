@@ -421,10 +421,10 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         private void AddNextFaceIndicesToBuffer(int currentBufferIndex, int faceOffset)
         {
             indexBuffer[currentBufferIndex] = 0 + faceOffset + indexBufferOffsetInChunk;
-            indexBuffer[currentBufferIndex + 1] = 1 + faceOffset + indexBufferOffsetInChunk;
+            indexBuffer[currentBufferIndex + 1] = 3 + faceOffset + indexBufferOffsetInChunk;
             indexBuffer[currentBufferIndex + 2] = 2 + faceOffset + indexBufferOffsetInChunk;
             indexBuffer[currentBufferIndex + 3] = 2 + faceOffset + indexBufferOffsetInChunk;
-            indexBuffer[currentBufferIndex + 4] = 3 + faceOffset + indexBufferOffsetInChunk;
+            indexBuffer[currentBufferIndex + 4] = 1 + faceOffset + indexBufferOffsetInChunk;
             indexBuffer[currentBufferIndex + 5] = 0 + faceOffset + indexBufferOffsetInChunk;  
         }
 

@@ -878,12 +878,12 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             int indexOffset = blockNumberInChunk * 24;
 
             int[] result = {
-                blockNumberInChunk + 0, blockNumberInChunk + 1, blockNumberInChunk + 2, blockNumberInChunk + 2, blockNumberInChunk + 3, blockNumberInChunk + 0,
-                blockNumberInChunk + 4, blockNumberInChunk + 5, blockNumberInChunk + 6, blockNumberInChunk + 6, blockNumberInChunk + 7, blockNumberInChunk + 4,
-                blockNumberInChunk + 8, blockNumberInChunk + 9, blockNumberInChunk + 10, blockNumberInChunk + 10, blockNumberInChunk + 11, blockNumberInChunk + 8,
-                blockNumberInChunk + 12, blockNumberInChunk + 13, blockNumberInChunk + 14, blockNumberInChunk + 14, blockNumberInChunk + 15, blockNumberInChunk + 12,
-                blockNumberInChunk + 16, blockNumberInChunk + 17, blockNumberInChunk + 18, blockNumberInChunk + 18, blockNumberInChunk + 19, blockNumberInChunk + 16,
-                blockNumberInChunk + 20, blockNumberInChunk + 21, blockNumberInChunk + 22, blockNumberInChunk + 22, blockNumberInChunk + 23, blockNumberInChunk + 20                
+                blockNumberInChunk + 0, blockNumberInChunk + 3, blockNumberInChunk + 2, blockNumberInChunk + 2, blockNumberInChunk + 1, blockNumberInChunk + 0,
+                blockNumberInChunk + 4, blockNumberInChunk + 7, blockNumberInChunk + 6, blockNumberInChunk + 6, blockNumberInChunk + 5, blockNumberInChunk + 4,
+                blockNumberInChunk + 8, blockNumberInChunk + 11, blockNumberInChunk + 10, blockNumberInChunk + 10, blockNumberInChunk + 9, blockNumberInChunk + 8,
+                blockNumberInChunk + 12, blockNumberInChunk + 15, blockNumberInChunk + 14, blockNumberInChunk + 14, blockNumberInChunk + 13, blockNumberInChunk + 12,
+                blockNumberInChunk + 16, blockNumberInChunk + 19, blockNumberInChunk + 18, blockNumberInChunk + 18, blockNumberInChunk + 17, blockNumberInChunk + 16,
+                blockNumberInChunk + 20, blockNumberInChunk + 23, blockNumberInChunk + 22, blockNumberInChunk + 22, blockNumberInChunk + 21, blockNumberInChunk + 20                
             };
 
             return result;
