@@ -1,9 +1,11 @@
 using UnityEngine;
+
+using Org.Ethasia.Adventuregrid.Core.InputInterfaces;
 using Org.Ethasia.Adventuregrid.Core.Math;
 
 namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 {
-    public class TemperatePlainIslandGenerator
+    public class TemperatePlainIslandGenerator : IslandGenerator
     {
 
         private Island result;
