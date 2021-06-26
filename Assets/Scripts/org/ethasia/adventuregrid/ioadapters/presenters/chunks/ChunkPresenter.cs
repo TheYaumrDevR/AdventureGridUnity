@@ -63,6 +63,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                                 if (blockVisualsBuilder.GetShapePositions().Length > 0) 
                                 {   
                                     FillOpaqueBlockBuffersWithVisualRenderData(blockVisualsBuilder);
+                                    amountOfBlockVerticesAdded += blockVisualsBuilder.GetNumberOfAddedVertices();
                                 }
                             }
                         }

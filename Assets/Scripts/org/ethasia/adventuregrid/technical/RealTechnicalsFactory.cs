@@ -11,7 +11,7 @@ namespace Org.Ethasia.Adventuregrid.Technical
         public override ChunkRenderer GetChunkRendererInstance() {
             if (null == chunkRenderer)
             {
-                chunkRenderer = new ChunkRendererImpl();
+                chunkRenderer = ChunkRendererImpl.GetInstance();
             }
 
             return chunkRenderer;

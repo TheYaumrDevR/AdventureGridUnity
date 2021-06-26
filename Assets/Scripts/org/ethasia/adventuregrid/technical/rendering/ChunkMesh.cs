@@ -22,7 +22,6 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
             chunkRoot = new GameObject();
             meshFilter = chunkRoot.AddComponent<MeshFilter>();
             meshRenderer = chunkRoot.AddComponent<MeshRenderer>();
-            
 
             this.chunkData = chunkData;
 
@@ -39,7 +38,12 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
         public void SetRootTransform(Transform rootTransform)
         {
             chunkRoot.transform.SetParent(rootTransform);
-        }        
+        }   
+
+        public void SetPosition(UnityEngine.Vector3 position)
+        {
+            chunkRoot.transform.position = position;
+        }     
 
         private void UpdateMeshBasedOnChunkData()
         {
