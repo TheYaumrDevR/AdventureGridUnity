@@ -1,5 +1,6 @@
 using Org.Ethasia.Adventuregrid.Ioadapters;
 using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Interfaces.Technical;
+using Org.Ethasia.Adventuregrid.Technical.Rendering;
 
 namespace Org.Ethasia.Adventuregrid.Technical
 {
@@ -8,7 +9,12 @@ namespace Org.Ethasia.Adventuregrid.Technical
         private ChunkRenderer chunkRenderer;
 
         public override ChunkRenderer GetChunkRendererInstance() {
-            return null;
+            if (null == chunkRenderer)
+            {
+                chunkRenderer = new ChunkRendererImpl();
+            }
+
+            return chunkRenderer;
         }
     }
 }

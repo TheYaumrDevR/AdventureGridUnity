@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.Collections;
 
 using Org.Ethasia.Adventuregrid.Core.Environment;
 using Org.Ethasia.Adventuregrid.Core.Environment.Mapgen;
@@ -11,43 +8,94 @@ using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks;
 namespace Org.Ethasia.Adventuregrid.Technical.Rendering
 {
 
-    public class ChunkMesh : MonoBehaviour
+    public class ChunkMesh
     {
 
-        public MeshRenderer meshRenderer;
-        public MeshFilter meshFilter;
+        private GameObject chunkRoot;
+        private MeshRenderer meshRenderer;
+        private MeshFilter meshFilter;
 
-        void Start()
+        private VisualChunkData chunkData;
+
+        public ChunkMesh(VisualChunkData chunkData)
+        {
+            chunkRoot = new GameObject();
+            meshFilter = chunkRoot.AddComponent<MeshFilter>();
+            meshRenderer = chunkRoot.AddComponent<MeshRenderer>();
+            
+
+            this.chunkData = chunkData;
+
+            chunkRoot.name = GetUniqueChunkName();
+
+            UpdateMeshBasedOnChunkData();
+        }
+
+        public void SetMaterial(Material chunkMaterial)
+        {
+            meshRenderer.material = chunkMaterial;
+        }
+
+        public void SetRootTransform(Transform rootTransform)
+        {
+            chunkRoot.transform.SetParent(rootTransform);
+        }        
+
+        private void UpdateMeshBasedOnChunkData()
         {
             Mesh mesh = new Mesh();
-
-            TemperatePlainIslandGenerator islandGenerator = new TemperatePlainIslandGenerator();
-            islandGenerator.GenerateIsland(16);
-
-            Block testBlockToRender = RockBlock.GetInstance();
-            StandardBlockVisualsBuilder testBlockBuilder = new StandardBlockVisualsBuilder();
-
-            testBlockBuilder.SetBlockToCreateDataFrom(testBlockToRender)
-                .SetPositionOfBlockInChunk(new BlockPosition(0, 0, 0))
-                .SetFrontFaceOfBlockIsHidden(false)
-                .SetRightFaceOfBlockIsHidden(false)
-                .SetBackFaceOfBlockIsHidden(false)
-                .SetLeftFaceOfBlockIsHidden(false)
-                .SetBottomFaceOfBlockIsHidden(false)
-                .SetTopFaceOfBlockIsHidden(false)
-                .SetIndexBufferOffsetInChunk(0)
-                .Build();
-
-            UnityEngine.Vector3[] meshVertices = RenderingTypeConverter.ConvertFlatFloatArrayToVector3Array(testBlockBuilder.GetShapePositions());
-            UnityEngine.Vector3[] meshNormals = RenderingTypeConverter.ConvertFlatFloatArrayToVector3Array(testBlockBuilder.GetShapeNormals());
-            Vector2[] meshUvs = RenderingTypeConverter.ConvertFlatFloatArrayToVector2Array(testBlockBuilder.GetShapeUvCoordinates());
-
-            mesh.SetVertices(meshVertices);
-            mesh.SetTriangles(testBlockBuilder.GetShapeIndices(), 0);
-            mesh.SetNormals(meshNormals);
-            mesh.SetUVs(0, meshUvs);
+            UpdateGeometry(mesh);
 
             meshFilter.mesh = mesh;
         }
+
+        private void UpdateGeometry(Mesh mesh)
+        {
+            UpdateGeometryVertices(mesh);
+            UpdateGeometryTriangles(mesh);
+            UpdateGeometryNormals(mesh);
+            UpdateGeometryUvs(mesh);
+        }
+
+        private void UpdateGeometryVertices(Mesh mesh)
+        {
+            float[] flatVertices = chunkData.GetVertices();
+
+            UnityEngine.Vector3[] verticesAsVectors = RenderingTypeConverter.ConvertFlatFloatArrayToVector3Array(flatVertices);
+            mesh.SetVertices(verticesAsVectors);
+        }
+
+        private void UpdateGeometryTriangles(Mesh mesh)
+        {
+            int[] flatIndices = chunkData.GetIndices();
+
+            mesh.SetTriangles(flatIndices, 0);            
+        }
+
+        private void UpdateGeometryNormals(Mesh mesh)
+        {
+            float[] flatNormals = chunkData.GetNormals();
+
+            UnityEngine.Vector3[] normalsAsVectors = RenderingTypeConverter.ConvertFlatFloatArrayToVector3Array(flatNormals);
+            mesh.SetNormals(normalsAsVectors);            
+        }
+
+        private void UpdateGeometryUvs(Mesh mesh)
+        {
+            float[] flatUvs = chunkData.GetUvCoordinates();
+
+            Vector2[] uvsAsVectors = RenderingTypeConverter.ConvertFlatFloatArrayToVector2Array(flatUvs);
+            mesh.SetUVs(0, uvsAsVectors);
+        }          
+
+        private string GetUniqueChunkName() 
+        {
+            int chunkPositionX = chunkData.GetWorldX();
+            int chunkPositionY = chunkData.GetWorldY();
+        
+            string prefix = "Opaque Chunk: ";
+        
+            return prefix + chunkPositionX + ", " + chunkPositionY;        
+        }                        
     }
 }
