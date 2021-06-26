@@ -1,7 +1,7 @@
-﻿using Org.Ethasia.Adventuregrid.Ioadapters;
+using Org.Ethasia.Adventuregrid.Ioadapters;
 using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Interfaces.Technical;
 
-namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresentingTests.Mocks 
+namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Mocks
 {
     public class TechnicalsMockFactory : TechnicalsFactory
     {

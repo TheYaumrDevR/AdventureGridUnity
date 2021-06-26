@@ -1,11 +1,8 @@
 {
-    "name": "PresentersTests",
+    "name": "PresentersMocks",
     "rootNamespace": "",
     "references": [
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "GameAssembly",
-        "PresentersMocks"
+        "GUID:f31130da94fdde94387ebf1f502d79a0"
     ],
     "includePlatforms": [
         "Editor"
@@ -13,13 +10,9 @@
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
-    "precompiledReferences": [
-        "nunit.framework.dll"
-    ],
+    "precompiledReferences": [],
     "autoReferenced": false,
-    "defineConstraints": [
-        "UNITY_INCLUDE_TESTS"
-    ],
+    "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
 }

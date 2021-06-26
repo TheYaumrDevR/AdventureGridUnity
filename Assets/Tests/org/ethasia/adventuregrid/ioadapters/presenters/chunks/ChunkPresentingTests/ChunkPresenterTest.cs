@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Org.Ethasia.Adventuregrid.Core.Environment;
 using Org.Ethasia.Adventuregrid.Core.Math;
 using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks;
-using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresentingTests.Mocks;
+using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Mocks;
 
 namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresentingTests
 {

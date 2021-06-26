@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
+using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks;
 using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Interfaces.Technical;
 
-namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresentingTests.Mocks
+namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Mocks
 {
     public class ChunkRendererMock : ChunkRenderer
     {

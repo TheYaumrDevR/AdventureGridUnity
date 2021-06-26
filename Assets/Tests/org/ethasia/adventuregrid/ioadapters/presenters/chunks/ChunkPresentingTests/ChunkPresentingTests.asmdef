@@ -1,9 +1,11 @@
 {
     "name": "ChunkPresentingTests",
+    "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "GameAssembly"
+        "GameAssembly",
+        "PresentersMocks"
     ],
     "includePlatforms": [
         "Editor"
