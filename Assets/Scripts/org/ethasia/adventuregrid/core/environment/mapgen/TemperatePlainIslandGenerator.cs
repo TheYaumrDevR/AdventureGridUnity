@@ -29,23 +29,23 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             {
                 for (int j = 0; j < result.GetXzDimension(); j++) 
                 {
-                    float scaledI = (i + 2000) * 4 / 16384.0f;
-                    float scaledJ = (j + 2000) * 4 / 16384.0f;
+                    float scaledI = (i + 7023) * 4 / 16384.0f;
+                    float scaledJ = (j + 4359) * 4 / 16384.0f;
                 
-                    float scaledI2 = (i + 2000) * 8 / 8192.0f;
-                    float scaledJ2 = (j + 2000) * 8 / 8192.0f;
+                    float scaledI2 = (i + 4067) * 8 / 8192.0f;
+                    float scaledJ2 = (j + 6638) * 8 / 8192.0f;
                 
-                    float scaledI3 = (i + 2000) * 16 / 4096.0f;
-                    float scaledJ3 = (j + 2000) * 16 / 4096.0f;
+                    float scaledI3 = (i + 7650) * 16 / 4096.0f;
+                    float scaledJ3 = (j + 4014) * 16 / 4096.0f;
                 
-                    float scaledI4 = (i + 2000) * 32 / 2048.0f;
-                    float scaledJ4 = (j + 2000) * 32 / 2048.0f;
+                    float scaledI4 = (i + 7648) * 32 / 2048.0f;
+                    float scaledJ4 = (j + 3730) * 32 / 2048.0f;
                 
-                    float scaledI5 = (i + 2000) * 64 / 1024.0f;
-                    float scaledJ5 = (j + 2000) * 64 / 1024.0f;   
+                    float scaledI5 = (i + 7066) * 64 / 1024.0f;
+                    float scaledJ5 = (j + 149) * 64 / 1024.0f;   
 
-                    float scaledI6 = (i + 2000) * 128 / 512.0f;
-                    float scaledJ6 = (j + 2000) * 128 / 512.0f;                                  
+                    float scaledI6 = (i + 1399) * 128 / 512.0f;
+                    float scaledJ6 = (j + 9036) * 128 / 512.0f;                                  
                 
                     float normalizedNoise = (float)((SimplexNoise.Noise(scaledI, scaledJ) + 1) * 0.5f);
                     float normalizedNoise2 = (float)((SimplexNoise.Noise(scaledI2, scaledJ2) + 1) * 0.25f);
