@@ -13,7 +13,7 @@ namespace Org.Ethasia.Adventuregrid
         {
             Dependencies.Inject();
             CoastlineGenerator islandGenerator = new CoastlineGenerator();
-            Island testIsland = new Island(256);
+            Island testIsland = new Island(8);
             islandGenerator.GenerateCoastline(testIsland);
             StandardIslandPresenter islandPresenter = new StandardIslandPresenter();
 
