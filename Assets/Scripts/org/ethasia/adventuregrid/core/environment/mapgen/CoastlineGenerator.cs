@@ -20,7 +20,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         public void GenerateCoastline(Island island)
         {
             islandToGenerate = island;
-            RandomNumberGenerator.InitWithSeed(435451974);
+            RandomNumberGenerator.InitWithSeed(774983560);
             coastLineMinHeight = RandomNumberGenerator.GenerateIntegerBetweenAnd(96, 128);
 
             if (islandToGenerate.GetXzDimension() < 3)
@@ -156,7 +156,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                                     amountOfAddedSectors++;
                                 }
                             }
-                            else if (SectorIsLegitAsExitSector(coastLinePropagationSectors.GetCurrentCoastLinePropagationSectors()[coastLinePropagationSectors.GetCurrentCoastLinePropagationSectors().Count - 1].SectorNo, exitPoint))
+                            
+                            if (SectorIsLegitAsExitSector(coastLinePropagationSectors.GetCurrentCoastLinePropagationSectors()[coastLinePropagationSectors.GetCurrentCoastLinePropagationSectors().Count - 1].SectorNo, exitPoint))
                             {
                                 allSectorsAreFilled = true;
                             }
