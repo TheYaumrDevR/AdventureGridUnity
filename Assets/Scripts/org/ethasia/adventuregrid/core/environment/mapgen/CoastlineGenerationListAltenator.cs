@@ -29,6 +29,12 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             coastLinePropagationSectorsTwo = new List<CoastlineGenerator.CoastLineCreationSectorBoundary>();            
         }  
 
+        internal bool ContainsSectorInCurrents(CoastlineGenerator.CoastLineCreationSectorBoundary sector)
+        {
+            List<CoastlineGenerator.CoastLineCreationSectorBoundary> currentSectors = GetCurrentCoastLinePropagationSectors();
+            return currentSectors.Contains(sector);
+        }
+
         internal void PutSector(CoastlineGenerator.CoastLineCreationSectorBoundary value)
         {
             if (usingFirstPropagationList)

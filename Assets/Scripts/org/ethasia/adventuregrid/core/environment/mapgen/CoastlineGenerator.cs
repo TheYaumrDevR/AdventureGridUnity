@@ -20,7 +20,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         public void GenerateCoastline(Island island)
         {
             islandToGenerate = island;
-            RandomNumberGenerator.InitWithSeed(606866744);
+            RandomNumberGenerator.InitWithSeed(435451974);
             coastLineMinHeight = RandomNumberGenerator.GenerateIntegerBetweenAnd(96, 128);
 
             if (islandToGenerate.GetXzDimension() < 3)
@@ -48,7 +48,14 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             {
                 if (0 != i)
                 {
-                    previousSector = currentCoastlinePropagationSectors[i - 1];
+                    if (coastLinePropagationSectors.GetCurrentCoastLinePropagationSectors().Count > 0)
+                    {
+                        previousSector = coastLinePropagationSectors.GetCurrentCoastLinePropagationSectors()[coastLinePropagationSectors.GetCurrentCoastLinePropagationSectors().Count - 1];
+                    }
+                    else
+                    {
+                        previousSector = currentCoastlinePropagationSectors[i - 1];
+                    }
                 }
 
                 currentSector = currentCoastlinePropagationSectors[i];
@@ -141,8 +148,13 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                         {
                             if (NextSectorToMoveToIsLegit(nextSectorNo))
                             {
-                                coastLinePropagationSectors.PutSector(GetSectorBoundaryFromSectorNumber(parentSector, nextSectorNo));
-                                amountOfAddedSectors++;
+                                CoastLineCreationSectorBoundary nextSector = GetSectorBoundaryFromSectorNumber(parentSector, nextSectorNo);
+
+                                if (!coastLinePropagationSectors.ContainsSectorInCurrents(nextSector))
+                                {
+                                    coastLinePropagationSectors.PutSector(nextSector);
+                                    amountOfAddedSectors++;
+                                }
                             }
                             else if (SectorIsLegitAsExitSector(coastLinePropagationSectors.GetCurrentCoastLinePropagationSectors()[coastLinePropagationSectors.GetCurrentCoastLinePropagationSectors().Count - 1].SectorNo, exitPoint))
                             {
@@ -198,19 +210,19 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
         private bool SectorIsLegitAsEntrySector(int sectorNo, CoastLinePropagationEnterExitPoint entryPoint)
         {
-            if (entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_LEFT_LEFT || entryPoint == CoastLinePropagationEnterExitPoint.TOP_LEFT_LEFT || entryPoint == CoastLinePropagationEnterExitPoint.LEFT)
+            if (entryPoint == CoastLinePropagationEnterExitPoint.LEFT)
             {
                 return sectorNo == 0 || sectorNo == 2;
             }
-            else if (entryPoint == CoastLinePropagationEnterExitPoint.TOP_LEFT_UP || entryPoint == CoastLinePropagationEnterExitPoint.TOP_RIGHT_UP || entryPoint == CoastLinePropagationEnterExitPoint.TOP)
+            else if (entryPoint == CoastLinePropagationEnterExitPoint.TOP)
             {
                 return sectorNo == 0 || sectorNo == 1;
             }
-            else if (entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT_RIGHT || entryPoint == CoastLinePropagationEnterExitPoint.TOP_RIGHT_RIGHT || entryPoint == CoastLinePropagationEnterExitPoint.RIGHT)
+            else if (entryPoint == CoastLinePropagationEnterExitPoint.RIGHT)
             {
                 return sectorNo == 1 || sectorNo == 3;
             }    
-            else if (entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_LEFT_DOWN || entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT_DOWN || entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM)
+            else if (entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM)
             {
                 return sectorNo == 2 || sectorNo == 3;
             } 
@@ -230,50 +242,124 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             {
                 return sectorNo == 3;
             }  
+            else if (entryPoint == CoastLinePropagationEnterExitPoint.TOP_LEFT_LEFT || entryPoint == CoastLinePropagationEnterExitPoint.TOP_LEFT_UP)
+            {
+                return sectorNo == 0;
+            }
+            else if (entryPoint == CoastLinePropagationEnterExitPoint.TOP_RIGHT_UP || entryPoint == CoastLinePropagationEnterExitPoint.TOP_RIGHT_RIGHT)
+            {
+                return sectorNo == 1;
+            }       
+            else if (entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_LEFT_LEFT || entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_LEFT_DOWN)
+            {
+                return sectorNo == 2;
+            }   
+            else if (entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT_RIGHT || entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT_DOWN)
+            {
+                return sectorNo == 3;
+            }                           
 
             return false;
         }
 
         private CoastLinePropagationEnterExitPoint DetermineEntryPointFromAdjacentSectors(CoastLineCreationSectorBoundary previousSector, CoastLineCreationSectorBoundary nextSector)
         {
-            if (previousSector.FromX < nextSector.FromX)
+            if (previousSector.ToX - previousSector.FromX < nextSector.ToX - nextSector.FromX && previousSector.ToY - previousSector.FromY < nextSector.ToY - nextSector.FromY)
             {
-                if (previousSector.FromY < nextSector.FromY)
+                if (previousSector.FromX < nextSector.FromX)
                 {
-                    return CoastLinePropagationEnterExitPoint.TOP_LEFT;
-                }
-                else if (previousSector.FromY == nextSector.FromY)
-                {
-                    return CoastLinePropagationEnterExitPoint.LEFT;
-                }
+                    if (previousSector.FromY < nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.TOP_LEFT;
+                    }
+                    else if (previousSector.FromY == nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.TOP_LEFT_LEFT;
+                    }
+                    else if (previousSector.FromY > nextSector.FromY && previousSector.FromY < nextSector.ToY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.BOTTOM_LEFT_LEFT;
+                    }
 
-                return CoastLinePropagationEnterExitPoint.BOTTOM_LEFT;
+                    return CoastLinePropagationEnterExitPoint.BOTTOM_LEFT;
+                }   
+                else if (previousSector.FromX == nextSector.FromX)
+                {
+                    if (previousSector.FromY < nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.TOP_LEFT_UP;
+                    }
+
+                    return CoastLinePropagationEnterExitPoint.BOTTOM_LEFT_DOWN;
+                }     
+                else if (previousSector.FromX > nextSector.FromX && previousSector.FromX < nextSector.ToX)
+                {
+                    if (previousSector.FromY < nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.TOP_RIGHT_UP;
+                    }
+
+                    return CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT_DOWN;
+                }      
+                else
+                {
+                    if (previousSector.FromY < nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.TOP_RIGHT;
+                    }
+                    else if (previousSector.FromY == nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.TOP_RIGHT_RIGHT;
+                    }
+                    else if (previousSector.FromY > nextSector.FromY && previousSector.FromY < nextSector.ToY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT_RIGHT;
+                    }
+
+                    return CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT;                    
+                }  
             }
-            else if (previousSector.FromX == nextSector.FromX)
+            else
             {
-                if (previousSector.FromY < nextSector.FromY)
+                if (previousSector.FromX < nextSector.FromX)
                 {
-                    return CoastLinePropagationEnterExitPoint.TOP;
-                }
-                else if (previousSector.FromY == nextSector.FromY)
-                {
-                    return CoastLinePropagationEnterExitPoint.NONE;
-                }
+                    if (previousSector.FromY < nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.TOP_LEFT;
+                    }
+                    else if (previousSector.FromY == nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.LEFT;
+                    }
 
-                return CoastLinePropagationEnterExitPoint.BOTTOM;
-            }
-            else if (previousSector.FromX > nextSector.FromX)
-            {
-                if (previousSector.FromY < nextSector.FromY)
-                {
-                    return CoastLinePropagationEnterExitPoint.TOP_RIGHT;
+                    return CoastLinePropagationEnterExitPoint.BOTTOM_LEFT;
                 }
-                else if (previousSector.FromY == nextSector.FromY)
+                else if (previousSector.FromX == nextSector.FromX)
                 {
-                    return CoastLinePropagationEnterExitPoint.RIGHT;
-                }
+                    if (previousSector.FromY < nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.TOP;
+                    }
+                    else if (previousSector.FromY == nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.NONE;
+                    }
 
-                return CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT;
+                    return CoastLinePropagationEnterExitPoint.BOTTOM;
+                }
+                else if (previousSector.FromX > nextSector.FromX)
+                {
+                    if (previousSector.FromY < nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.TOP_RIGHT;
+                    }
+                    else if (previousSector.FromY == nextSector.FromY)
+                    {
+                        return CoastLinePropagationEnterExitPoint.RIGHT;
+                    }
+
+                    return CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT;
+                }                
             }
 
             return CoastLinePropagationEnterExitPoint.NONE;
