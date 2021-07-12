@@ -3,14 +3,14 @@ using System.Collections.Generic;
 namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 {
 
-    internal class CoastlineGenerationListAltenator
+    public class CoastlineGenerationListAltenator
     {
 
         private bool usingFirstPropagationList;
         private List<CoastlineGenerator.CoastLineCreationSectorBoundary> coastLinePropagationSectorsOne;
         private List<CoastlineGenerator.CoastLineCreationSectorBoundary> coastLinePropagationSectorsTwo;      
 
-        internal List<CoastlineGenerator.CoastLineCreationSectorBoundary> GetCurrentCoastLinePropagationSectors()
+        public List<CoastlineGenerator.CoastLineCreationSectorBoundary> GetCurrentCoastLinePropagationSectors()
         {
             if (usingFirstPropagationList)
             {
@@ -22,20 +22,20 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             }
         }      
 
-        internal CoastlineGenerationListAltenator()
+        public CoastlineGenerationListAltenator()
         {
             usingFirstPropagationList = true;
             coastLinePropagationSectorsOne = new List<CoastlineGenerator.CoastLineCreationSectorBoundary>();
             coastLinePropagationSectorsTwo = new List<CoastlineGenerator.CoastLineCreationSectorBoundary>();            
         }  
 
-        internal bool ContainsSectorInCurrents(CoastlineGenerator.CoastLineCreationSectorBoundary sector)
+        public void SwitchToNextPropagationList()
         {
-            List<CoastlineGenerator.CoastLineCreationSectorBoundary> currentSectors = GetCurrentCoastLinePropagationSectors();
-            return currentSectors.Contains(sector);
-        }
+            usingFirstPropagationList = !usingFirstPropagationList;
+            ClearCurrentPropagationList();
+        }        
 
-        internal void PutSector(CoastlineGenerator.CoastLineCreationSectorBoundary value)
+        public void PutSector(CoastlineGenerator.CoastLineCreationSectorBoundary value)
         {
             if (usingFirstPropagationList)
             {
@@ -45,12 +45,12 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             {
                 coastLinePropagationSectorsTwo.Add(value);
             }
-        }
+        }        
 
-        internal void SwitchToNextPropagationList()
+        public bool ContainsSectorInCurrents(CoastlineGenerator.CoastLineCreationSectorBoundary sector)
         {
-            usingFirstPropagationList = !usingFirstPropagationList;
-            ClearCurrentPropagationList();
+            List<CoastlineGenerator.CoastLineCreationSectorBoundary> currentSectors = GetCurrentCoastLinePropagationSectors();
+            return currentSectors.Contains(sector);
         }
 
         private void ClearCurrentPropagationList()

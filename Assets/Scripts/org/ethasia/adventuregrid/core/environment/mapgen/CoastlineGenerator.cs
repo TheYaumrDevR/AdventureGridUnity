@@ -20,7 +20,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         public void GenerateCoastline(Island island)
         {
             islandToGenerate = island;
-            RandomNumberGenerator.InitWithSeed(774983560);
+            RandomNumberGenerator.InitWithSeed(393022401);
             coastLineMinHeight = RandomNumberGenerator.GenerateIntegerBetweenAnd(96, 128);
 
             if (islandToGenerate.GetXzDimension() < 3)
@@ -552,7 +552,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             }            
         }
 
-        internal struct CoastLineCreationSectorBoundary
+        public struct CoastLineCreationSectorBoundary
         {
 
             public short SectorNo
