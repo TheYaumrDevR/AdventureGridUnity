@@ -10,17 +10,18 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         private Island islandToGenerate;
         private int coastLineMinHeight;
         private CoastlineGenerationListAltenator coastLinePropagationSectors;
+        private IRandomNumberGenerator randomNumberGenerator;
 
         public CoastlineGenerator()
         {
             coastLinePropagationSectors = new CoastlineGenerationListAltenator();
+            randomNumberGenerator = CoreFactory.GetInstance().GetRandomNumberGeneratorInstance();
         }
 
         public void GenerateCoastline(Island island)
         {
             islandToGenerate = island;
-            RandomNumberGenerator.InitWithSeed(393022401);
-            coastLineMinHeight = RandomNumberGenerator.GenerateIntegerBetweenAnd(96, 128);
+            coastLineMinHeight = randomNumberGenerator.GenerateIntegerBetweenAnd(96, 128);
 
             if (islandToGenerate.GetXzDimension() < 3)
             {
@@ -102,7 +103,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             {
                 while (coastLinePropagationSectors.GetCurrentCoastLinePropagationSectors().Count < 4)
                 {
-                    int nextSectorNo = RandomNumberGenerator.GenerateRandomPositiveInteger(3);
+                    int nextSectorNo = randomNumberGenerator.GenerateRandomPositiveInteger(3);
                     if (coastLinePropagationSectors.GetCurrentCoastLinePropagationSectors().Count > 0)
                     {
                         bool nextSectorIsLegit = NextSectorToMoveToIsLegit(nextSectorNo);
@@ -127,7 +128,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                 int amountOfAddedSectors = 0;
                 while (!allSectorsAreFilled)
                 {
-                    int nextSectorNo = RandomNumberGenerator.GenerateRandomPositiveInteger(3);
+                    int nextSectorNo = randomNumberGenerator.GenerateRandomPositiveInteger(3);
                     if (0 == amountOfAddedSectors)
                     {
                         if (SectorIsLegitAsEntrySector(nextSectorNo, entryPoint))
@@ -407,7 +408,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         {
             if (0 == coastLineGenerationChunkBoundary.ToX - coastLineGenerationChunkBoundary.FromX)
             {
-                int shouldSetBlock = RandomNumberGenerator.GenerateRandomPositiveInteger(1);
+                int shouldSetBlock = randomNumberGenerator.GenerateRandomPositiveInteger(1);
 
                 if (1 == shouldSetBlock)
                 {
@@ -418,11 +419,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             {
                 if (enterPoint == CoastLinePropagationEnterExitPoint.NONE && exitPoint == CoastLinePropagationEnterExitPoint.NONE)
                 {
-                    int amountOfSubGenerationSteps = RandomNumberGenerator.GenerateRandomPositiveInteger(3);
+                    int amountOfSubGenerationSteps = randomNumberGenerator.GenerateRandomPositiveInteger(3);
 
                     for (int i = 0; i < amountOfSubGenerationSteps; i++)
                     {
-                        int sectorToPlaceBlockAt = RandomNumberGenerator.GenerateRandomPositiveInteger(3);
+                        int sectorToPlaceBlockAt = randomNumberGenerator.GenerateRandomPositiveInteger(3);
 
                         switch (sectorToPlaceBlockAt)
                         {
@@ -483,14 +484,14 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                         {
                             if (enterPoint == CoastLinePropagationEnterExitPoint.NONE)
                             {
-                                int nextSectorNo = RandomNumberGenerator.GenerateRandomPositiveInteger(3);
+                                int nextSectorNo = randomNumberGenerator.GenerateRandomPositiveInteger(3);
                                 PlaceBlockBasedOnNumberAndCurrentSector(nextSectorNo, coastLineGenerationChunkBoundary);
 
                                 amountOfBlocksPlaced++;
                             }
                             else
                             {
-                                int nextSectorNo = RandomNumberGenerator.GenerateRandomPositiveInteger(3);
+                                int nextSectorNo = randomNumberGenerator.GenerateRandomPositiveInteger(3);
 
                                 if (SectorIsLegitAsEntrySector(nextSectorNo, enterPoint))
                                 {
@@ -502,7 +503,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                         }
                         else
                         {
-                            int nextSectorNo = RandomNumberGenerator.GenerateRandomPositiveInteger(3);
+                            int nextSectorNo = randomNumberGenerator.GenerateRandomPositiveInteger(3);
 
                             if (SectorIsLegitAsExitSector(nextSectorNo, exitPoint))
                             {

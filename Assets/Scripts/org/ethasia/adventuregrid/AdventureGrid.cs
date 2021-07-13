@@ -1,3 +1,4 @@
+using Org.Ethasia.Adventuregrid.Core;
 using Org.Ethasia.Adventuregrid.Core.Environment;
 using Org.Ethasia.Adventuregrid.Core.Environment.Mapgen;
 using Org.Ethasia.Adventuregrid.Core.InputInterfaces;
@@ -12,6 +13,7 @@ namespace Org.Ethasia.Adventuregrid
         void Start()
         {
             Dependencies.Inject();
+            CoreFactory.GetInstance().InitGlobalRandomNumberGeneratorWithSeed(83457547);
             CoastlineGenerator islandGenerator = new CoastlineGenerator();
             Island testIsland = new Island(1024);
             islandGenerator.GenerateCoastline(testIsland);

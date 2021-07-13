@@ -1,3 +1,4 @@
+using Org.Ethasia.Adventuregrid.Core;
 using Org.Ethasia.Adventuregrid.Ioadapters;
 using Org.Ethasia.Adventuregrid.Technical;
 
@@ -14,7 +15,7 @@ namespace Org.Ethasia.Adventuregrid
 
         private static void InjectCoreDependencies()
         {
-
+            CoreFactory.SetInstance(new RealCoreFactory());
         }
 
         private static void InjectInteractorDependencies()

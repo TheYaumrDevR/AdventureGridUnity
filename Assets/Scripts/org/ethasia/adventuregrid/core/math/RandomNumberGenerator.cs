@@ -2,15 +2,10 @@ using UnityEngine;
 
 namespace Org.Ethasia.Adventuregrid.Core.Math
 {
-    public class RandomNumberGenerator
+    public class RandomNumberGenerator : IRandomNumberGenerator
     {
 
-        public static void InitWithSeed(int seed)
-        {
-            Random.InitState(seed);
-        }
-
-        public static int GenerateIntegerBetweenAnd(int min, int max)
+        public int GenerateIntegerBetweenAnd(int min, int max)
         {
             float lowerBound = min + 0.0f;
             float upperBound = max + 1.0f;
@@ -25,7 +20,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Math
             return FastMath.Floor(randomNumber);
         }
 
-        public static int GenerateRandomPositiveInteger(int max)
+        public int GenerateRandomPositiveInteger(int max)
         {
             float lowerBound = 0.0f;
             float upperBound = max + 1.0f;
