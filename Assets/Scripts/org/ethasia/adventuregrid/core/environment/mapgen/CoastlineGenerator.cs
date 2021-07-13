@@ -6,10 +6,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 {
     public class CoastlineGenerator
     {
+
         private Island islandToGenerate;
-
         private int coastLineMinHeight;
-
         private CoastlineGenerationListAltenator coastLinePropagationSectors;
 
         public CoastlineGenerator()
