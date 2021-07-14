@@ -1,0 +1,19 @@
+{
+    "name": "CoreTests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f31130da94fdde94387ebf1f502d79a0",
+        "GUID:d3419674f30ee344982df94606cc920e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
