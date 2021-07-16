@@ -7,6 +7,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
     public class CoastlineGenerator
     {
 
+        private const int TOP_LEFT_SECTOR_ID = 0;
+        private const int TOP_RIGHT_SECTOR_ID = 1;
+        private const int BOTTOM_LEFT_SECTOR_ID = 2;
+        private const int BOTTOM_RIGHT_SECTOR_ID = 3;
+
         private Island islandToGenerate;
         private int coastLineMinHeight;
         private CoastlineGenerationListAltenator coastLinePropagationSectors;
@@ -169,20 +174,20 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
         private CoastLineCreationSectorBoundary GetSectorBoundaryFromSectorNumber(CoastLineCreationSectorBoundary parentSector, int sectorNumber)
         {
-            CoastLineCreationSectorBoundary sector0 = new CoastLineCreationSectorBoundary(0, parentSector.FromX, parentSector.FromX + (parentSector.ToX - parentSector.FromX) / 2, parentSector.FromY, parentSector.FromY + (parentSector.ToY - parentSector.FromY) / 2);
-            CoastLineCreationSectorBoundary sector1 = new CoastLineCreationSectorBoundary(1, parentSector.FromX + (parentSector.ToX - parentSector.FromX) / 2 + 1, parentSector.ToX, parentSector.FromY, parentSector.FromY + (parentSector.ToY - parentSector.FromY) / 2);
-            CoastLineCreationSectorBoundary sector2 = new CoastLineCreationSectorBoundary(2, parentSector.FromX, parentSector.FromX + (parentSector.ToX - parentSector.FromX) / 2, parentSector.FromY + (parentSector.ToY - parentSector.FromY) / 2 + 1, parentSector.ToY);
-            CoastLineCreationSectorBoundary sector3 = new CoastLineCreationSectorBoundary(3, parentSector.FromX + (parentSector.ToX - parentSector.FromX) / 2 + 1, parentSector.ToX, parentSector.FromY + (parentSector.ToY - parentSector.FromY) / 2 + 1, parentSector.ToY);
+            CoastLineCreationSectorBoundary sector0 = new CoastLineCreationSectorBoundary(TOP_LEFT_SECTOR_ID, parentSector.FromX, parentSector.FromX + (parentSector.ToX - parentSector.FromX) / 2, parentSector.FromY, parentSector.FromY + (parentSector.ToY - parentSector.FromY) / 2);
+            CoastLineCreationSectorBoundary sector1 = new CoastLineCreationSectorBoundary(TOP_RIGHT_SECTOR_ID, parentSector.FromX + (parentSector.ToX - parentSector.FromX) / 2 + 1, parentSector.ToX, parentSector.FromY, parentSector.FromY + (parentSector.ToY - parentSector.FromY) / 2);
+            CoastLineCreationSectorBoundary sector2 = new CoastLineCreationSectorBoundary(BOTTOM_LEFT_SECTOR_ID, parentSector.FromX, parentSector.FromX + (parentSector.ToX - parentSector.FromX) / 2, parentSector.FromY + (parentSector.ToY - parentSector.FromY) / 2 + 1, parentSector.ToY);
+            CoastLineCreationSectorBoundary sector3 = new CoastLineCreationSectorBoundary(BOTTOM_RIGHT_SECTOR_ID, parentSector.FromX + (parentSector.ToX - parentSector.FromX) / 2 + 1, parentSector.ToX, parentSector.FromY + (parentSector.ToY - parentSector.FromY) / 2 + 1, parentSector.ToY);
 
             switch (sectorNumber)
             {
-                case 0:
+                case TOP_LEFT_SECTOR_ID:
                     return sector0;
-                case 1:
+                case TOP_RIGHT_SECTOR_ID:
                     return sector1;
-                case 2:
+                case BOTTOM_LEFT_SECTOR_ID:
                     return sector2;
-                case 3:
+                case BOTTOM_RIGHT_SECTOR_ID:
                     return sector3;
             }
 
@@ -196,14 +201,14 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
             switch (previousSectorNo)
             {
-                case 0:
-                    return nextSectorNo == 1 || nextSectorNo == 2;
-                case 1:
-                    return nextSectorNo == 0 || nextSectorNo == 3;
-                case 2:
-                    return nextSectorNo == 0 || nextSectorNo == 3;
-                case 3:
-                    return nextSectorNo == 1 || nextSectorNo == 2;
+                case TOP_LEFT_SECTOR_ID:
+                    return nextSectorNo == TOP_RIGHT_SECTOR_ID || nextSectorNo == BOTTOM_LEFT_SECTOR_ID;
+                case TOP_RIGHT_SECTOR_ID:
+                    return nextSectorNo == TOP_LEFT_SECTOR_ID || nextSectorNo == BOTTOM_RIGHT_SECTOR_ID;
+                case BOTTOM_LEFT_SECTOR_ID:
+                    return nextSectorNo == TOP_LEFT_SECTOR_ID || nextSectorNo == BOTTOM_RIGHT_SECTOR_ID;
+                case BOTTOM_RIGHT_SECTOR_ID:
+                    return nextSectorNo == TOP_RIGHT_SECTOR_ID || nextSectorNo == BOTTOM_LEFT_SECTOR_ID;
             }     
 
             return false;       
@@ -213,51 +218,51 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         {
             if (entryPoint == CoastLinePropagationEnterExitPoint.LEFT)
             {
-                return sectorNo == 0 || sectorNo == 2;
+                return sectorNo == TOP_LEFT_SECTOR_ID || sectorNo == BOTTOM_LEFT_SECTOR_ID;
             }
             else if (entryPoint == CoastLinePropagationEnterExitPoint.TOP)
             {
-                return sectorNo == 0 || sectorNo == 1;
+                return sectorNo == TOP_LEFT_SECTOR_ID || sectorNo == TOP_RIGHT_SECTOR_ID;
             }
             else if (entryPoint == CoastLinePropagationEnterExitPoint.RIGHT)
             {
-                return sectorNo == 1 || sectorNo == 3;
+                return sectorNo == TOP_RIGHT_SECTOR_ID || sectorNo == BOTTOM_RIGHT_SECTOR_ID;
             }    
             else if (entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM)
             {
-                return sectorNo == 2 || sectorNo == 3;
+                return sectorNo == BOTTOM_LEFT_SECTOR_ID || sectorNo == BOTTOM_RIGHT_SECTOR_ID;
             } 
             else if (entryPoint == CoastLinePropagationEnterExitPoint.TOP_LEFT)
             {
-                return sectorNo == 0;
+                return sectorNo == TOP_LEFT_SECTOR_ID;
             } 
             else if (entryPoint == CoastLinePropagationEnterExitPoint.TOP_RIGHT)
             {
-                return sectorNo == 1;
+                return sectorNo == TOP_RIGHT_SECTOR_ID;
             } 
             else if (entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_LEFT)
             {
-                return sectorNo == 2;
+                return sectorNo == BOTTOM_LEFT_SECTOR_ID;
             } 
             else if (entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT)
             {
-                return sectorNo == 3;
+                return sectorNo == BOTTOM_RIGHT_SECTOR_ID;
             }  
             else if (entryPoint == CoastLinePropagationEnterExitPoint.TOP_LEFT_LEFT || entryPoint == CoastLinePropagationEnterExitPoint.TOP_LEFT_UP)
             {
-                return sectorNo == 0;
+                return sectorNo == TOP_LEFT_SECTOR_ID;
             }
             else if (entryPoint == CoastLinePropagationEnterExitPoint.TOP_RIGHT_UP || entryPoint == CoastLinePropagationEnterExitPoint.TOP_RIGHT_RIGHT)
             {
-                return sectorNo == 1;
+                return sectorNo == TOP_RIGHT_SECTOR_ID;
             }       
             else if (entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_LEFT_LEFT || entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_LEFT_DOWN)
             {
-                return sectorNo == 2;
+                return sectorNo == BOTTOM_LEFT_SECTOR_ID;
             }   
             else if (entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT_RIGHT || entryPoint == CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT_DOWN)
             {
-                return sectorNo == 3;
+                return sectorNo == BOTTOM_RIGHT_SECTOR_ID;
             }                           
 
             return false;
@@ -370,35 +375,35 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         {
             if (exitPoint == CoastLinePropagationEnterExitPoint.TOP)
             {
-                return sectorNo == 0 || sectorNo == 1;
+                return sectorNo == TOP_LEFT_SECTOR_ID || sectorNo == TOP_RIGHT_SECTOR_ID;
             }
             else if (exitPoint == CoastLinePropagationEnterExitPoint.RIGHT)
             {
-                return sectorNo == 1 || sectorNo == 3;
+                return sectorNo == TOP_RIGHT_SECTOR_ID || sectorNo == BOTTOM_RIGHT_SECTOR_ID;
             }
             else if (exitPoint == CoastLinePropagationEnterExitPoint.BOTTOM)
             {
-                return sectorNo == 2 || sectorNo == 3;
+                return sectorNo == BOTTOM_LEFT_SECTOR_ID || sectorNo == BOTTOM_RIGHT_SECTOR_ID;
             }    
             else if (exitPoint == CoastLinePropagationEnterExitPoint.LEFT)
             {
-                return sectorNo == 0 || sectorNo == 2;
+                return sectorNo == TOP_LEFT_SECTOR_ID || sectorNo == BOTTOM_LEFT_SECTOR_ID;
             }  
             else if (exitPoint == CoastLinePropagationEnterExitPoint.TOP_LEFT)
             {
-                return sectorNo == 0;
+                return sectorNo == TOP_LEFT_SECTOR_ID;
             }
             else if (exitPoint == CoastLinePropagationEnterExitPoint.TOP_RIGHT)
             {
-                return sectorNo == 1;
+                return sectorNo == TOP_RIGHT_SECTOR_ID;
             }         
             else if (exitPoint == CoastLinePropagationEnterExitPoint.BOTTOM_LEFT)
             {
-                return sectorNo == 2;
+                return sectorNo == BOTTOM_LEFT_SECTOR_ID;
             }
             else if (exitPoint == CoastLinePropagationEnterExitPoint.BOTTOM_RIGHT)
             {
-                return sectorNo == 3;
+                return sectorNo == BOTTOM_RIGHT_SECTOR_ID;
             }                              
 
             return false;
@@ -429,7 +434,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                         BlockPosition placementPosition;
                         switch (sectorToPlaceBlockAt)
                         {
-                            case 0:
+                            case TOP_LEFT_SECTOR_ID:
                                 placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY);
 
                                 if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
@@ -439,7 +444,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                                 }
 
                                 break;
-                            case 1:
+                            case TOP_RIGHT_SECTOR_ID:
                                 placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY);
 
                                 if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
@@ -449,7 +454,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                                 }
 
                                 break;    
-                            case 2:
+                            case BOTTOM_LEFT_SECTOR_ID:
                                 placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1);
 
                                 if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
@@ -459,7 +464,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                                 }
 
                                 break; 
-                            case 3:
+                            case BOTTOM_RIGHT_SECTOR_ID:
                                 placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1);
 
                                 if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
@@ -521,22 +526,22 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
             switch (sectorToPlaceBlockAt)
             {
-                case 0:
+                case TOP_LEFT_SECTOR_ID:
                     placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY);
                     PlaceRockBlockAtIfItIsNotAir(placementPosition);
 
                     break;
-                case 1:
+                case TOP_RIGHT_SECTOR_ID:
                     placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY);
                     PlaceRockBlockAtIfItIsNotAir(placementPosition);
 
                     break;    
-                case 2:
+                case BOTTOM_LEFT_SECTOR_ID:
                     placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1);
                     PlaceRockBlockAtIfItIsNotAir(placementPosition);
 
                     break; 
-                case 3:
+                case BOTTOM_RIGHT_SECTOR_ID:
                     placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1);
                     PlaceRockBlockAtIfItIsNotAir(placementPosition);
 
