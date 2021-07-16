@@ -420,54 +420,52 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                 if (enterPoint == CoastLinePropagationEnterExitPoint.NONE && exitPoint == CoastLinePropagationEnterExitPoint.NONE)
                 {
                     int amountOfSubGenerationSteps = randomNumberGenerator.GenerateRandomPositiveInteger(3);
+                    int i = 0;
 
-                    for (int i = 0; i < amountOfSubGenerationSteps; i++)
+                    while (i < amountOfSubGenerationSteps)
                     {
                         int sectorToPlaceBlockAt = randomNumberGenerator.GenerateRandomPositiveInteger(3);
 
+                        BlockPosition placementPosition;
                         switch (sectorToPlaceBlockAt)
                         {
                             case 0:
-                                if (islandToGenerate.GetBlockAt(new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY)).GetBlockType() == BlockTypes.AIR)
+                                placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY);
+
+                                if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
                                 {
-                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY));
-                                }
-                                else
-                                {
-                                    i--;
+                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), placementPosition);
+                                    i++;
                                 }
 
                                 break;
                             case 1:
-                                if (islandToGenerate.GetBlockAt(new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY)).GetBlockType() == BlockTypes.AIR)
+                                placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY);
+
+                                if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
                                 {
-                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY));
-                                }
-                                else
-                                {
-                                    i--;
+                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), placementPosition);
+                                    i++;
                                 }
 
                                 break;    
                             case 2:
-                                if (islandToGenerate.GetBlockAt(new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1)).GetBlockType() == BlockTypes.AIR)
+                                placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1);
+
+                                if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
                                 {
-                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1));
-                                }
-                                else
-                                {
-                                    i--;
+                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), placementPosition);
+                                    i++;
                                 }
 
                                 break; 
                             case 3:
-                                if (islandToGenerate.GetBlockAt(new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1)).GetBlockType() == BlockTypes.AIR)
+                                placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1);
+
+                                if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
                                 {
-                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1));
-                                }
-                                else
-                                {
-                                    i--;
+                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), placementPosition);
+                                    i++;
                                 }
 
                                 break;                                                                 
