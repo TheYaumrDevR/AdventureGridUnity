@@ -90,6 +90,33 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
         }   
 
         [Test]
+        public void TestThatSmallerCoastlineSectorBoundariesAreIdentified()
+        {
+            CoastlineGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(0, 0, 7, 8, 16);
+            CoastlineGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(1, 8, 24, 17, 33);
+
+            Assert.That(firstBoundary.IsSmallerThan(secondBoundary), Is.True);
+        }
+
+        [Test]
+        public void TestThatEqualSizeSectorBoundaryIsNotSmaller()
+        {
+            CoastlineGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(0, 10, 18, 17, 34);
+            CoastlineGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(1, 21, 29, 30, 47);
+
+            Assert.That(firstBoundary.IsSmallerThan(secondBoundary), Is.False);
+        }   
+
+        [Test]
+        public void TestThatLargerSizeSectorBoundaryIsNotSmaller()
+        {
+            CoastlineGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(0, 56, 67, 16, 27);
+            CoastlineGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(1, 5, 10, 11, 16);
+
+            Assert.That(firstBoundary.IsSmallerThan(secondBoundary), Is.False);
+        }               
+
+        [Test]
         public void Test8x8IslandGeneration()
         {
             int[] randomNumbersToGenerate = {112, 3, 1, 0, 2, 2, 3, 1, 0, 1, 3, 

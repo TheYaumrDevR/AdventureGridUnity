@@ -270,7 +270,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
         private CoastLinePropagationEnterExitPoint DetermineEntryPointFromAdjacentSectors(CoastLineCreationSectorBoundary previousSector, CoastLineCreationSectorBoundary nextSector)
         {
-            if (previousSector.ToX - previousSector.FromX < nextSector.ToX - nextSector.FromX && previousSector.ToY - previousSector.FromY < nextSector.ToY - nextSector.FromY)
+            if (previousSector.IsSmallerThan(nextSector))
             {
                 if (previousSector.FromX < nextSector.FromX)
                 {
@@ -597,7 +597,13 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                 ToX = toX;
                 FromY = fromY;
                 ToY = toY;                
-            }      
+            }    
+
+            public bool IsSmallerThan(CoastLineCreationSectorBoundary other)
+            {
+                return ToX - FromX < other.ToX - other.FromX 
+                    && ToY - FromY < other.ToY - other.FromY;
+            }  
 
             public override bool Equals(object other)
             {
