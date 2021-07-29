@@ -16,7 +16,7 @@ namespace Org.Ethasia.Adventuregrid
             CoreFactory.GetInstance().InitGlobalRandomNumberGeneratorWithSeed(83457547);
             CoastlineGenerator islandGenerator = new CoastlineGenerator();
             Island testIsland = new Island(1024);
-            islandGenerator.GenerateCoastline(testIsland);
+            islandGenerator.GenerateCoastline(1024);
             StandardIslandPresenter islandPresenter = new StandardIslandPresenter();
 
             islandPresenter.PresentIsland(testIsland);

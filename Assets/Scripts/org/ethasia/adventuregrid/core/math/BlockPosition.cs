@@ -26,5 +26,24 @@ namespace Org.Ethasia.Adventuregrid.Core.Math
             Y = y;
             Z = z;
         }
+
+        public override bool Equals(object other)
+        {
+            if (other is BlockPosition) 
+            {
+                BlockPosition otherBlockPosition = (BlockPosition)other;
+
+                return otherBlockPosition.X == X
+                    && otherBlockPosition.Y == Y
+                    && otherBlockPosition.Z == Z;
+            }
+
+            return false;
+        }      
+
+        public override int GetHashCode()
+        {
+            return X + Y + Z;
+        }        
     }
 }

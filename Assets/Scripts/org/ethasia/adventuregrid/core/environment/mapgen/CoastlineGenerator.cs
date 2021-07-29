@@ -12,33 +12,37 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         private const int BOTTOM_LEFT_SECTOR_ID = 2;
         private const int BOTTOM_RIGHT_SECTOR_ID = 3;
 
-        private Island islandToGenerate;
+        private int edgeLengthOfIsland;
+        private List<BlockPosition> coastLineHeightMap;
         private int coastLineMinHeight;
         private CoastlineGenerationListAltenator coastLinePropagationSectors;
         private IRandomNumberGenerator randomNumberGenerator;
 
         public CoastlineGenerator()
         {
+            coastLineHeightMap = new List<BlockPosition>();
             coastLinePropagationSectors = new CoastlineGenerationListAltenator();
             randomNumberGenerator = CoreFactory.GetInstance().GetRandomNumberGeneratorInstance();
         }
 
-        public void GenerateCoastline(Island island)
+        public List<BlockPosition> GenerateCoastline(int islandEdgeLength)
         {
-            islandToGenerate = island;
+            edgeLengthOfIsland = islandEdgeLength;
             coastLineMinHeight = randomNumberGenerator.GenerateIntegerBetweenAnd(96, 128);
 
-            if (islandToGenerate.GetXzDimension() < 3)
+            if (edgeLengthOfIsland < 3)
             {
-                GenerateCoastlineInTrivialCase(new CoastLineCreationSectorBoundary(0, 0, islandToGenerate.GetXzDimension() - 1, 0, islandToGenerate.GetXzDimension() - 1), CoastLinePropagationEnterExitPoint.NONE, CoastLinePropagationEnterExitPoint.NONE);
+                GenerateCoastlineInTrivialCase(new CoastLineCreationSectorBoundary(0, 0, edgeLengthOfIsland - 1, 0, edgeLengthOfIsland - 1), CoastLinePropagationEnterExitPoint.NONE, CoastLinePropagationEnterExitPoint.NONE);
             }
             else
             {
-                CoastLineCreationSectorBoundary boundary = new CoastLineCreationSectorBoundary(0, 0, island.GetXzDimension() - 1, 0, island.GetXzDimension() - 1);
+                CoastLineCreationSectorBoundary boundary = new CoastLineCreationSectorBoundary(0, 0, edgeLengthOfIsland - 1, 0, edgeLengthOfIsland - 1);
                 coastLinePropagationSectors.PutSector(boundary);
 
                 SubdivideAllCurrentSectors();
             }
+
+            return coastLineHeightMap;
         }
 
         private void SubdivideAllCurrentSectors()
@@ -417,7 +421,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
                 if (1 == shouldSetBlock)
                 {
-                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromX));
+                    coastLineHeightMap.Add(new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromX));
                 }
             }
             else if (1 == coastLineGenerationChunkBoundary.ToX - coastLineGenerationChunkBoundary.FromX)
@@ -437,9 +441,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                             case TOP_LEFT_SECTOR_ID:
                                 placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY);
 
-                                if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
+                                if (!coastLineHeightMap.Contains(placementPosition))
                                 {
-                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), placementPosition);
+                                    coastLineHeightMap.Add(placementPosition);
                                     i++;
                                 }
 
@@ -447,9 +451,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                             case TOP_RIGHT_SECTOR_ID:
                                 placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY);
 
-                                if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
+                                if (!coastLineHeightMap.Contains(placementPosition))
                                 {
-                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), placementPosition);
+                                    coastLineHeightMap.Add(placementPosition);
                                     i++;
                                 }
 
@@ -457,9 +461,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                             case BOTTOM_LEFT_SECTOR_ID:
                                 placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1);
 
-                                if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
+                                if (!coastLineHeightMap.Contains(placementPosition))
                                 {
-                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), placementPosition);
+                                    coastLineHeightMap.Add(placementPosition);
                                     i++;
                                 }
 
@@ -467,9 +471,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                             case BOTTOM_RIGHT_SECTOR_ID:
                                 placementPosition = new BlockPosition(coastLineGenerationChunkBoundary.FromX + 1, coastLineMinHeight, coastLineGenerationChunkBoundary.FromY + 1);
 
-                                if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
+                                if (!coastLineHeightMap.Contains(placementPosition))
                                 {
-                                    islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), placementPosition);
+                                    coastLineHeightMap.Add(placementPosition);
                                     i++;
                                 }
 
@@ -551,9 +555,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
         private void PlaceRockBlockAtIfItIsNotAir(BlockPosition placementPosition)
         {
-            if (islandToGenerate.GetBlockAt(placementPosition).GetBlockType() == BlockTypes.AIR)
+            if (!coastLineHeightMap.Contains(placementPosition))
             {
-                islandToGenerate.PlaceBlockAt(RockBlock.GetInstance(), placementPosition);
+                coastLineHeightMap.Add(placementPosition);
             }
         }
 
