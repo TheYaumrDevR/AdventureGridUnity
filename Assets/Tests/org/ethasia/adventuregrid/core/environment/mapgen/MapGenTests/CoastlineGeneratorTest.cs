@@ -13,8 +13,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
         [Test]
         public void TestThatTwoEqualSectorBoundariesAreEqual()
         {
-            CoastlineGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(0, 4, 7, 9, 3);
-            CoastlineGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(1, 4, 7, 9, 3);
+            CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary(0, 4, 7, 9, 3);
+            CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary(1, 4, 7, 9, 3);
 
             Assert.That(firstBoundary, Is.EqualTo(secondBoundary));
         }
@@ -22,8 +22,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
         [Test]
         public void TestThatTwoDifferentSectorBoundariesAreNotEqual()
         {
-            CoastlineGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(0, 4, 7, 9, 3);
-            CoastlineGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(1, 5, 7, 9, 4);
+            CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary(0, 4, 7, 9, 3);
+            CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary(1, 5, 7, 9, 4);
 
             Assert.That(firstBoundary, Is.Not.EqualTo(secondBoundary));
         }        
@@ -34,7 +34,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
             int[] randomNumbersToGenerate = {100, 0};
             SetupRngMockWithNumbers(randomNumbersToGenerate);
 
-            CoastlineGenerator testCandidate = new CoastlineGenerator();
+            CoastlineHeightMapGenerator testCandidate = new CoastlineHeightMapGenerator();
 
             List<BlockPosition> result = testCandidate.GenerateCoastline(1);
             Assert.That(result.Contains(new BlockPosition(0, 100, 0)), Is.False);
@@ -46,7 +46,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
             int[] randomNumbersToGenerate = {100, 1};
             SetupRngMockWithNumbers(randomNumbersToGenerate);
 
-            CoastlineGenerator testCandidate = new CoastlineGenerator();
+            CoastlineHeightMapGenerator testCandidate = new CoastlineHeightMapGenerator();
 
             List<BlockPosition> result = testCandidate.GenerateCoastline(1);
             Assert.That(result.Contains(new BlockPosition(0, 100, 0)), Is.True);
@@ -58,7 +58,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
             int[] randomNumbersToGenerate = {100, 4, 0, 0, 3, 3, 1, 1, 3, 1, 0, 2};
             SetupRngMockWithNumbers(randomNumbersToGenerate);
 
-            CoastlineGenerator testCandidate = new CoastlineGenerator();
+            CoastlineHeightMapGenerator testCandidate = new CoastlineHeightMapGenerator();
 
             List<BlockPosition> result = testCandidate.GenerateCoastline(2);
 
@@ -74,7 +74,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
             int[] randomNumbersToGenerate = {110, 3, 3, 2, 3, 0};
             SetupRngMockWithNumbers(randomNumbersToGenerate);
 
-            CoastlineGenerator testCandidate = new CoastlineGenerator();
+            CoastlineHeightMapGenerator testCandidate = new CoastlineHeightMapGenerator();
 
             List<BlockPosition> result = testCandidate.GenerateCoastline(2);
 
@@ -87,8 +87,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
         [Test]
         public void TestThatSmallerCoastlineSectorBoundariesAreIdentified()
         {
-            CoastlineGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(0, 0, 7, 8, 16);
-            CoastlineGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(1, 8, 24, 17, 33);
+            CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary(0, 0, 7, 8, 16);
+            CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary(1, 8, 24, 17, 33);
 
             Assert.That(firstBoundary.IsSmallerThan(secondBoundary), Is.True);
         }
@@ -96,8 +96,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
         [Test]
         public void TestThatEqualSizeSectorBoundaryIsNotSmaller()
         {
-            CoastlineGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(0, 10, 18, 17, 34);
-            CoastlineGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(1, 21, 29, 30, 47);
+            CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary(0, 10, 18, 17, 34);
+            CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary(1, 21, 29, 30, 47);
 
             Assert.That(firstBoundary.IsSmallerThan(secondBoundary), Is.False);
         }   
@@ -105,8 +105,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
         [Test]
         public void TestThatLargerSizeSectorBoundaryIsNotSmaller()
         {
-            CoastlineGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(0, 56, 67, 16, 27);
-            CoastlineGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineGenerator.CoastLineCreationSectorBoundary(1, 5, 10, 11, 16);
+            CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary firstBoundary = new CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary(0, 56, 67, 16, 27);
+            CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary secondBoundary = new CoastlineHeightMapGenerator.CoastLineCreationSectorBoundary(1, 5, 10, 11, 16);
 
             Assert.That(firstBoundary.IsSmallerThan(secondBoundary), Is.False);
         }               
@@ -122,7 +122,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
                                             1, 0, 2, 0, 1, 2, 1, 3, 2, 0, 3};
             SetupRngMockWithNumbers(randomNumbersToGenerate);
 
-            CoastlineGenerator testCandidate = new CoastlineGenerator();
+            CoastlineHeightMapGenerator testCandidate = new CoastlineHeightMapGenerator();
 
             List<BlockPosition> result = testCandidate.GenerateCoastline(8);
 

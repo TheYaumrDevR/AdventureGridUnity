@@ -4,7 +4,7 @@ using Org.Ethasia.Adventuregrid.Core.Math;
 
 namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 {
-    public class CoastlineGenerator
+    public class CoastlineHeightMapGenerator
     {
 
         private const int TOP_LEFT_SECTOR_ID = 0;
@@ -18,7 +18,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         private CoastlineGenerationListAltenator coastLinePropagationSectors;
         private IRandomNumberGenerator randomNumberGenerator;
 
-        public CoastlineGenerator()
+        public CoastlineHeightMapGenerator()
         {
             coastLineHeightMap = new List<BlockPosition>();
             coastLinePropagationSectors = new CoastlineGenerationListAltenator();
