@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using UnityEngine;
 
 using Org.Ethasia.Adventuregrid.Core.InputInterfaces;
@@ -10,12 +12,15 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
         private Island result;
         private int[,] heightMap;
+        private List<BlockPosition> coastlineHeightMap;
 
-        public Island GenerateIsland(int edgeLength) 
+        public Island GenerateIsland(int edgeLength, List<BlockPosition> coastlineHeightMap) 
         {
             result =  new Island(edgeLength);
+            this.coastlineHeightMap = coastlineHeightMap;
         
             CreateHeightMap();
+            DisplaceHeightMapByLowestPointOfCoastline();
             CreateBlocksBasedOnHeightMap();
         
             return result;
@@ -60,6 +65,39 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                     heightMap[i, j] = Mathf.CeilToInt(redistirbutedNoise * Island.HEIGHT_IN_BLOCKS);
                 }            
             }
+        }
+
+        private void DisplaceHeightMapByLowestPointOfCoastline()
+        {
+            int maximumHeightDifference = -255;
+            foreach (BlockPosition coastLinePoint in coastlineHeightMap)
+            {
+                int correspondingTerrainPointHeight = heightMap[coastLinePoint.X, coastLinePoint.Z];
+                int heightDifference = coastLinePoint.Y - correspondingTerrainPointHeight;
+
+                if (heightDifference > maximumHeightDifference)
+                {
+                    maximumHeightDifference = heightDifference;
+                }
+            }
+
+            for (int i = 0; i < result.GetXzDimension(); i++) 
+            {
+                for (int j = 0; j < result.GetXzDimension(); j++) 
+                {
+                    int newHeight = heightMap[i, j] + maximumHeightDifference;
+                    if (newHeight > 255)
+                    {
+                        newHeight = 255;
+                    } 
+                    else if (newHeight < 0)
+                    {
+                        newHeight = 0;
+                    }
+
+                    heightMap[i, j] = newHeight;
+                }
+            }            
         }
 
         private void CreateBlocksBasedOnHeightMap() 
