@@ -43,7 +43,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Math
 
         public override int GetHashCode()
         {
-            return X + Y + Z;
+            return X + 1024 * Y + 1000000 * Z;
         }        
     }
 }

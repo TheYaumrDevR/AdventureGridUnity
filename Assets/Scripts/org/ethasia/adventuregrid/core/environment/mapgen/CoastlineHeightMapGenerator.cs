@@ -18,11 +18,14 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         private CoastlineGenerationListAltenator coastLinePropagationSectors;
         private IRandomNumberGenerator randomNumberGenerator;
 
+        private Queue<BlockPosition> outsideIslandFloodFillNodes;
+
         public CoastlineHeightMapGenerator()
         {
             coastLineHeightMap = new List<BlockPosition>();
             coastLinePropagationSectors = new CoastlineGenerationListAltenator();
             randomNumberGenerator = CoreFactory.GetInstance().GetRandomNumberGeneratorInstance();
+            outsideIslandFloodFillNodes = new Queue<BlockPosition>();
         }
 
         public List<BlockPosition> GenerateCoastline(int islandEdgeLength)
@@ -41,6 +44,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
                 SubdivideAllCurrentSectors();
             }
+
+            FloodFillOutsideIslandPositions();
 
             return coastLineHeightMap;
         }
@@ -100,7 +105,82 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             {
                 SubdivideAllCurrentSectors();
             }
-        }        
+        } 
+
+        private void FloodFillOutsideIslandPositions()
+        {
+            HashSet<BlockPosition> checkedNodes = new HashSet<BlockPosition>();
+
+            BlockPosition beginFloodFillNodeTopLeft = new BlockPosition(0, -1, 0);
+            BlockPosition beginFloodFillNodeTopRight = new BlockPosition(edgeLengthOfIsland - 1, -1, 0);
+            BlockPosition beginFloodFillNodeBottomLeft = new BlockPosition(0, -1, edgeLengthOfIsland - 1);
+            BlockPosition beginFloodFillNodeBottomRight = new BlockPosition(edgeLengthOfIsland - 1, -1, edgeLengthOfIsland - 1);
+
+            outsideIslandFloodFillNodes.Enqueue(beginFloodFillNodeTopLeft);
+            outsideIslandFloodFillNodes.Enqueue(beginFloodFillNodeTopRight);
+            outsideIslandFloodFillNodes.Enqueue(beginFloodFillNodeBottomLeft);
+            outsideIslandFloodFillNodes.Enqueue(beginFloodFillNodeBottomRight);
+
+            checkedNodes.Add(beginFloodFillNodeTopLeft);
+            checkedNodes.Add(beginFloodFillNodeTopRight);
+            checkedNodes.Add(beginFloodFillNodeBottomLeft);
+            checkedNodes.Add(beginFloodFillNodeBottomRight);
+
+            while (outsideIslandFloodFillNodes.Count > 0)
+            {
+                BlockPosition firstQueueElement = outsideIslandFloodFillNodes.Dequeue();
+                BlockPosition correspondingCoastLineElement = new BlockPosition(firstQueueElement.X, coastLineMinHeight, firstQueueElement.Z);
+
+                if (!coastLineHeightMap.Contains(firstQueueElement) && !coastLineHeightMap.Contains(correspondingCoastLineElement))
+                {
+                    coastLineHeightMap.Add(firstQueueElement);
+
+                    if (firstQueueElement.X > 0)
+                    {
+                        BlockPosition westernNode = new BlockPosition(firstQueueElement.X - 1, -1, firstQueueElement.Z);
+
+                        if (!checkedNodes.Contains(westernNode))
+                        {
+                            outsideIslandFloodFillNodes.Enqueue(westernNode);
+                            checkedNodes.Add(westernNode);
+                        }
+                    }
+
+                    if (firstQueueElement.X < edgeLengthOfIsland - 1)
+                    {
+                        BlockPosition easternNode = new BlockPosition(firstQueueElement.X + 1, -1, firstQueueElement.Z);
+
+                        if (!checkedNodes.Contains(easternNode))
+                        {
+                            outsideIslandFloodFillNodes.Enqueue(easternNode);
+                            checkedNodes.Add(easternNode);
+                        }
+                    }  
+
+                    if (firstQueueElement.Z > 0)
+                    {
+                        BlockPosition northernNode = new BlockPosition(firstQueueElement.X, -1, firstQueueElement.Z - 1);
+
+                        if (!checkedNodes.Contains(northernNode))
+                        {
+                            outsideIslandFloodFillNodes.Enqueue(northernNode);
+                            checkedNodes.Add(northernNode);
+                        }
+                    }      
+
+                    if (firstQueueElement.Z < edgeLengthOfIsland - 1)
+                    {
+                        BlockPosition southernNode = new BlockPosition(firstQueueElement.X, -1, firstQueueElement.Z + 1);
+
+                        if (!checkedNodes.Contains(southernNode))
+                        {
+                            outsideIslandFloodFillNodes.Enqueue(southernNode);
+                            checkedNodes.Add(southernNode);
+                        }
+                    }                                                        
+                }
+            }
+        }       
 
         private void GenerateCoastLineForFourSectors(CoastLineCreationSectorBoundary parentSector, CoastLinePropagationEnterExitPoint entryPoint, CoastLinePropagationEnterExitPoint exitPoint)
         {
