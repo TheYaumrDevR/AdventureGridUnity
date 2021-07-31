@@ -12,9 +12,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
         private Island result;
         private int[,] heightMap;
-        private List<BlockPosition> coastlineHeightMap;
+        private HashSet<BlockPosition> coastlineHeightMap;
 
-        public Island GenerateIsland(int edgeLength, List<BlockPosition> coastlineHeightMap) 
+        public Island GenerateIsland(int edgeLength, HashSet<BlockPosition> coastlineHeightMap) 
         {
             result =  new Island(edgeLength);
             this.coastlineHeightMap = coastlineHeightMap;

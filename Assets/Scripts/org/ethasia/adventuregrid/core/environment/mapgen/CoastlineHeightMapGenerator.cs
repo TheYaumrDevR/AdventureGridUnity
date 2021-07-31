@@ -13,7 +13,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         private const int BOTTOM_RIGHT_SECTOR_ID = 3;
 
         private int edgeLengthOfIsland;
-        private List<BlockPosition> coastLineHeightMap;
+        private HashSet<BlockPosition> coastLineHeightMap;
         private int coastLineMinHeight;
         private CoastlineGenerationListAltenator coastLinePropagationSectors;
         private IRandomNumberGenerator randomNumberGenerator;
@@ -22,13 +22,13 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
         public CoastlineHeightMapGenerator()
         {
-            coastLineHeightMap = new List<BlockPosition>();
+            coastLineHeightMap = new HashSet<BlockPosition>();
             coastLinePropagationSectors = new CoastlineGenerationListAltenator();
             randomNumberGenerator = CoreFactory.GetInstance().GetRandomNumberGeneratorInstance();
             outsideIslandFloodFillNodes = new Queue<BlockPosition>();
         }
 
-        public List<BlockPosition> GenerateCoastline(int islandEdgeLength)
+        public HashSet<BlockPosition> GenerateCoastline(int islandEdgeLength)
         {
             edgeLengthOfIsland = islandEdgeLength;
             coastLineMinHeight = randomNumberGenerator.GenerateIntegerBetweenAnd(96, 128);

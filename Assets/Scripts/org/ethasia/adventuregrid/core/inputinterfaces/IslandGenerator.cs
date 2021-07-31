@@ -7,6 +7,6 @@ namespace Org.Ethasia.Adventuregrid.Core.InputInterfaces
 {
     public interface IslandGenerator
     {
-        Island GenerateIsland(int edgeLength, List<BlockPosition> coastlineHeightMap);
+        Island GenerateIsland(int edgeLength, HashSet<BlockPosition> coastlineHeightMap);
     }
 }

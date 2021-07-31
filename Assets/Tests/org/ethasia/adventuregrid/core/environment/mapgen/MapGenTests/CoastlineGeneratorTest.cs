@@ -36,7 +36,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
 
             CoastlineHeightMapGenerator testCandidate = new CoastlineHeightMapGenerator();
 
-            List<BlockPosition> result = testCandidate.GenerateCoastline(1);
+            HashSet<BlockPosition> result = testCandidate.GenerateCoastline(1);
             Assert.That(result.Contains(new BlockPosition(0, 100, 0)), Is.False);
         }
 
@@ -48,7 +48,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
 
             CoastlineHeightMapGenerator testCandidate = new CoastlineHeightMapGenerator();
 
-            List<BlockPosition> result = testCandidate.GenerateCoastline(1);
+            HashSet<BlockPosition> result = testCandidate.GenerateCoastline(1);
             Assert.That(result.Contains(new BlockPosition(0, 100, 0)), Is.True);
         }        
 
@@ -60,7 +60,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
 
             CoastlineHeightMapGenerator testCandidate = new CoastlineHeightMapGenerator();
 
-            List<BlockPosition> result = testCandidate.GenerateCoastline(2);
+            HashSet<BlockPosition> result = testCandidate.GenerateCoastline(2);
 
             Assert.That(result.Contains(new BlockPosition(0, 100, 0)), Is.True);
             Assert.That(result.Contains(new BlockPosition(1, 100, 0)), Is.True);
@@ -76,7 +76,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
 
             CoastlineHeightMapGenerator testCandidate = new CoastlineHeightMapGenerator();
 
-            List<BlockPosition> result = testCandidate.GenerateCoastline(2);
+            HashSet<BlockPosition> result = testCandidate.GenerateCoastline(2);
 
             Assert.That(result.Contains(new BlockPosition(0, 110, 0)), Is.True);
             Assert.That(result.Contains(new BlockPosition(1, 110, 0)), Is.False);
@@ -124,7 +124,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen.Tests
 
             CoastlineHeightMapGenerator testCandidate = new CoastlineHeightMapGenerator();
 
-            List<BlockPosition> result = testCandidate.GenerateCoastline(8);
+            HashSet<BlockPosition> result = testCandidate.GenerateCoastline(8);
 
             Assert.That(result.Contains(new BlockPosition(2, 112, 3)), Is.True);
             Assert.That(result.Contains(new BlockPosition(1, 112, 3)), Is.False);
