@@ -111,20 +111,10 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         {
             HashSet<BlockPosition> checkedNodes = new HashSet<BlockPosition>();
 
-            BlockPosition beginFloodFillNodeTopLeft = new BlockPosition(0, -1, 0);
-            BlockPosition beginFloodFillNodeTopRight = new BlockPosition(edgeLengthOfIsland - 1, -1, 0);
-            BlockPosition beginFloodFillNodeBottomLeft = new BlockPosition(0, -1, edgeLengthOfIsland - 1);
-            BlockPosition beginFloodFillNodeBottomRight = new BlockPosition(edgeLengthOfIsland - 1, -1, edgeLengthOfIsland - 1);
+            BlockPosition beginFloodFillNodeTopLeft = new BlockPosition(-1, -1, -1);
 
             outsideIslandFloodFillNodes.Enqueue(beginFloodFillNodeTopLeft);
-            outsideIslandFloodFillNodes.Enqueue(beginFloodFillNodeTopRight);
-            outsideIslandFloodFillNodes.Enqueue(beginFloodFillNodeBottomLeft);
-            outsideIslandFloodFillNodes.Enqueue(beginFloodFillNodeBottomRight);
-
             checkedNodes.Add(beginFloodFillNodeTopLeft);
-            checkedNodes.Add(beginFloodFillNodeTopRight);
-            checkedNodes.Add(beginFloodFillNodeBottomLeft);
-            checkedNodes.Add(beginFloodFillNodeBottomRight);
 
             while (outsideIslandFloodFillNodes.Count > 0)
             {
@@ -133,9 +123,12 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
                 if (!coastLineHeightMap.Contains(firstQueueElement) && !coastLineHeightMap.Contains(correspondingCoastLineElement))
                 {
-                    coastLineHeightMap.Add(firstQueueElement);
+                    if (firstQueueElement.X > -1 && firstQueueElement.X < edgeLengthOfIsland && firstQueueElement.Z > -1 && firstQueueElement.Z < edgeLengthOfIsland)
+                    {
+                        coastLineHeightMap.Add(firstQueueElement);
+                    }                    
 
-                    if (firstQueueElement.X > 0)
+                    if (firstQueueElement.X > -1)
                     {
                         BlockPosition westernNode = new BlockPosition(firstQueueElement.X - 1, -1, firstQueueElement.Z);
 
@@ -146,7 +139,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                         }
                     }
 
-                    if (firstQueueElement.X < edgeLengthOfIsland - 1)
+                    if (firstQueueElement.X < edgeLengthOfIsland)
                     {
                         BlockPosition easternNode = new BlockPosition(firstQueueElement.X + 1, -1, firstQueueElement.Z);
 
@@ -157,7 +150,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                         }
                     }  
 
-                    if (firstQueueElement.Z > 0)
+                    if (firstQueueElement.Z > -1)
                     {
                         BlockPosition northernNode = new BlockPosition(firstQueueElement.X, -1, firstQueueElement.Z - 1);
 
@@ -168,7 +161,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                         }
                     }      
 
-                    if (firstQueueElement.Z < edgeLengthOfIsland - 1)
+                    if (firstQueueElement.Z < edgeLengthOfIsland)
                     {
                         BlockPosition southernNode = new BlockPosition(firstQueueElement.X, -1, firstQueueElement.Z + 1);
 
