@@ -17,15 +17,14 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         private int coastLineMinHeight;
         private CoastlineGenerationListAltenator coastLinePropagationSectors;
         private IRandomNumberGenerator randomNumberGenerator;
-
-        private Queue<BlockPosition> outsideIslandFloodFillNodes;
+        private FloodFill floodFill;
 
         public CoastlineHeightMapGenerator()
         {
             coastLineHeightMap = new HashSet<BlockPosition>();
             coastLinePropagationSectors = new CoastlineGenerationListAltenator();
             randomNumberGenerator = CoreFactory.GetInstance().GetRandomNumberGeneratorInstance();
-            outsideIslandFloodFillNodes = new Queue<BlockPosition>();
+            floodFill = new FloodFill(coastLineHeightMap);
         }
 
         public HashSet<BlockPosition> GenerateCoastline(int islandEdgeLength)
@@ -45,7 +44,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                 SubdivideAllCurrentSectors();
             }
 
-            FloodFillOutsideIslandPositions();
+            floodFill.MarkBlocksOutsideCoastlineAsEmpty(coastLineMinHeight, edgeLengthOfIsland);
 
             return coastLineHeightMap;
         }
@@ -105,75 +104,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             {
                 SubdivideAllCurrentSectors();
             }
-        } 
-
-        private void FloodFillOutsideIslandPositions()
-        {
-            HashSet<BlockPosition> checkedNodes = new HashSet<BlockPosition>();
-
-            BlockPosition beginFloodFillNodeTopLeft = new BlockPosition(-1, -1, -1);
-
-            outsideIslandFloodFillNodes.Enqueue(beginFloodFillNodeTopLeft);
-            checkedNodes.Add(beginFloodFillNodeTopLeft);
-
-            while (outsideIslandFloodFillNodes.Count > 0)
-            {
-                BlockPosition firstQueueElement = outsideIslandFloodFillNodes.Dequeue();
-                BlockPosition correspondingCoastLineElement = new BlockPosition(firstQueueElement.X, coastLineMinHeight, firstQueueElement.Z);
-
-                if (!coastLineHeightMap.Contains(firstQueueElement) && !coastLineHeightMap.Contains(correspondingCoastLineElement))
-                {
-                    if (firstQueueElement.X > -1 && firstQueueElement.X < edgeLengthOfIsland && firstQueueElement.Z > -1 && firstQueueElement.Z < edgeLengthOfIsland)
-                    {
-                        coastLineHeightMap.Add(firstQueueElement);
-                    }                    
-
-                    if (firstQueueElement.X > -1)
-                    {
-                        BlockPosition westernNode = new BlockPosition(firstQueueElement.X - 1, -1, firstQueueElement.Z);
-
-                        if (!checkedNodes.Contains(westernNode))
-                        {
-                            outsideIslandFloodFillNodes.Enqueue(westernNode);
-                            checkedNodes.Add(westernNode);
-                        }
-                    }
-
-                    if (firstQueueElement.X < edgeLengthOfIsland)
-                    {
-                        BlockPosition easternNode = new BlockPosition(firstQueueElement.X + 1, -1, firstQueueElement.Z);
-
-                        if (!checkedNodes.Contains(easternNode))
-                        {
-                            outsideIslandFloodFillNodes.Enqueue(easternNode);
-                            checkedNodes.Add(easternNode);
-                        }
-                    }  
-
-                    if (firstQueueElement.Z > -1)
-                    {
-                        BlockPosition northernNode = new BlockPosition(firstQueueElement.X, -1, firstQueueElement.Z - 1);
-
-                        if (!checkedNodes.Contains(northernNode))
-                        {
-                            outsideIslandFloodFillNodes.Enqueue(northernNode);
-                            checkedNodes.Add(northernNode);
-                        }
-                    }      
-
-                    if (firstQueueElement.Z < edgeLengthOfIsland)
-                    {
-                        BlockPosition southernNode = new BlockPosition(firstQueueElement.X, -1, firstQueueElement.Z + 1);
-
-                        if (!checkedNodes.Contains(southernNode))
-                        {
-                            outsideIslandFloodFillNodes.Enqueue(southernNode);
-                            checkedNodes.Add(southernNode);
-                        }
-                    }                                                        
-                }
-            }
-        }       
+        }  
 
         private void GenerateCoastLineForFourSectors(CoastLineCreationSectorBoundary parentSector, CoastLinePropagationEnterExitPoint entryPoint, CoastLinePropagationEnterExitPoint exitPoint)
         {
