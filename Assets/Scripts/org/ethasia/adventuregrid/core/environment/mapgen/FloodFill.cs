@@ -10,16 +10,18 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
         private Queue<BlockPosition> outsideIslandFloodFillNodes;
         private HashSet<BlockPosition> coastLineHeightMap;
+        private HashSet<BlockPosition> checkedNodes;
 
         public FloodFill(HashSet<BlockPosition> coastLineHeightMap)
         {
             outsideIslandFloodFillNodes = new Queue<BlockPosition>();
             this.coastLineHeightMap = coastLineHeightMap;
+            checkedNodes = new HashSet<BlockPosition>();
         }
 
         public void MarkBlocksOutsideCoastlineAsEmpty(int coastLineMinHeight, int edgeLengthOfIsland)
         {
-            HashSet<BlockPosition> checkedNodes = new HashSet<BlockPosition>();
+            checkedNodes.Clear();
 
             BlockPosition beginFloodFillNodeTopLeft = new BlockPosition(-1, -1, -1);
 
@@ -41,48 +43,37 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                     if (firstQueueElement.X > -1)
                     {
                         BlockPosition westernNode = new BlockPosition(firstQueueElement.X - 1, -1, firstQueueElement.Z);
-
-                        if (!checkedNodes.Contains(westernNode))
-                        {
-                            outsideIslandFloodFillNodes.Enqueue(westernNode);
-                            checkedNodes.Add(westernNode);
-                        }
+                        EnqueueAndAddNodeIfItDoesNotExist(westernNode);
                     }
 
                     if (firstQueueElement.X < edgeLengthOfIsland)
                     {
                         BlockPosition easternNode = new BlockPosition(firstQueueElement.X + 1, -1, firstQueueElement.Z);
-
-                        if (!checkedNodes.Contains(easternNode))
-                        {
-                            outsideIslandFloodFillNodes.Enqueue(easternNode);
-                            checkedNodes.Add(easternNode);
-                        }
+                        EnqueueAndAddNodeIfItDoesNotExist(easternNode);
                     }  
 
                     if (firstQueueElement.Z > -1)
                     {
                         BlockPosition northernNode = new BlockPosition(firstQueueElement.X, -1, firstQueueElement.Z - 1);
-
-                        if (!checkedNodes.Contains(northernNode))
-                        {
-                            outsideIslandFloodFillNodes.Enqueue(northernNode);
-                            checkedNodes.Add(northernNode);
-                        }
+                        EnqueueAndAddNodeIfItDoesNotExist(northernNode);
                     }      
 
                     if (firstQueueElement.Z < edgeLengthOfIsland)
                     {
                         BlockPosition southernNode = new BlockPosition(firstQueueElement.X, -1, firstQueueElement.Z + 1);
-
-                        if (!checkedNodes.Contains(southernNode))
-                        {
-                            outsideIslandFloodFillNodes.Enqueue(southernNode);
-                            checkedNodes.Add(southernNode);
-                        }
+                        EnqueueAndAddNodeIfItDoesNotExist(southernNode);
                     }                                                        
                 }
             }            
+        }
+
+        private void EnqueueAndAddNodeIfItDoesNotExist(BlockPosition node)
+        {
+            if (!checkedNodes.Contains(node))
+            {
+                outsideIslandFloodFillNodes.Enqueue(node);
+                checkedNodes.Add(node);
+            }
         }
     }
 }
