@@ -9,21 +9,20 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
 {
     public class IslandTest
     {
-        [UnityTest]
-        public IEnumerator BlockAtUninitializedPositionIsAir() 
+
+        [Test]
+        public void BlockAtUninitializedPositionIsAir() 
         {
             Island testCandidate = new Island(64);
             BlockPosition blockPosition = new BlockPosition(63, 0, 63);
         
             Block blockAt = testCandidate.GetBlockAt(blockPosition);
         
-            yield return null;
-
             Assert.That(blockAt.GetBlockType(), Is.EqualTo(BlockTypes.AIR));      
         }
 
-        [UnityTest]
-        public IEnumerator RetrievesPreviouslyPlacedBlock() 
+        [Test]
+        public void RetrievesPreviouslyPlacedBlock() 
         {
             Island testCandidate = new Island(64);
             Block testBlock = GrassyEarthBlock.GetInstance();
@@ -33,13 +32,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             Block blockAt = testCandidate.GetBlockAt(blockPosition);         
 
-            yield return null;     
-
             Assert.That(blockAt, Is.SameAs(testBlock));
         }  
 
-        [UnityTest]
-        public IEnumerator CanPlaceBlockAtMaximumHeight() 
+        [Test]
+        public void CanPlaceBlockAtMaximumHeight() 
         {
             Island testCandidate = new Island(64);
             Block testBlock = EarthBlock.GetInstance(); 
@@ -49,94 +46,78 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             Block blockAt = testCandidate.GetBlockAt(blockPosition);      
 
-            yield return null; 
-
             Assert.That(blockAt, Is.SameAs(testBlock));
         }   
 
-        [UnityTest]
-        public IEnumerator CannotPlaceBlockAboveMaximumHeight() 
+        [Test]
+        public void CannotPlaceBlockAboveMaximumHeight() 
         {
             Island testCandidate = new Island(64);
             Block testBlock = RockBlock.GetInstance();
             BlockPosition blockPosition = new BlockPosition(63, 256, 63);
 
-            yield return null; 
-
             Assert.Throws<BlockPositionOutOfBoundsException>(() => testCandidate.PlaceBlockAt(testBlock, blockPosition));            
         } 
 
-        [UnityTest]
-        public IEnumerator CannotPlaceBlockOutsideXDimension() 
+        [Test]
+        public void CannotPlaceBlockOutsideXDimension() 
         {
             Island testCandidate = new Island(64);
             Block testBlock = GrassyEarthBlock.GetInstance();  
             BlockPosition blockPosition = new BlockPosition(64, 200, 24);
 
-            yield return null; 
-
             Assert.Throws<BlockPositionOutOfBoundsException>(() => testCandidate.PlaceBlockAt(testBlock, blockPosition));                
         } 
 
-        [UnityTest]
-        public IEnumerator CannotPlaceBlockOutsideZDimension() 
+        [Test]
+        public void CannotPlaceBlockOutsideZDimension() 
         {
             Island testCandidate = new Island(64);
             Block testBlock = EarthBlock.GetInstance();
             BlockPosition blockPosition = new BlockPosition(54, 13, 64);
 
-            yield return null; 
-
             Assert.Throws<BlockPositionOutOfBoundsException>(() => testCandidate.PlaceBlockAt(testBlock, blockPosition));                
         }  
 
-        [UnityTest]
-        public IEnumerator CannotGetBlockAboveMaxHeight() 
+        [Test]
+        public void CannotGetBlockAboveMaxHeight() 
         {
             Island testCandidate = new Island(64);
             BlockPosition blockPosition = new BlockPosition(63, 256, 63);
 
-            yield return null; 
-
             Assert.Throws<BlockPositionOutOfBoundsException>(() => testCandidate.GetBlockAt(blockPosition)); 
         }      
 
-        [UnityTest]
-        public IEnumerator CannotGetBlockOutsideXDimension() 
+        [Test]
+        public void CannotGetBlockOutsideXDimension() 
         {
             Island testCandidate = new Island(64);
             BlockPosition blockPosition = new BlockPosition(64, 123, 52);
 
-            yield return null; 
-
             Assert.Throws<BlockPositionOutOfBoundsException>(() => testCandidate.GetBlockAt(blockPosition)); 
         }  
 
-        [UnityTest]
-        public IEnumerator CannotGetBlockOutsideZDimension() 
+        [Test]
+        public void CannotGetBlockOutsideZDimension() 
         {
             Island testCandidate = new Island(64);
             BlockPosition blockPosition = new BlockPosition(32, 222, 64);
 
-            yield return null; 
-
             Assert.Throws<BlockPositionOutOfBoundsException>(() => testCandidate.GetBlockAt(blockPosition)); 
         }  
 
-        [UnityTest]
-        public IEnumerator IslandHasCorrectXzDimension() 
+        [Test]
+        public void IslandHasCorrectXzDimension() 
         {
             Island testCandidate = new Island(48);
         
             int result = testCandidate.GetXzDimension();
         
-            yield return null; 
-
             Assert.That(result, Is.EqualTo(48));
         } 
 
-        [UnityTest]
-        public IEnumerator LeftFaceOfRockBlockIsHiddenWhenCovered() 
+        [Test]
+        public void LeftFaceOfRockBlockIsHiddenWhenCovered() 
         {
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(4, 0, 0);
@@ -150,13 +131,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.LEFT, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(true));
         } 
 
-        [UnityTest]
-        public IEnumerator LeftFaceOfRockBlockIsVisibleWhenNotCovered() 
+        [Test]
+        public void LeftFaceOfRockBlockIsVisibleWhenNotCovered() 
         {
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(4, 0, 0);
@@ -170,13 +149,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.LEFT, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false)); 
         } 
 
-        [UnityTest]
-        public IEnumerator BlockFaceIsVisibleWhenItsNotCovering() 
+        [Test]
+        public void BlockFaceIsVisibleWhenItsNotCovering() 
         {
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(4, 0, 0);
@@ -190,13 +167,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.LEFT, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false)); 
         }    
 
-        [UnityTest]
-        public IEnumerator LeftBlockFaceIsVisibleWhenOnLeftIslandEdge() 
+        [Test]
+        public void LeftBlockFaceIsVisibleWhenOnLeftIslandEdge() 
         {
             Island testCandidate = new Island(64);
             BlockPosition blockPosition = new BlockPosition(63, 0, 0);
@@ -206,13 +181,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.LEFT, blockPosition);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));             
         }
 
-        [UnityTest]
-        public IEnumerator FrontFaceOfEarthBlockIsHiddenWhenCovered() 
+        [Test]
+        public void FrontFaceOfEarthBlockIsHiddenWhenCovered() 
         {
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 0, 7);
@@ -226,13 +199,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.FRONT, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(true));
         } 
 
-        [UnityTest]
-        public IEnumerator FrontFaceOfEarthBlockIsVisibleWhenNotCovered() 
+        [Test]
+        public void FrontFaceOfEarthBlockIsVisibleWhenNotCovered() 
         {
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 0, 7);
@@ -246,13 +217,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.FRONT, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));            
         } 
 
-        [UnityTest]
-        public IEnumerator FrontFaceOfBlockIsVisibleWhenNotCovering() 
+        [Test]
+        public void FrontFaceOfBlockIsVisibleWhenNotCovering() 
         {
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 0, 7);
@@ -266,13 +235,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.FRONT,blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false)); 
         }  
 
-        [UnityTest]
-        public IEnumerator FrontFaceOfBlockIsVisibleWhenAtFrontEdgeOfIsland() 
+        [Test]
+        public void FrontFaceOfBlockIsVisibleWhenAtFrontEdgeOfIsland() 
         {              
             Island testCandidate = new Island(64);
             BlockPosition blockPosition = new BlockPosition(0, 0, 63);
@@ -282,13 +249,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.FRONT, blockPosition);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false)); 
         }
 
-        [UnityTest]
-        public IEnumerator RightFaceOfBlockIsHiddenWhenCovered() 
+        [Test]
+        public void RightFaceOfBlockIsHiddenWhenCovered() 
         {  
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(46, 0, 0);
@@ -302,13 +267,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.RIGHT, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(true)); 
         }  
 
-        [UnityTest]
-        public IEnumerator RightFaceOfBlockIsVisibleWhenNotCovered() 
+        [Test]
+        public void RightFaceOfBlockIsVisibleWhenNotCovered() 
         {  
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(46, 0, 0);
@@ -322,13 +285,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.RIGHT, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));             
         } 
 
-        [UnityTest]
-        public IEnumerator RightFaceOfBlockIsVisibleWhenNotFullyCovering() 
+        [Test]
+        public void RightFaceOfBlockIsVisibleWhenNotFullyCovering() 
         {  
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(46, 0, 0);
@@ -342,13 +303,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.RIGHT, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));               
         } 
 
-        [UnityTest]
-        public IEnumerator RightFaceOfBlockIsVisibleWhenAtRightEdgeOfIsland() 
+        [Test]
+        public void RightFaceOfBlockIsVisibleWhenAtRightEdgeOfIsland() 
         { 
             Island testCandidate = new Island(64);
             BlockPosition blockPosition = new BlockPosition(0, 0, 0);
@@ -358,13 +317,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.RIGHT, blockPosition);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));              
         }    
 
-        [UnityTest]
-        public IEnumerator BackFaceOfBlockIsHiddenWhenCovered() 
+        [Test]
+        public void BackFaceOfBlockIsHiddenWhenCovered() 
         {  
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 0, 24);
@@ -378,13 +335,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.BACK, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(true));               
         }   
 
-        [UnityTest]
-        public IEnumerator BackFaceOfBlockIsVisibleWhenNotCovered() 
+        [Test]
+        public void BackFaceOfBlockIsVisibleWhenNotCovered() 
         {  
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 0, 24);
@@ -398,13 +353,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.BACK, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));              
         }
 
-        [UnityTest]
-        public IEnumerator BackFaceOfBlockIsVisibleWhenNotFullyCovering() 
+        [Test]
+        public void BackFaceOfBlockIsVisibleWhenNotFullyCovering() 
         { 
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 0, 24);
@@ -418,13 +371,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.BACK, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));            
         }  
 
-        [UnityTest]
-        public IEnumerator BackFaceOfBlockIsVisibleWhenAtBackEdgeOfIsland() 
+        [Test]
+        public void BackFaceOfBlockIsVisibleWhenAtBackEdgeOfIsland() 
         { 
             Island testCandidate = new Island(64);
             BlockPosition blockPosition = new BlockPosition(0, 0, 0);
@@ -434,13 +385,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.BACK, blockPosition);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));             
         } 
 
-        [UnityTest]
-        public IEnumerator BottomFaceOfBlockIsHiddenWhenCovered() 
+        [Test]
+        public void BottomFaceOfBlockIsHiddenWhenCovered() 
         { 
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 5, 0);
@@ -454,13 +403,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.BOTTOM, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(true));             
         }  
 
-        [UnityTest]
-        public IEnumerator BottomFaceOfBlockIsVisibleWhenNotCovered() 
+        [Test]
+        public void BottomFaceOfBlockIsVisibleWhenNotCovered() 
         { 
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 5, 0);
@@ -474,13 +421,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.BOTTOM, blockPositionOne);   
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));                     
         }    
 
-        [UnityTest]
-        public IEnumerator BottomFaceOfBlockIsVisibleWhenNotFullyCovering() 
+        [Test]
+        public void BottomFaceOfBlockIsVisibleWhenNotFullyCovering() 
         { 
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 5, 0);
@@ -494,13 +439,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.BOTTOM, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));             
         }          
 
-        [UnityTest]
-        public IEnumerator BottomFaceOfBlockIsVisibleWhenAtBottomEdgeOfIsland() 
+        [Test]
+        public void BottomFaceOfBlockIsVisibleWhenAtBottomEdgeOfIsland() 
         { 
             Island testCandidate = new Island(64);
             BlockPosition blockPosition = new BlockPosition(0, 0, 0);            
@@ -510,13 +453,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.BOTTOM,blockPosition);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));             
         } 
 
-        [UnityTest]
-        public IEnumerator TopFaceOfBlockIsHiddenWhenCovered() 
+        [Test]
+        public void TopFaceOfBlockIsHiddenWhenCovered() 
         { 
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 5, 0);
@@ -530,13 +471,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.TOP, blockPositionTwo);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(true));            
         }  
 
-        [UnityTest]
-        public IEnumerator TopFaceOfBlockIsVisibleWhenNotCovered() 
+        [Test]
+        public void TopFaceOfBlockIsVisibleWhenNotCovered() 
         { 
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 4, 0);
@@ -550,13 +489,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.TOP, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));            
         } 
 
-        [UnityTest]
-        public IEnumerator TopFaceOfBlockIsVisibleWhenNotFullyCovering() 
+        [Test]
+        public void TopFaceOfBlockIsVisibleWhenNotFullyCovering() 
         { 
             Island testCandidate = new Island(64);
             BlockPosition blockPositionOne = new BlockPosition(0, 4, 0);
@@ -570,13 +507,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.TOP, blockPositionOne);
 
-            yield return null;
-
             Assert.That(result, Is.EqualTo(false));             
         }  
 
-        [UnityTest]
-        public IEnumerator TopFaceOfBlockIsVisibleWhenAtTopEdgeOfIsland() 
+        [Test]
+        public void TopFaceOfBlockIsVisibleWhenAtTopEdgeOfIsland() 
         { 
             Island testCandidate = new Island(64);
             BlockPosition blockPosition = new BlockPosition(0, 255, 0);
@@ -585,8 +520,6 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
             testCandidate.PlaceBlockAt(testBlock, blockPosition);
         
             bool result = testCandidate.BlockFaceAtPositionIsHidden(BlockFaceDirections.TOP, blockPosition);
-
-            yield return null;
 
             Assert.That(result, Is.EqualTo(false));              
         }    
