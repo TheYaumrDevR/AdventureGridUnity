@@ -9,6 +9,12 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
         private readonly int xzDimension;
         private readonly Block[,,] blocks;
 
+        public bool IsEditable
+        {
+            get;
+            private set;
+        }
+
         public int GetXzDimension()
         {
             return xzDimension;
@@ -16,6 +22,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
 
         public Island(int xzDimension) 
         {
+            IsEditable = true;
+
             this.xzDimension = xzDimension;
             blocks = new Block[xzDimension, HEIGHT_IN_BLOCKS, xzDimension];
 
@@ -34,12 +42,20 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
 
         public void PlaceBlockAt(Block toPlace, BlockPosition position)
         {
-            if (PositionIsOutOfIslandBounds(position))
+            if (IsEditable)
             {
-                throw new BlockPositionOutOfBoundsException();
-            }
+                if (PositionIsOutOfIslandBounds(position))
+                {
+                    throw new BlockPositionOutOfBoundsException();
+                }
 
-            blocks[position.X, position.Y, position.Z] = toPlace;
+                blocks[position.X, position.Y, position.Z] = toPlace;
+            }
+        }
+
+        public void SealForPlayerEditing()
+        {
+            IsEditable = false;
         }
 
         public bool BlockFaceAtPositionIsHidden(BlockFaceDirections faceType, BlockPosition position)

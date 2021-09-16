@@ -589,6 +589,27 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
             yield return null;
 
             Assert.That(result, Is.EqualTo(false));              
-        }                                                                                                                                                             
+        }    
+
+        [Test]
+        public void TestThatIslandsSealedForEditingCannotBeEdited()
+        {
+            Island testCandidate = new Island(8);
+            BlockPosition placementPosition = new BlockPosition(3, 45, 2);
+
+            Block placedBlock = EarthBlock.GetInstance();
+            testCandidate.PlaceBlockAt(placedBlock, placementPosition);
+
+            Block expectedBlock = testCandidate.GetBlockAt(placementPosition);
+
+            testCandidate.SealForPlayerEditing();
+            placementPosition = new BlockPosition(4, 11, 2);
+            testCandidate.PlaceBlockAt(placedBlock, placementPosition);
+
+            Block expectedBlockTwo = testCandidate.GetBlockAt(placementPosition);
+
+            Assert.That(expectedBlock, Is.SameAs(placedBlock));
+            Assert.That(expectedBlockTwo, Is.SameAs(AirBlock.GetInstance()));
+        }                                                                                                                                                         
     }
 }
