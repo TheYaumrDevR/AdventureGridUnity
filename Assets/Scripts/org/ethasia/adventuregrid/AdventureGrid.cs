@@ -16,7 +16,7 @@ namespace Org.Ethasia.Adventuregrid
         void Start()
         {
             Dependencies.Inject();
-            CoreFactory.GetInstance().InitGlobalRandomNumberGeneratorWithSeed(945341953);
+            CoreFactory.GetInstance().InitGlobalRandomNumberGeneratorWithSeed(1726289369);
 
             CoastlineHeightMapGenerator coastlineGenerator = new CoastlineHeightMapGenerator();
             HashSet<BlockPosition> coastLine = coastlineGenerator.GenerateCoastline(512);
