@@ -14,14 +14,13 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
         private GameObject chunkRoot;
         private MeshRenderer meshRenderer;
         private MeshFilter meshFilter;
+        private MeshCollider meshCollider;
 
         private VisualChunkData chunkData;
 
         public ChunkMesh(VisualChunkData chunkData)
         {
-            chunkRoot = new GameObject();
-            meshFilter = chunkRoot.AddComponent<MeshFilter>();
-            meshRenderer = chunkRoot.AddComponent<MeshRenderer>();
+            InitMeshComponents();
 
             this.chunkData = chunkData;
 
@@ -43,7 +42,15 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
         public void SetPosition(UnityEngine.Vector3 position)
         {
             chunkRoot.transform.position = position;
-        }     
+        }    
+
+        private void InitMeshComponents()
+        {
+            chunkRoot = new GameObject();
+            meshFilter = chunkRoot.AddComponent<MeshFilter>();
+            meshRenderer = chunkRoot.AddComponent<MeshRenderer>();
+            meshCollider = chunkRoot.AddComponent<MeshCollider>();
+        } 
 
         private void UpdateMeshBasedOnChunkData()
         {
@@ -51,6 +58,7 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
             UpdateGeometry(mesh);
 
             meshFilter.mesh = mesh;
+            meshCollider.sharedMesh = mesh;
         }
 
         private void UpdateGeometry(Mesh mesh)
