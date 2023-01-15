@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
 {
@@ -8,6 +9,8 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
         private Camera playerCamera;
 
         private Vector3 previousCursorViewportPosition;
+
+        private Vector3 previousMousePosition;
 
         // TODO: make camera attached to player
         // TODO: move logic to layer below
@@ -19,7 +22,8 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
             if (Input.GetMouseButtonDown(InputControlConstants.LEFT_MOUSE_BUTTON)) 
             {
                 Cursor.visible = false;
-                previousCursorViewportPosition = playerCamera.ScreenToViewportPoint(Input.mousePosition);
+                previousMousePosition = Mouse.current.position.ReadValue();
+                previousCursorViewportPosition = playerCamera.ScreenToViewportPoint(previousMousePosition);
             }
             else if (Input.GetMouseButton(InputControlConstants.LEFT_MOUSE_BUTTON))
             {
@@ -34,11 +38,10 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
                 playerCamera.transform.Rotate(Vector3.up, -cursorDragDirection.x * 180, Space.World);
                 playerCamera.transform.Translate(new Vector3(0, 2, -4));
 
-                previousCursorViewportPosition = playerCamera.ScreenToViewportPoint(Input.mousePosition);
+                Mouse.current.WarpCursorPosition(previousMousePosition);
             }
             else
             {
-                // TODO: move cursor back into window
                 Cursor.visible = true;
             }
         }
