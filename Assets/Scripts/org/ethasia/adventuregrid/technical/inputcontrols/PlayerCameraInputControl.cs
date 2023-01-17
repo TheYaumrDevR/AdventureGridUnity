@@ -21,7 +21,6 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
 
         // TODO: make camera attached to player
         // TODO: move logic to layer below
-        // TODO: make camera unflippable
 
         void Update()
         {
@@ -41,8 +40,7 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
 
                 playerCamera.transform.localPosition = untranslatedCameraPosition;
 
-                playerCamera.transform.Rotate(Vector3.right, cursorDragDirection.y * 180);
-                playerCamera.transform.Rotate(Vector3.up, -cursorDragDirection.x * 180, Space.World);
+                RotateCameraWithoutFlippingIt(cursorDragDirection);
                 TranslateCameraAfterApplyingRotationWithTerrainCollision(untranslatedCameraPosition);
 
                 Mouse.current.WarpCursorPosition(previousMousePosition);
@@ -50,6 +48,18 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
             else
             {
                 Cursor.visible = true;
+            }
+        }
+
+        private void RotateCameraWithoutFlippingIt(Vector3 cursorDragDirection) 
+        {
+            Quaternion previousRotation = playerCamera.transform.rotation;
+            playerCamera.transform.Rotate(Vector3.right, cursorDragDirection.y * 180);
+            playerCamera.transform.Rotate(Vector3.up, -cursorDragDirection.x * 180, Space.World);
+
+            if (playerCamera.transform.up.y < 0) 
+            {
+                playerCamera.transform.rotation = previousRotation;
             }
         }
 
