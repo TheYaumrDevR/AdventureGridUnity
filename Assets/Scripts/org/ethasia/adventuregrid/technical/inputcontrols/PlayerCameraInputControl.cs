@@ -19,16 +19,11 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
 
         private Vector3 previousMousePosition;
 
-        // TODO: make camera attached to player
-        // TODO: move logic to layer below
-
         void Update()
         {
             if (Input.GetMouseButtonDown(InputControlConstants.LEFT_MOUSE_BUTTON)) 
             {
-                Cursor.visible = false;
-                previousMousePosition = Mouse.current.position.ReadValue();
-                previousCursorViewportPosition = playerCamera.ScreenToViewportPoint(previousMousePosition);
+                HideCursorAndSaveCursorPositions();
             }
             else if (Input.GetMouseButton(InputControlConstants.LEFT_MOUSE_BUTTON))
             {
@@ -49,6 +44,13 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
             {
                 Cursor.visible = true;
             }
+        }
+
+        private void HideCursorAndSaveCursorPositions() 
+        {
+            Cursor.visible = false;
+            previousMousePosition = Mouse.current.position.ReadValue();
+            previousCursorViewportPosition = playerCamera.ScreenToViewportPoint(previousMousePosition);
         }
 
         private void RotateCameraWithoutFlippingIt(Vector3 cursorDragDirection) 
