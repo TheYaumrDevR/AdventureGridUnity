@@ -1,6 +1,6 @@
 using Org.Ethasia.Adventuregrid.Interactors.Output;
 
-namespace Org.Ethasia.Adventuregrid.Interactors
+namespace Org.Ethasia.Adventuregrid.Interactors.Factories
 {
 
     public abstract class IoAdaptersFactoryForInteractors

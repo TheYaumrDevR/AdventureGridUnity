@@ -7,5 +7,10 @@
             int xCast = (int)x;
             return x < xCast ? xCast - 1 : xCast;            
         }
+
+        public static int Ceil(double x)
+        {
+            return -Floor(-x);
+        }
     }
 }

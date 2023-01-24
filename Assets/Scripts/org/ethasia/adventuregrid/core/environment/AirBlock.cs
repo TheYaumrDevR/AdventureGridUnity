@@ -49,5 +49,10 @@
         {
             return false;
         }
+
+        public override bool IsWalkable()
+        {
+            return false;
+        }
     }
 }

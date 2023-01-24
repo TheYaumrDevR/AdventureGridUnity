@@ -5,6 +5,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 {
     public abstract class BlockVisualsBuilder
     {
+        public const float BLOCK_HALF_EDGE_LENGTH_IN_ENGINE_UNITS = 0.25f;
+
         private static StandardBlockVisualsBuilder standardBlockVisualsBuilder = new StandardBlockVisualsBuilder();
 
         public static BlockVisualsBuilder FromBlockType(BlockTypes blockType)

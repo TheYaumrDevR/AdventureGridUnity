@@ -32,11 +32,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
 
         public Block GetBlockAt(BlockPosition position)
         {
-            if (PositionIsOutOfIslandBounds(position))
-            {
-                throw new BlockPositionOutOfBoundsException();
-            }
-
+            ThrowExceptionIfBlockPositionIsOutOfBounds(position);
             return blocks[position.X, position.Y, position.Z];
         }
 
@@ -44,11 +40,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
         {
             if (IsEditable)
             {
-                if (PositionIsOutOfIslandBounds(position))
-                {
-                    throw new BlockPositionOutOfBoundsException();
-                }
-
+                ThrowExceptionIfBlockPositionIsOutOfBounds(position);
                 blocks[position.X, position.Y, position.Z] = toPlace;
             }
         }
@@ -131,6 +123,12 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
             return false;
         }
 
+        public bool BlockAtPositionIsWalkable(BlockPosition position) 
+        {
+            Block blockAtGivenPosition = GetBlockAt(position);
+            return blockAtGivenPosition.IsWalkable();
+        }
+
         private void InitializeAllBlocksToAir()
         {
             for (int i = 0; i < xzDimension; i++)
@@ -145,11 +143,22 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
             }
         }
 
+        private void ThrowExceptionIfBlockPositionIsOutOfBounds(BlockPosition position) 
+        {
+            if (PositionIsOutOfIslandBounds(position))
+            {
+                throw new BlockPositionOutOfBoundsException();
+            }            
+        }
+
         private bool PositionIsOutOfIslandBounds(BlockPosition position)
         {
             return position.X >= xzDimension
                 || position.Y >= HEIGHT_IN_BLOCKS
-                || position.Z >= xzDimension;
+                || position.Z >= xzDimension
+                || position.X < 0
+                || position.Y < 0
+                || position.Z < 0;
         }
     }
 }

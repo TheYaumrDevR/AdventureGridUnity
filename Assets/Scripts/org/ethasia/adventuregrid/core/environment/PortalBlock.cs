@@ -49,6 +49,11 @@
         public override bool GetTopFaceIsCovering() 
         {
             return false;
-        }          
+        }   
+
+        public override bool IsWalkable()
+        {
+            return false;
+        }       
     }
 }

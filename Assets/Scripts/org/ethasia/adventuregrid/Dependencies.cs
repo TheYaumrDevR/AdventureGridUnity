@@ -1,5 +1,7 @@
 using Org.Ethasia.Adventuregrid.Core;
+using Org.Ethasia.Adventuregrid.Interactors.Factories;
 using Org.Ethasia.Adventuregrid.Ioadapters;
+using Org.Ethasia.Adventuregrid.Ioadapters.Controllers;
 using Org.Ethasia.Adventuregrid.Technical;
 
 namespace Org.Ethasia.Adventuregrid
@@ -10,6 +12,7 @@ namespace Org.Ethasia.Adventuregrid
         {
             InjectCoreDependencies();
             InjectInteractorDependencies();
+            InjectIoAdapterDependencies();
             InjectTechnicalDependencies();
         }
 
@@ -20,8 +23,13 @@ namespace Org.Ethasia.Adventuregrid
 
         private static void InjectInteractorDependencies()
         {
-            
+            InteractorsFactory.SetInstance(new RealInteractorsFactory());
         }   
+
+        private static void InjectIoAdapterDependencies()
+        {
+            ControllersFactory.SetInstance(new RealControllersFactory());
+        }
 
         private static void InjectTechnicalDependencies()
         {

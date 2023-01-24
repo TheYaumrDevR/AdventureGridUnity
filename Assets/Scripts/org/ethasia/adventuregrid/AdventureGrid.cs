@@ -1,10 +1,6 @@
-using System.Collections.Generic;
-
 using Org.Ethasia.Adventuregrid.Core;
 using Org.Ethasia.Adventuregrid.Core.Environment;
-using Org.Ethasia.Adventuregrid.Core.Environment.Mapgen;
 using Org.Ethasia.Adventuregrid.Core.InputInterfaces;
-using Org.Ethasia.Adventuregrid.Core.Math;
 using Org.Ethasia.Adventuregrid.Ioadapters.Presenters;
 
 using UnityEngine;
@@ -18,15 +14,10 @@ namespace Org.Ethasia.Adventuregrid
             Dependencies.Inject();
             CoreFactory.GetInstance().InitGlobalRandomNumberGeneratorWithSeed(1726289369);
 
-            CoastlineHeightMapGenerator coastlineGenerator = new CoastlineHeightMapGenerator();
-            HashSet<BlockPosition> coastLine = coastlineGenerator.GenerateCoastline(512);
-
-            TemperatePlainIslandGenerator islandGenerator = new TemperatePlainIslandGenerator();
-            Island testIsland = islandGenerator.GenerateIsland(512, coastLine);
+            World.CreateNewWorld();
 
             StandardIslandPresenter islandPresenter = new StandardIslandPresenter();
-
-            islandPresenter.PresentIsland(testIsland);
+            islandPresenter.PresentIsland(World.CurrentIsland());
         }
     }
 }

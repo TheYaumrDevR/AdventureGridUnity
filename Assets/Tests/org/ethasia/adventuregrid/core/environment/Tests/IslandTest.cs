@@ -543,6 +543,32 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
 
             Assert.That(expectedBlock, Is.SameAs(placedBlock));
             Assert.That(expectedBlockTwo, Is.SameAs(AirBlock.GetInstance()));
-        }                                                                                                                                                         
+        }               
+
+        [Test]
+        public void TestBlockAtPositionIsWalkableReturnsTrueForEarthBlock()
+        {
+            Island testCandidate = new Island(3);
+
+            BlockPosition placementPosition = new BlockPosition(1, 1, 1);
+            Block placedBlock = EarthBlock.GetInstance();
+
+            testCandidate.PlaceBlockAt(placedBlock, placementPosition);
+
+            Assert.That(testCandidate.BlockAtPositionIsWalkable(placementPosition), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void TestBlockAtPositionIsWalkableReturnsFalseForPortalBlock()
+        {
+            Island testCandidate = new Island(3);
+
+            BlockPosition placementPosition = new BlockPosition(1, 1, 1);
+            Block placedBlock = PortalBlock.GetInstance();
+
+            testCandidate.PlaceBlockAt(placedBlock, placementPosition);
+
+            Assert.That(testCandidate.BlockAtPositionIsWalkable(placementPosition), Is.EqualTo(false));
+        }                                                                                                                                     
     }
 }
