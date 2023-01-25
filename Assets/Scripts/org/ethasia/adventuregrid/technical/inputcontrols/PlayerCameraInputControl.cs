@@ -19,6 +19,8 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
 
         private Vector3 previousMousePosition;
 
+        private Vector3 previousPlayerPosition;
+
         void Update()
         {
             if (Input.GetMouseButtonDown(InputControlConstants.LEFT_MOUSE_BUTTON)) 
@@ -36,14 +38,26 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
                 playerCamera.transform.localPosition = untranslatedCameraPosition;
 
                 RotateCameraWithoutFlippingIt(cursorDragDirection);
-                TranslateCameraAfterApplyingRotationWithTerrainCollision(untranslatedCameraPosition);
+                TranslateCameraRespectTerrainCollision(untranslatedCameraPosition);
 
                 Mouse.current.WarpCursorPosition(previousMousePosition);
             }
             else
             {
                 Cursor.visible = true;
+
+                if (0 != Vector3.Dot(previousPlayerPosition, playerAvatarTransform.position))
+                {
+                    Vector3 playerAvatarPosition = playerAvatarTransform.position;
+                    Vector3 untranslatedCameraPosition = playerAvatarPosition + untranslatedCameraPositionOffset;
+
+                    playerCamera.transform.localPosition = untranslatedCameraPosition;
+
+                    TranslateCameraRespectTerrainCollision(untranslatedCameraPosition);
+                }
             }
+
+            previousPlayerPosition = playerAvatarTransform.position;
         }
 
         private void HideCursorAndSaveCursorPositions() 
@@ -65,7 +79,7 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
             }
         }
 
-        private void TranslateCameraAfterApplyingRotationWithTerrainCollision(Vector3 untranslatedCameraPosition) 
+        private void TranslateCameraRespectTerrainCollision(Vector3 untranslatedCameraPosition) 
         {
             RaycastHit hitInfo;
             bool cameraWillCollideWithTerrain = Physics.Raycast(untranslatedCameraPosition, -playerCamera.transform.forward, out hitInfo, cameraTranslationVector.magnitude);
