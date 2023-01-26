@@ -4,9 +4,6 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
 {
     public class PlayerMovementControlRightMouseButton : MonoBehaviour
     {
-        // TODO: rotate player towards direction
-        // TODO: add jumping
-
         private const float PLAYER_MOVEMENT_SPEED = 1.6f;
 
         [SerializeField]
@@ -22,8 +19,10 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
                 Vector3 currentPlayerCharacterPosition = playerCharacterRigidBody.position;
                 Vector3 movementDirectionVector = new Vector3(cameraTransform.forward.x, 0, cameraTransform.forward.z);
                 movementDirectionVector.Normalize();
+                Quaternion rotationMovement = Quaternion.LookRotation(-movementDirectionVector, Vector3.up);
 
                 playerCharacterRigidBody.MovePosition(currentPlayerCharacterPosition + movementDirectionVector * Time.deltaTime * PLAYER_MOVEMENT_SPEED);
+                playerCharacterRigidBody.MoveRotation(rotationMovement);
             }
         }
     }
