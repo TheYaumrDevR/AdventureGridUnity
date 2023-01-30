@@ -49,7 +49,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             Assert.That(lastRenderedChunkData.GetVertices().Length, Is.EqualTo(288));
             Assert.That(lastRenderedChunkData.GetIndices().Length, Is.EqualTo(144));
             Assert.That(lastRenderedChunkData.GetNormals().Length, Is.EqualTo(288));
-            Assert.That(lastRenderedChunkData.GetUvCoordinates().Length, Is.EqualTo(192));
+            Assert.That(lastRenderedChunkData.GetUvCoordinates().Length, Is.EqualTo(288));
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             Assert.That(lastRenderedChunkData.GetVertices().Length, Is.EqualTo(288));
             Assert.That(lastRenderedChunkData.GetIndices().Length, Is.EqualTo(144));
             Assert.That(lastRenderedChunkData.GetNormals().Length, Is.EqualTo(288));
-            Assert.That(lastRenderedChunkData.GetUvCoordinates().Length, Is.EqualTo(192));            
+            Assert.That(lastRenderedChunkData.GetUvCoordinates().Length, Is.EqualTo(288));            
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             Assert.That(lastRenderedChunkData.GetVertices().Length, Is.EqualTo(648));
             Assert.That(lastRenderedChunkData.GetIndices().Length, Is.EqualTo(324));
             Assert.That(lastRenderedChunkData.GetNormals().Length, Is.EqualTo(648));
-            Assert.That(lastRenderedChunkData.GetUvCoordinates().Length, Is.EqualTo(432));
+            Assert.That(lastRenderedChunkData.GetUvCoordinates().Length, Is.EqualTo(648));
         }         
     }
 }

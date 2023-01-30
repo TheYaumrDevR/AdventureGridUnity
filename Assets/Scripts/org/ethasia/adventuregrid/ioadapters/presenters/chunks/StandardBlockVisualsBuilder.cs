@@ -448,6 +448,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         {
             int faces = GetAmountOfUncoveredFaces();
             int uvPerFace = 4;
+            int amountOfUvFloatsPerFace = 3 * uvPerFace;
             float[] blockUvCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
 
             if (6 == faces) 
@@ -456,7 +457,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             }
             else
             {
-                uvBuffer = new float[faces * uvPerFace * 2];
+                uvBuffer = new float[faces * amountOfUvFloatsPerFace];
                 int currentTargetBufferIndex = 0;
                 int currentSourceBufferIndex = 0;
 
@@ -464,44 +465,44 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                 {
                     CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);
                 
-                    currentTargetBufferIndex += 8;
+                    currentTargetBufferIndex += amountOfUvFloatsPerFace;
                 }
 
                 if (!rightFaceOfBlockIsHidden) 
                 {
-                    currentSourceBufferIndex = 8;
+                    currentSourceBufferIndex = amountOfUvFloatsPerFace * 1;
                     CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);
                 
-                    currentTargetBufferIndex += 8;
+                    currentTargetBufferIndex += amountOfUvFloatsPerFace;
                 }
 
                 if (!backFaceOfBlockIsHidden) 
                 {
-                    currentSourceBufferIndex = 16;
+                    currentSourceBufferIndex = amountOfUvFloatsPerFace * 2;
                     CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);
                 
-                    currentTargetBufferIndex += 8;
+                    currentTargetBufferIndex += amountOfUvFloatsPerFace;
                 }
 
                 if (!leftFaceOfBlockIsHidden) 
                 {
-                    currentSourceBufferIndex = 24;
+                    currentSourceBufferIndex = amountOfUvFloatsPerFace * 3;
                     CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);
                 
-                    currentTargetBufferIndex += 8;   
+                    currentTargetBufferIndex += amountOfUvFloatsPerFace;   
                 }  
 
                 if (!bottomFaceOfBlockIsHidden) 
                 {
-                    currentSourceBufferIndex = 32;
+                    currentSourceBufferIndex = amountOfUvFloatsPerFace * 4;
                     CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);
                 
-                    currentTargetBufferIndex += 8;
+                    currentTargetBufferIndex += amountOfUvFloatsPerFace;
                 }
 
                 if (!topFaceOfBlockIsHidden) 
                 {
-                    currentSourceBufferIndex = 40;
+                    currentSourceBufferIndex = amountOfUvFloatsPerFace * 5;
                     CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);   
                 }                                                        
             }
@@ -516,7 +517,11 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             uvBuffer[destintationBufferStartingIndex + 4] = sourceBuffer[sourceDataStartingIndex + 4];
             uvBuffer[destintationBufferStartingIndex + 5] = sourceBuffer[sourceDataStartingIndex + 5];
             uvBuffer[destintationBufferStartingIndex + 6] = sourceBuffer[sourceDataStartingIndex + 6];
-            uvBuffer[destintationBufferStartingIndex + 7] = sourceBuffer[sourceDataStartingIndex + 7];        
+            uvBuffer[destintationBufferStartingIndex + 7] = sourceBuffer[sourceDataStartingIndex + 7];    
+            uvBuffer[destintationBufferStartingIndex + 8] = sourceBuffer[sourceDataStartingIndex + 8]; 
+            uvBuffer[destintationBufferStartingIndex + 9] = sourceBuffer[sourceDataStartingIndex + 9]; 
+            uvBuffer[destintationBufferStartingIndex + 10] = sourceBuffer[sourceDataStartingIndex + 10]; 
+            uvBuffer[destintationBufferStartingIndex + 11] = sourceBuffer[sourceDataStartingIndex + 11];     
         }        
 
         private int GetAmountOfUncoveredFaces()

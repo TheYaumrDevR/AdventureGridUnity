@@ -604,11 +604,11 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
             float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
             float[] expectedUvCoordinates = {
-                allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11], allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15],
-                allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
-                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31],
-                allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35], allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39],
-                allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47]
+                allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15], allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
+                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31], allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35],
+                allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39], allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47],
+                allBlockCoordinates[48], allBlockCoordinates[49], allBlockCoordinates[50], allBlockCoordinates[51], allBlockCoordinates[52], allBlockCoordinates[53], allBlockCoordinates[54], allBlockCoordinates[55], allBlockCoordinates[56], allBlockCoordinates[57], allBlockCoordinates[58], allBlockCoordinates[59],
+                allBlockCoordinates[60], allBlockCoordinates[61], allBlockCoordinates[62], allBlockCoordinates[63], allBlockCoordinates[64], allBlockCoordinates[65], allBlockCoordinates[66], allBlockCoordinates[67], allBlockCoordinates[68], allBlockCoordinates[69], allBlockCoordinates[70], allBlockCoordinates[71]
             };
 
             Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
@@ -627,11 +627,11 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
             float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
             float[] expectedUvCoordinates = {
-                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7],
-                allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
-                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31],
-                allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35], allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39],
-                allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47]
+                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7], allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11],
+                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31], allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35],
+                allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39], allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47],
+                allBlockCoordinates[48], allBlockCoordinates[49], allBlockCoordinates[50], allBlockCoordinates[51], allBlockCoordinates[52], allBlockCoordinates[53], allBlockCoordinates[54], allBlockCoordinates[55], allBlockCoordinates[56], allBlockCoordinates[57], allBlockCoordinates[58], allBlockCoordinates[59],
+                allBlockCoordinates[60], allBlockCoordinates[61], allBlockCoordinates[62], allBlockCoordinates[63], allBlockCoordinates[64], allBlockCoordinates[65], allBlockCoordinates[66], allBlockCoordinates[67], allBlockCoordinates[68], allBlockCoordinates[69], allBlockCoordinates[70], allBlockCoordinates[71]
             };
 
             Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
@@ -650,11 +650,11 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
             float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
             float[] expectedUvCoordinates = {
-                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7],
-                allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11], allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15],
-                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31],
-                allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35], allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39],
-                allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47]
+                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7], allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11],
+                allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15], allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
+                allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39], allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47],
+                allBlockCoordinates[48], allBlockCoordinates[49], allBlockCoordinates[50], allBlockCoordinates[51], allBlockCoordinates[52], allBlockCoordinates[53], allBlockCoordinates[54], allBlockCoordinates[55], allBlockCoordinates[56], allBlockCoordinates[57], allBlockCoordinates[58], allBlockCoordinates[59],
+                allBlockCoordinates[60], allBlockCoordinates[61], allBlockCoordinates[62], allBlockCoordinates[63], allBlockCoordinates[64], allBlockCoordinates[65], allBlockCoordinates[66], allBlockCoordinates[67], allBlockCoordinates[68], allBlockCoordinates[69], allBlockCoordinates[70], allBlockCoordinates[71]
             };
 
             Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
@@ -673,11 +673,11 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
             float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
             float[] expectedUvCoordinates = {
-                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7],
-                allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11], allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15],
-                allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
-                allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35], allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39],
-                allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47]
+                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7], allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11],
+                allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15], allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
+                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31], allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35],
+                allBlockCoordinates[48], allBlockCoordinates[49], allBlockCoordinates[50], allBlockCoordinates[51], allBlockCoordinates[52], allBlockCoordinates[53], allBlockCoordinates[54], allBlockCoordinates[55], allBlockCoordinates[56], allBlockCoordinates[57], allBlockCoordinates[58], allBlockCoordinates[59],
+                allBlockCoordinates[60], allBlockCoordinates[61], allBlockCoordinates[62], allBlockCoordinates[63], allBlockCoordinates[64], allBlockCoordinates[65], allBlockCoordinates[66], allBlockCoordinates[67], allBlockCoordinates[68], allBlockCoordinates[69], allBlockCoordinates[70], allBlockCoordinates[71]
             };
 
             Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
@@ -696,11 +696,11 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
             float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
             float[] expectedUvCoordinates = {
-                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7],
-                allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11], allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15],
-                allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
-                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31],
-                allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47]
+                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7], allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11],
+                allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15], allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
+                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31], allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35],
+                allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39], allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47],
+                allBlockCoordinates[60], allBlockCoordinates[61], allBlockCoordinates[62], allBlockCoordinates[63], allBlockCoordinates[64], allBlockCoordinates[65], allBlockCoordinates[66], allBlockCoordinates[67], allBlockCoordinates[68], allBlockCoordinates[69], allBlockCoordinates[70], allBlockCoordinates[71]
             };
 
             Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));
@@ -719,11 +719,11 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks.ChunkPresenting
             float[] uvCoordinates = testCandidate.GetShapeUvCoordinates();
             float[] allBlockCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinates();
             float[] expectedUvCoordinates = {
-                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7],
-                allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11], allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15],
-                allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
-                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31],
-                allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35], allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39],
+                allBlockCoordinates[0], allBlockCoordinates[1], allBlockCoordinates[2], allBlockCoordinates[3], allBlockCoordinates[4], allBlockCoordinates[5], allBlockCoordinates[6], allBlockCoordinates[7], allBlockCoordinates[8], allBlockCoordinates[9], allBlockCoordinates[10], allBlockCoordinates[11],
+                allBlockCoordinates[12], allBlockCoordinates[13], allBlockCoordinates[14], allBlockCoordinates[15], allBlockCoordinates[16], allBlockCoordinates[17], allBlockCoordinates[18], allBlockCoordinates[19], allBlockCoordinates[20], allBlockCoordinates[21], allBlockCoordinates[22], allBlockCoordinates[23],
+                allBlockCoordinates[24], allBlockCoordinates[25], allBlockCoordinates[26], allBlockCoordinates[27], allBlockCoordinates[28], allBlockCoordinates[29], allBlockCoordinates[30], allBlockCoordinates[31], allBlockCoordinates[32], allBlockCoordinates[33], allBlockCoordinates[34], allBlockCoordinates[35],
+                allBlockCoordinates[36], allBlockCoordinates[37], allBlockCoordinates[38], allBlockCoordinates[39], allBlockCoordinates[40], allBlockCoordinates[41], allBlockCoordinates[42], allBlockCoordinates[43], allBlockCoordinates[44], allBlockCoordinates[45], allBlockCoordinates[46], allBlockCoordinates[47],
+                allBlockCoordinates[48], allBlockCoordinates[49], allBlockCoordinates[50], allBlockCoordinates[51], allBlockCoordinates[52], allBlockCoordinates[53], allBlockCoordinates[54], allBlockCoordinates[55], allBlockCoordinates[56], allBlockCoordinates[57], allBlockCoordinates[58], allBlockCoordinates[59],
             };
 
             Assert.That(uvCoordinates, Is.EqualTo(expectedUvCoordinates));

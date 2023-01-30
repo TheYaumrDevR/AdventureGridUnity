@@ -96,7 +96,7 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
         {
             float[] flatUvs = chunkData.GetUvCoordinates();
 
-            Vector2[] uvsAsVectors = RenderingTypeConverter.ConvertFlatFloatArrayToVector2Array(flatUvs);
+            Vector3[] uvsAsVectors = RenderingTypeConverter.ConvertFlatFloatArrayToVector3Array(flatUvs);
             mesh.SetUVs(0, uvsAsVectors);
         }          
 
