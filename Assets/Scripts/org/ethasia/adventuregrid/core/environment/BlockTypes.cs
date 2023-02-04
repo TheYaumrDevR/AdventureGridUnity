@@ -6,6 +6,7 @@
         GRASSY_EARTH,
         EARTH,
         ROCK,
+        GRAVEL,
         PORTAL
     }
 }

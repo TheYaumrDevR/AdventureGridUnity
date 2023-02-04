@@ -16,6 +16,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                     return EarthBlockUvCoordinates.GetInstance();
                 case BlockTypes.ROCK:
                     return RockBlockUvCoordinates.GetInstance(); 
+                case BlockTypes.GRAVEL:
+                    return GravelBlockUvCoordinates.GetInstance();                       
                 case BlockTypes.PORTAL:
                     return PortalBlockUvCoordinates.GetInstance();
                 default:
