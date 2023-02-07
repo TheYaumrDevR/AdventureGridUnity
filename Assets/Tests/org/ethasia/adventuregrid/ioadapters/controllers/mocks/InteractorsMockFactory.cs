@@ -10,5 +10,10 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Mocks
         {
             return new GroundedCheckInteractorMock();
         }
+
+        public override SetupMainMenuInteractor CreateSetupMainMenuInteractor()
+        {
+            return null;
+        }
     }
 }

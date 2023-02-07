@@ -5,6 +5,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
     public class Island
     {
         public const int HEIGHT_IN_BLOCKS = 256;
+        public const int HALF_HEIGHT_IN_BLOCKS = 128;
 
         private readonly int xzDimension;
         private readonly Block[,,] blocks;

@@ -9,5 +9,10 @@ namespace Org.Ethasia.Adventuregrid.Interactors.Factories
         {
             return new GroundedCheckInteractorImpl();
         }
+
+        public override SetupMainMenuInteractor CreateSetupMainMenuInteractor()
+        {
+            return new SetupMainMenuInteractorImpl();
+        }
     }
 }

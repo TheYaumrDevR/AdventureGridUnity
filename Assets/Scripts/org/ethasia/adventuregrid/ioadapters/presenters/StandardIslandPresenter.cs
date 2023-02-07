@@ -1,9 +1,10 @@
 ﻿using Org.Ethasia.Adventuregrid.Core.Environment;
+using Org.Ethasia.Adventuregrid.Interactors.Output;
 using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks ;
 
 namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters 
 {
-    public class StandardIslandPresenter
+    public class StandardIslandPresenter : IslandPresenter
     {
         public static readonly int CHUNK_EDGE_LENGTH_IN_BLOCKS = 16;
 

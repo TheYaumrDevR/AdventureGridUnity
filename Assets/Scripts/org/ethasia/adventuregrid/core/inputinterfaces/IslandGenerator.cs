@@ -16,7 +16,7 @@ namespace Org.Ethasia.Adventuregrid.Core.InputInterfaces
         protected void DisplaceHeightMapByLowestPointOfCoastline()
         {
             int maximumHeightDifference = CalculateMaximumHeightDifference();
-            OffsetHeightMapByCoastlineHeightDifference(maximumHeightDifference);           
+            OffsetHeightMapByCoastlineHeightDifference(maximumHeightDifference);          
         }
 
         protected int CalculateMaximumHeightDifference()
@@ -44,7 +44,7 @@ namespace Org.Ethasia.Adventuregrid.Core.InputInterfaces
             for (int i = 0; i < result.GetXzDimension(); i++) 
             {
                 for (int j = 0; j < result.GetXzDimension(); j++) 
-                {
+                {                    
                     int newHeight = heightMap[i, j] + maximumHeightDifference;
 
                     if (heightMap[i, j] > 0)
