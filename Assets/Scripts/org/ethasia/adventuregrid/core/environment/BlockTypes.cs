@@ -7,6 +7,7 @@
         EARTH,
         ROCK,
         GRAVEL,
+        WALNUT_WOOD_POLE,
         PORTAL
     }
 }

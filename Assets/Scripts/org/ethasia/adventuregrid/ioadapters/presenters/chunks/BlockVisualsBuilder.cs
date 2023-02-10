@@ -8,21 +8,28 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         public const float BLOCK_HALF_EDGE_LENGTH_IN_ENGINE_UNITS = 0.25f;
 
         private static StandardBlockVisualsBuilder standardBlockVisualsBuilder = new StandardBlockVisualsBuilder();
+        private static PoleBlockVisualsBuilder poleBlockVisualsBuilder = new PoleBlockVisualsBuilder();
 
         public static BlockVisualsBuilder FromBlockType(BlockTypes blockType)
         {
-            return standardBlockVisualsBuilder;
+            switch (blockType)
+            {
+                case BlockTypes.WALNUT_WOOD_POLE:
+                    return poleBlockVisualsBuilder;
+                default:
+                    return standardBlockVisualsBuilder;
+            }
         }
 
-        public abstract StandardBlockVisualsBuilder SetBlockToCreateDataFrom(Block value);
-        public abstract StandardBlockVisualsBuilder SetPositionOfBlockInChunk(BlockPosition value);
-        public abstract StandardBlockVisualsBuilder SetFrontFaceOfBlockIsHidden(bool value);
-        public abstract StandardBlockVisualsBuilder SetRightFaceOfBlockIsHidden(bool value);
-        public abstract StandardBlockVisualsBuilder SetBackFaceOfBlockIsHidden(bool value);
-        public abstract StandardBlockVisualsBuilder SetLeftFaceOfBlockIsHidden(bool value);
-        public abstract StandardBlockVisualsBuilder SetBottomFaceOfBlockIsHidden(bool value);
-        public abstract StandardBlockVisualsBuilder SetTopFaceOfBlockIsHidden(bool value);
-        public abstract StandardBlockVisualsBuilder SetIndexBufferOffsetInChunk(int value);
+        public abstract BlockVisualsBuilder SetBlockToCreateDataFrom(Block value);
+        public abstract BlockVisualsBuilder SetPositionOfBlockInChunk(BlockPosition value);
+        public abstract BlockVisualsBuilder SetFrontFaceOfBlockIsHidden(bool value);
+        public abstract BlockVisualsBuilder SetRightFaceOfBlockIsHidden(bool value);
+        public abstract BlockVisualsBuilder SetBackFaceOfBlockIsHidden(bool value);
+        public abstract BlockVisualsBuilder SetLeftFaceOfBlockIsHidden(bool value);
+        public abstract BlockVisualsBuilder SetBottomFaceOfBlockIsHidden(bool value);
+        public abstract BlockVisualsBuilder SetTopFaceOfBlockIsHidden(bool value);
+        public abstract BlockVisualsBuilder SetIndexBufferOffsetInChunk(int value);
 
         public abstract void Build();
         public abstract float[] GetShapePositions();

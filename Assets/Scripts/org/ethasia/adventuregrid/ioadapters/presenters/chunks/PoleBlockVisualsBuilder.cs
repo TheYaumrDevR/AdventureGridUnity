@@ -1,20 +1,19 @@
-﻿using Org.Ethasia.Adventuregrid.Core.Environment;
+using Org.Ethasia.Adventuregrid.Core.Environment;
 using Org.Ethasia.Adventuregrid.Core.Math;
 
 namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 {
-    public class StandardBlockVisualsBuilder : BlockVisualsBuilder
+    public class PoleBlockVisualsBuilder : BlockVisualsBuilder
     {
-
         // Base vertices
         private static readonly Vector3f[] BV;
 
-        static StandardBlockVisualsBuilder()
+        static PoleBlockVisualsBuilder()
         {
             Vector3f[] blockHalfAxes = {
-                Vector3f.UNIT_X.ScaleImmutable(BLOCK_HALF_EDGE_LENGTH_IN_ENGINE_UNITS),
+                Vector3f.UNIT_X.ScaleImmutable(0.05f),
                 Vector3f.UNIT_Y.ScaleImmutable(BLOCK_HALF_EDGE_LENGTH_IN_ENGINE_UNITS),
-                Vector3f.UNIT_Z.ScaleImmutable(BLOCK_HALF_EDGE_LENGTH_IN_ENGINE_UNITS)
+                Vector3f.UNIT_Z.ScaleImmutable(0.05f)
             };
 
             Vector3f origin = new Vector3f(0, 0, 0);
@@ -559,6 +558,6 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             }
 
             return result;
-        }
+        }            
     }
 }

@@ -19,6 +19,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             DisplaceHeightMapByLowestPointOfCoastline();
             CreateBlocksBasedOnHeightMap();
             PaveGravelRoad();
+            PlaceSigns();
         
             return result;
         }
@@ -83,6 +84,14 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                 
                 result.PlaceBlockAt(gravelBlock, new BlockPosition(47, 20, j));
             }
-        }         
+        } 
+
+        private void PlaceSigns()
+        {
+            Block walnutPoleBlock = WalnutPoleBlock.GetInstance();
+            result.PlaceBlockAt(walnutPoleBlock, new BlockPosition(46, 21, 17));
+            result.PlaceBlockAt(walnutPoleBlock, new BlockPosition(46, 22, 17));
+            result.PlaceBlockAt(walnutPoleBlock, new BlockPosition(46, 23, 17));
+        }        
     }
 }

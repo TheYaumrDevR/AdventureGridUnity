@@ -20,6 +20,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                     return GravelBlockUvCoordinates.GetInstance();                       
                 case BlockTypes.PORTAL:
                     return PortalBlockUvCoordinates.GetInstance();
+                case BlockTypes.WALNUT_WOOD_POLE:
+                    return WalnutPoleBlockUvCoordinates.GetInstance();
                 default:
                     throw new NotSupportedException("UV coordinates for block type " + blockType + " not found. Please add them.");
             }
