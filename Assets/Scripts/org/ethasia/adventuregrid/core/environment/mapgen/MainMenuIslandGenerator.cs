@@ -92,6 +92,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             result.PlaceBlockAt(walnutPoleBlock, new BlockPosition(46, 21, 17));
             result.PlaceBlockAt(walnutPoleBlock, new BlockPosition(46, 22, 17));
             result.PlaceBlockAt(walnutPoleBlock, new BlockPosition(46, 23, 17));
+
+            Block leftSignPlateBlock = WalnutWoodArrowSignplateBlock.GetInstance();
+            result.PlaceBlockAt(leftSignPlateBlock, new BlockPosition(47, 24, 17));
         }        
     }
 }
