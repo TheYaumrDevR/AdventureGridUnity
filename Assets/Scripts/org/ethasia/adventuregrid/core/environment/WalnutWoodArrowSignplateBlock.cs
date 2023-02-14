@@ -7,17 +7,17 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
             faceHidingStrategy = new SignPlateBlockFaceHidingStrategy();
         }
 
-        private static WalnutWoodArrowSignplateBlock instance;
+        private static Block instance;
 
-        public static WalnutWoodArrowSignplateBlock GetInstance()
+        public static Block GetInstance()
         {
             if (null != instance)
             {
-                return instance;
+                return new RotationDataBlockDecorator(instance);
             }
 
             instance = new WalnutWoodArrowSignplateBlock();
-            return instance;
+            return new RotationDataBlockDecorator(instance);
         }   
 
         public override bool GetFrontFaceIsCovering() 
