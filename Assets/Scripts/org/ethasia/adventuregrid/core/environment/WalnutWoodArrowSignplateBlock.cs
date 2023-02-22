@@ -1,3 +1,5 @@
+using Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators;
+
 namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
     public class WalnutWoodArrowSignplateBlock : Block
@@ -17,7 +19,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
             }
 
             instance = new WalnutWoodArrowSignplateBlock();
-            return new RotationDataBlockDecorator(instance);
+            RotationDataBlockDecorator result = new RotationDataBlockDecorator(instance);
+            result.LockXAxisRotation = true;
+            result.LockZAxisRotation = true;
+
+            return result;
         }   
 
         public override bool GetFrontFaceIsCovering() 
