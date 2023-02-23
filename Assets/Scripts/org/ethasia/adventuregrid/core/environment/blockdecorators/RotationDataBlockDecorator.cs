@@ -2,7 +2,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
 {
     public class RotationDataBlockDecorator : IndividualBlockDataDecorator
     {
-        private RotationState currentRotationState;
+        public RotationState CurrentRotationState
+        {
+            get;
+            private set;
+        }
 
         public bool LockXAxisRotation
         {
@@ -25,7 +29,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
         public RotationDataBlockDecorator(Block decoratedBlock) : base(decoratedBlock)
         {           
             faceHidingStrategy = decoratedBlock.GetFaceHidingStrategy();
-            currentRotationState = FrontPointingUpRotationState.GetInstance();
+            CurrentRotationState = FrontPointingUpRotationState.GetInstance();
         }
 
         public override bool GetFrontFaceIsCovering() 
@@ -67,7 +71,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
         {
             if (!LockXAxisRotation)
             {
-                currentRotationState = currentRotationState.RotatePositiveAroundXAxis();
+                CurrentRotationState = CurrentRotationState.RotatePositiveAroundXAxis();
             }
         }
 
@@ -75,7 +79,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
         {
             if (!LockXAxisRotation)
             {
-                currentRotationState = currentRotationState.RotateNegativeAroundXAxis();
+                CurrentRotationState = CurrentRotationState.RotateNegativeAroundXAxis();
             }
         }  
 
@@ -83,7 +87,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
         {
             if (!LockYAxisRotation)
             {
-                currentRotationState = currentRotationState.RotatePositiveAroundYAxis();
+                CurrentRotationState = CurrentRotationState.RotatePositiveAroundYAxis();
             }
         }        
 
@@ -91,7 +95,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
         {
             if (!LockYAxisRotation)
             {
-                currentRotationState = currentRotationState.RotateNegativeAroundYAxis();
+                CurrentRotationState = CurrentRotationState.RotateNegativeAroundYAxis();
             }
         }
 
@@ -99,7 +103,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
         {
             if (!LockZAxisRotation)
             {
-                currentRotationState = currentRotationState.RotatePositiveAroundZAxis();
+                CurrentRotationState = CurrentRotationState.RotatePositiveAroundZAxis();
             }
         }        
 
@@ -107,8 +111,13 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
         {
             if (!LockZAxisRotation)
             {
-                currentRotationState = currentRotationState.RotateNegativeAroundZAxis();
+                CurrentRotationState = CurrentRotationState.RotateNegativeAroundZAxis();
             }
-        }                          
+        }
+
+        public override void Visit(BlockDecoratorVisitor visitor)   
+        {
+            visitor.Accept(this);
+        }                       
     }
 }

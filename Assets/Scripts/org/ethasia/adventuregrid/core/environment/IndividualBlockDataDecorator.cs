@@ -1,3 +1,5 @@
+using Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators;
+
 namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
     public abstract class IndividualBlockDataDecorator : Block
@@ -8,5 +10,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
         {
             this.decoratedBlock = decoratedBlock;
         }
+
+        public abstract void Visit(BlockDecoratorVisitor visitor); 
     }
 }

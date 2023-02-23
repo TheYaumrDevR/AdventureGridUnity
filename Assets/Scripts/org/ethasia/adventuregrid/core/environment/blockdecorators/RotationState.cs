@@ -7,6 +7,6 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
         RotationState RotatePositiveAroundYAxis();      
         RotationState RotateNegativeAroundYAxis();
         RotationState RotatePositiveAroundZAxis();      
-        RotationState RotateNegativeAroundZAxis(); 
+        RotationState RotateNegativeAroundZAxis();
     }
 }
