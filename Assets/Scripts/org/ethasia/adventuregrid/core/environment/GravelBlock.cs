@@ -1,6 +1,6 @@
 namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
-    public class GravelBlock : Block
+    public class GravelBlock : UnvisitableBlock
     {
         private GravelBlock() : base(BlockTypes.GRAVEL)
         {

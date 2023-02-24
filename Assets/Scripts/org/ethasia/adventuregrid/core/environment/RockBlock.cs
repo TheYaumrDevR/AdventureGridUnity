@@ -1,6 +1,6 @@
 ﻿namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
-    public class RockBlock : Block
+    public class RockBlock : UnvisitableBlock
     {
         private RockBlock() : base(BlockTypes.ROCK)
         {

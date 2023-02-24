@@ -1,6 +1,6 @@
 ﻿namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
-    public class AirBlock : Block
+    public class AirBlock : UnvisitableBlock
     {
         private AirBlock() : base(BlockTypes.AIR)
         {

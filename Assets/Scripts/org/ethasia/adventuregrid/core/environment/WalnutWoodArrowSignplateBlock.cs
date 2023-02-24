@@ -2,7 +2,7 @@ using Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators;
 
 namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
-    public class WalnutWoodArrowSignplateBlock : Block
+    public class WalnutWoodArrowSignplateBlock : UnvisitableBlock
     {
         private WalnutWoodArrowSignplateBlock() : base(BlockTypes.WALNUT_WOOD_ARROW_SIGNPLATE)
         {

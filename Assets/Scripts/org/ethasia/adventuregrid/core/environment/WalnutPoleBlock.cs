@@ -1,6 +1,6 @@
 namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
-    public class WalnutPoleBlock : Block
+    public class WalnutPoleBlock : UnvisitableBlock
     {
         private WalnutPoleBlock() : base(BlockTypes.WALNUT_WOOD_POLE)
         {

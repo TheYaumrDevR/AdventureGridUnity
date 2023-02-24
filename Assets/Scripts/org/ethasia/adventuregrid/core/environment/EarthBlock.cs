@@ -1,6 +1,6 @@
 ﻿namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
-    public class EarthBlock : Block
+    public class EarthBlock : UnvisitableBlock
     {
         private EarthBlock() : base(BlockTypes.EARTH)
         {

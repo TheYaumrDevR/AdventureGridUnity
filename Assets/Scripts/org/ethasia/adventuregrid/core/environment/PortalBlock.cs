@@ -1,6 +1,6 @@
 ﻿namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
-    public class PortalBlock : Block
+    public class PortalBlock : UnvisitableBlock
     {
         private PortalBlock() : base(BlockTypes.PORTAL)
         {

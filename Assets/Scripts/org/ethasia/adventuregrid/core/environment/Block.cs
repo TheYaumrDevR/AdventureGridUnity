@@ -1,4 +1,6 @@
-﻿namespace Org.Ethasia.Adventuregrid.Core.Environment
+﻿using Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators;
+
+namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
     public abstract class Block
     {
@@ -15,7 +17,7 @@
             return faceHidingStrategy;
         }
 
-        public Block(BlockTypes blockType) 
+        protected Block(BlockTypes blockType) 
         {
             this.blockType = blockType;
         }
@@ -28,5 +30,7 @@
         public abstract bool GetTopFaceIsCovering();
 
         public abstract bool IsWalkable();
+
+        public abstract void Visit(BlockDecoratorVisitor visitor); 
     }
 }
