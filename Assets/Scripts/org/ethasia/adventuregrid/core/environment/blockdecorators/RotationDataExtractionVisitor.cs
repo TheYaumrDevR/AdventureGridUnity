@@ -3,6 +3,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
     public class RotationDataExtractionVisitor : BlockDecoratorVisitor
     {
         private static RotationDataExtractionVisitor instance;
+        private RotationState extractedRotationState;
 
         public static RotationDataExtractionVisitor GetInstance()
         {
@@ -30,12 +31,12 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
             get 
             {
                 HasRotationState = false;
-                return ExtractedRotationState;
+                return extractedRotationState;
             }
 
             private set
             {
-                ExtractedRotationState = value;
+                extractedRotationState = value;
             }
         }
 
