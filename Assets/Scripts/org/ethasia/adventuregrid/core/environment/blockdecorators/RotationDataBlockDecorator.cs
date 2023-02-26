@@ -118,6 +118,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
         public override void Visit(BlockDecoratorVisitor visitor)   
         {
             visitor.Accept(this);
+            decoratedBlock.Visit(visitor);
         }                       
     }
 }

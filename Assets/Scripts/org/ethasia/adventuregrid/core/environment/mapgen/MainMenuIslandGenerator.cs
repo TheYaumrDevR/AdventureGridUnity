@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators;
 using Org.Ethasia.Adventuregrid.Core.InputInterfaces;
 using Org.Ethasia.Adventuregrid.Core.Math;
 
@@ -97,6 +98,13 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             result.PlaceBlockAt(quitGameSignPlateBlock, new BlockPosition(47, 24, 17));
 
             Block newGameSignPlateBlock = WalnutWoodArrowSignplateBlock.GetInstance();
+
+            RotationVisitor blockRotator = RotationVisitor.GetInstance();
+            newGameSignPlateBlock.Visit(blockRotator);
+
+            blockRotator.RotatePositiveAroundYAxis();
+            blockRotator.RotatePositiveAroundYAxis();
+
             result.PlaceBlockAt(newGameSignPlateBlock, new BlockPosition(45, 24, 17));            
         }        
     }

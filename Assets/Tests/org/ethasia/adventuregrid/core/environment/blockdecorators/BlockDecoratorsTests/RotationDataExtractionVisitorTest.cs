@@ -9,7 +9,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators.Tests
         public void TestVisitExtractsRotationData()
         {
             RotationDataExtractionVisitor testCandidate = RotationDataExtractionVisitor.GetInstance();
-            RotationDataBlockDecorator block = new RotationDataBlockDecorator(WalnutWoodArrowSignplateBlock.GetInstance());
+            RotationDataBlockDecorator block = new RotationDataBlockDecorator(EarthBlock.GetInstance());
 
             block.RotatePositiveAroundXAxis();
             block.RotateNegativeAroundYAxis();
@@ -28,7 +28,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators.Tests
         public void TestVisitHasRotationStateResetsAfterExtraction()
         {
             RotationDataExtractionVisitor testCandidate = RotationDataExtractionVisitor.GetInstance();
-            RotationDataBlockDecorator block = new RotationDataBlockDecorator(WalnutWoodArrowSignplateBlock.GetInstance());
+            RotationDataBlockDecorator block = new RotationDataBlockDecorator(EarthBlock.GetInstance());
 
             block.RotatePositiveAroundXAxis();
             block.RotatePositiveAroundXAxis();
