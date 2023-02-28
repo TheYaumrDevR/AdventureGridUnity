@@ -48,5 +48,10 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
         {
             return BackPointingRightRotationState.GetInstance();
         }
+
+        public RotationStates GetRotationIdentifier()
+        {
+            return RotationStates.BACK_POINTING_UP;
+        }        
     }
 }

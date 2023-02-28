@@ -1,0 +1,30 @@
+namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
+{
+    public enum RotationStates
+    {
+        BACK_POINTING_DOWN,
+        BACK_POINTING_LEFT,
+        BACK_POINTING_RIGHT,
+        BACK_POINTING_UP,
+        DOWN_POINTING_BACK,
+        DOWN_POINTING_FRONT,
+        DOWN_POINTING_RIGHT,
+        DOWN_POINTING_LEFT,
+        FRONT_POINTING_DOWN,
+        FRONT_POINTING_LEFT,
+        FRONT_POINTING_RIGHT,
+        FRONT_POINTING_UP,
+        LEFT_POINTING_BACK,
+        LEFT_POINTING_FRONT,
+        LEFT_POINTING_UP,
+        LEFT_POINTING_DOWN,
+        RIGHT_POINTING_BACK,
+        RIGHT_POINTING_FRONT,
+        RIGHT_POINTING_DOWN,
+        RIGHT_POINTING_UP,
+        UP_POINTING_BACK,
+        UP_POINTING_FRONT,
+        UP_POINTING_LEFT,
+        UP_POINTING_RIGHT
+    }
+}

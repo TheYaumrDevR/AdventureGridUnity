@@ -1,4 +1,5 @@
-﻿using Org.Ethasia.Adventuregrid.Core.Environment;
+﻿using Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators;
+using Org.Ethasia.Adventuregrid.Core.Environment;
 using Org.Ethasia.Adventuregrid.Core.Math;
 
 namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
@@ -10,6 +11,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         private static StandardBlockVisualsBuilder standardBlockVisualsBuilder = new StandardBlockVisualsBuilder();
         private static PoleBlockVisualsBuilder poleBlockVisualsBuilder = new PoleBlockVisualsBuilder();
         private static SignPlateBlockVisualsBuilder signPlateBlockVisualsBuilder = new SignPlateBlockVisualsBuilder();
+
+        protected RotationStates rotationState;
 
         public static BlockVisualsBuilder FromBlockType(BlockTypes blockType)
         {
@@ -26,6 +29,13 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
         public abstract BlockVisualsBuilder SetBlockToCreateDataFrom(Block value);
         public abstract BlockVisualsBuilder SetPositionOfBlockInChunk(BlockPosition value);
+
+        public BlockVisualsBuilder SetBlockRotationState(RotationStates rotationState)
+        {
+            this.rotationState = rotationState;
+            return this;
+        }
+
         public abstract BlockVisualsBuilder SetFrontFaceOfBlockIsHidden(bool value);
         public abstract BlockVisualsBuilder SetRightFaceOfBlockIsHidden(bool value);
         public abstract BlockVisualsBuilder SetBackFaceOfBlockIsHidden(bool value);

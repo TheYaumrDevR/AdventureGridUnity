@@ -2,6 +2,7 @@ using static Org.Ethasia.Adventuregrid.Ioadapters.Presenters.StandardIslandPrese
 
 using System.Collections.Generic;
 
+using Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators;
 using Org.Ethasia.Adventuregrid.Core.Environment;
 using Org.Ethasia.Adventuregrid.Core.Math;
 using Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Interfaces.Technical;
@@ -109,6 +110,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                 .SetLeftFaceOfBlockIsHidden(island.BlockFaceAtPositionIsHidden(BlockFaceDirections.LEFT, globalPosition))
                 .SetBottomFaceOfBlockIsHidden(island.BlockFaceAtPositionIsHidden(BlockFaceDirections.BOTTOM, globalPosition))
                 .SetTopFaceOfBlockIsHidden(island.BlockFaceAtPositionIsHidden(BlockFaceDirections.TOP, globalPosition))
+                .SetBlockRotationState(ExtractRotationState(currentBlock))
                 .Build();  
 
             return blockVisualsBuilder;
@@ -121,5 +123,18 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             floatBuffersOfOpaqueBlocksInChunk.Add(blockRenderDataBuilder.GetShapeUvCoordinates());
             intBuffersOfOpaqueBlocksInChunk.Add(blockRenderDataBuilder.GetShapeIndices()); 
         }
+
+        private RotationStates ExtractRotationState(Block currentBlock)
+        {
+            RotationDataExtractionVisitor rotationStateExtractor = RotationDataExtractionVisitor.GetInstance();
+            currentBlock.Visit(rotationStateExtractor);
+
+            if (rotationStateExtractor.HasRotationState)
+            {
+                return rotationStateExtractor.ExtractedRotationState.GetRotationIdentifier();
+            }
+
+            return RotationStates.FRONT_POINTING_UP;
+        } 
     }
 }

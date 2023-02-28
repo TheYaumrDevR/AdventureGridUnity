@@ -1,3 +1,4 @@
+using Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators;
 using Org.Ethasia.Adventuregrid.Core.Environment;
 using Org.Ethasia.Adventuregrid.Core.Math;
 
@@ -74,7 +75,17 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
         public override Vector3f[] GetBaseVertices()
         {
-            return BV;
+            switch(rotationState)
+            {
+                case RotationStates.RIGHT_POINTING_UP:
+                    return BVRightUp;
+                case RotationStates.BACK_POINTING_UP:
+                    return BVBackUp;
+                case RotationStates.LEFT_POINTING_UP:
+                    return BVLeftUp;
+                default:
+                    return BV;                                        
+            }
         }
     }
 }
