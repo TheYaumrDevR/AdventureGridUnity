@@ -8,6 +8,7 @@
         ROCK,
         GRAVEL,
         WALNUT_WOOD_POLE,
+        WALNUT_WOOD_ATTACHMENT_POLE,
         WALNUT_WOOD_ARROW_SIGNPLATE,
         PORTAL
     }

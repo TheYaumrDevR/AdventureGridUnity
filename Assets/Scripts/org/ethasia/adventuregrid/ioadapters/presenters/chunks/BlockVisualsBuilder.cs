@@ -11,6 +11,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         private static StandardBlockVisualsBuilder standardBlockVisualsBuilder = new StandardBlockVisualsBuilder();
         private static PoleBlockVisualsBuilder poleBlockVisualsBuilder = new PoleBlockVisualsBuilder();
         private static SignPlateBlockVisualsBuilder signPlateBlockVisualsBuilder = new SignPlateBlockVisualsBuilder();
+        private static AttachmentPoleBlockVisualsBuilder attachmentPoleBlockVisualsBuilder = new AttachmentPoleBlockVisualsBuilder();
 
         protected RotationStates rotationState;
 
@@ -22,6 +23,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                     return poleBlockVisualsBuilder;
                 case BlockTypes.WALNUT_WOOD_ARROW_SIGNPLATE:
                     return signPlateBlockVisualsBuilder;
+                case BlockTypes.WALNUT_WOOD_ATTACHMENT_POLE:
+                    return attachmentPoleBlockVisualsBuilder;
                 default:
                     return standardBlockVisualsBuilder;
             }

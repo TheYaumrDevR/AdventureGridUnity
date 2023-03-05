@@ -1,22 +1,22 @@
-﻿namespace Org.Ethasia.Adventuregrid.Core.Environment
+namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
-    public class AirBlock : UnvisitableBlock
+    public class WalnutAttachmentPoleBlock : UnvisitableBlock
     {
-        private AirBlock() : base(BlockTypes.AIR)
+        private WalnutAttachmentPoleBlock() : base(BlockTypes.WALNUT_WOOD_ATTACHMENT_POLE)
         {
-            faceHidingStrategy = new SolidBlockFaceHidingStrategy();
+            faceHidingStrategy = new PoleBlockFaceHidingStrategy();
         }
 
-        private static AirBlock instance;
+        private static WalnutAttachmentPoleBlock instance;
 
-        public static AirBlock GetInstance()
+        public static WalnutAttachmentPoleBlock GetInstance()
         {
-            if (null != instance) 
+            if (null != instance)
             {
                 return instance;
             }
 
-            instance = new AirBlock();
+            instance = new WalnutAttachmentPoleBlock();
             return instance;
         }
 
@@ -52,7 +52,7 @@
 
         public override bool IsWalkable()
         {
-            return false;
-        } 
+            return true;
+        }
     }
 }

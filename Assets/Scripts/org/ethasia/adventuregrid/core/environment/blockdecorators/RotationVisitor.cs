@@ -26,6 +26,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
             this.visited = visited;
         }        
 
+        public void Accept(NeighborAttachingBlockDecorator visited)
+        {
+            
+        }
+
         public void RotatePositiveAroundXAxis()
         {
             if (null != visited)

@@ -27,7 +27,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
         public abstract bool GetBackFaceIsCovering();
         public abstract bool GetLeftFaceIsCovering();
         public abstract bool GetBottomFaceIsCovering();
-        public abstract bool GetTopFaceIsCovering();
+        public abstract bool GetTopFaceIsCovering();      
 
         public abstract bool IsWalkable();
 

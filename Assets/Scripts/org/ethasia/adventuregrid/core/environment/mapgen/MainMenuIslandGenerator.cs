@@ -90,9 +90,12 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         private void PlaceSigns()
         {
             Block walnutPoleBlock = WalnutPoleBlock.GetInstance();
+            Block walnutPoleAttachmentBlock = WalnutAttachmentPoleBlock.GetInstance();
             result.PlaceBlockAt(walnutPoleBlock, new BlockPosition(46, 21, 17));
             result.PlaceBlockAt(walnutPoleBlock, new BlockPosition(46, 22, 17));
             result.PlaceBlockAt(walnutPoleBlock, new BlockPosition(46, 23, 17));
+            result.PlaceBlockAt(walnutPoleAttachmentBlock, new BlockPosition(46, 24, 17));
+            result.PlaceBlockAt(walnutPoleBlock, new BlockPosition(46, 25, 17));
 
             Block quitGameSignPlateBlock = WalnutWoodArrowSignplateBlock.GetInstance();
             result.PlaceBlockAt(quitGameSignPlateBlock, new BlockPosition(47, 24, 17));

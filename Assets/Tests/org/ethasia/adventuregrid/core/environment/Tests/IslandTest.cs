@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using System.Collections;
-using UnityEngine;
-using UnityEngine.TestTools;
 
 using Org.Ethasia.Adventuregrid.Core.Math;
 
@@ -9,7 +7,6 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Tests
 {
     public class IslandTest
     {
-
         [Test]
         public void BlockAtUninitializedPositionIsAir() 
         {

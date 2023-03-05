@@ -45,5 +45,10 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
             ExtractedRotationState = visited.CurrentRotationState;
             HasRotationState = true;
         }
+
+        public void Accept(NeighborAttachingBlockDecorator visited)
+        {
+
+        }
     }
 }
