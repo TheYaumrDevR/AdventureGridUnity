@@ -26,9 +26,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
             set;
         }                
 
-        public RotationDataBlockDecorator(Block decoratedBlock) : base(decoratedBlock)
-        {           
-            faceHidingStrategy = decoratedBlock.GetFaceHidingStrategy();
+        public RotationDataBlockDecorator(Block decoratedBlock) : base(decoratedBlock) 
+        {
             CurrentRotationState = FrontPointingUpRotationState.GetInstance();
         }
 

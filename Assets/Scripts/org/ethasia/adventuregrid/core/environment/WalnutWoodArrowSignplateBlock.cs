@@ -13,12 +13,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
 
         public static Block GetInstance()
         {
-            if (null != instance)
+            if (null == instance)
             {
-                return new RotationDataBlockDecorator(instance);
+                instance = new WalnutWoodArrowSignplateBlock();
             }
 
-            instance = new WalnutWoodArrowSignplateBlock();
             RotationDataBlockDecorator result = new RotationDataBlockDecorator(instance);
             result.LockXAxisRotation = true;
             result.LockZAxisRotation = true;

@@ -6,6 +6,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
     {
         protected readonly BlockTypes blockType;
         protected IBlockFaceHidingStrategy faceHidingStrategy;
+        protected IBlockAttachingStrategy blockAttachingStrategy;
 
         public BlockTypes GetBlockType() 
         {
@@ -16,6 +17,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
         {
             return faceHidingStrategy;
         }
+
+        public IBlockAttachingStrategy GetBlockAttachingStrategy() 
+        {
+            return blockAttachingStrategy;
+        }        
 
         protected Block(BlockTypes blockType) 
         {

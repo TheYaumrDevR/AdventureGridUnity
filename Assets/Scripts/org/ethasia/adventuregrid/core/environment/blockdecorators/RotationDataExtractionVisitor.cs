@@ -12,6 +12,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
                 instance = new RotationDataExtractionVisitor();
             }
             
+            instance.extractedRotationState = null;
             return instance;
         }
 

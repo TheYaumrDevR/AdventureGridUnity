@@ -7,6 +7,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
         public IndividualBlockDataDecorator(Block decoratedBlock) : base(decoratedBlock.GetBlockType())
         {
             this.decoratedBlock = decoratedBlock;
+            
+            faceHidingStrategy = decoratedBlock.GetFaceHidingStrategy();
+            blockAttachingStrategy = decoratedBlock.GetBlockAttachingStrategy();
         }
     }
 }

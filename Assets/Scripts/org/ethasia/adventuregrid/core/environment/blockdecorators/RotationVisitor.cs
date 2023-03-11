@@ -4,6 +4,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
     {
         private static RotationVisitor instance;
 
+        private RotationDataBlockDecorator visited;
+
         public static RotationVisitor GetInstance()
         {
             if (null == instance)
@@ -11,10 +13,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
                 instance = new RotationVisitor();
             }
             
+            instance.visited = null;
             return instance;
         }        
-
-        private RotationDataBlockDecorator visited;
 
         private RotationVisitor()
         {

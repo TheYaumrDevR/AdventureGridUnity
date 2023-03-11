@@ -1,3 +1,5 @@
+using Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators;
+
 namespace Org.Ethasia.Adventuregrid.Core.Environment
 {
     public class WalnutAttachmentPoleBlock : UnvisitableBlock
@@ -5,19 +7,19 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
         private WalnutAttachmentPoleBlock() : base(BlockTypes.WALNUT_WOOD_ATTACHMENT_POLE)
         {
             faceHidingStrategy = new PoleBlockFaceHidingStrategy();
+            blockAttachingStrategy = new SignPlateBlockAttachmentStrategy();
         }
 
         private static WalnutAttachmentPoleBlock instance;
 
-        public static WalnutAttachmentPoleBlock GetInstance()
+        public static Block GetInstance()
         {
-            if (null != instance)
+            if (null == instance)
             {
-                return instance;
+                instance = new WalnutAttachmentPoleBlock();
             }
 
-            instance = new WalnutAttachmentPoleBlock();
-            return instance;
+            return new NeighborAttachingBlockDecorator(instance);
         }
 
         public override bool GetFrontFaceIsCovering() 

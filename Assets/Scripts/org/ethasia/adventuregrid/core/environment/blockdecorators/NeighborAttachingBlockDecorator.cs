@@ -26,22 +26,19 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
             private set;
         }   
 
-        public bool IsAttachedToUpBlock
+        public bool IsAttachedToTopBlock
         {
             get;
             private set;
         }
 
-        public bool IsAttachedToDownBlock
+        public bool IsAttachedToBottomBlock
         {
             get;
             private set;
         }                             
 
-        public NeighborAttachingBlockDecorator(Block decoratedBlock) : base(decoratedBlock)
-        {           
-            faceHidingStrategy = decoratedBlock.GetFaceHidingStrategy();
-        }
+        public NeighborAttachingBlockDecorator(Block decoratedBlock) : base(decoratedBlock) {}
 
         public override bool GetFrontFaceIsCovering() 
         {
@@ -77,6 +74,54 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators
         {
             return decoratedBlock.IsWalkable();
         } 
+
+        public void BlockWasPlacedToLeft(Block leftNeighbor)
+        {
+            if (null != blockAttachingStrategy)
+            {
+                IsAttachedToLeftBlock = blockAttachingStrategy.AttachesToLeftBlock(leftNeighbor);
+            }
+        }
+
+        public void BlockWasPlacedToRight(Block leftNeighbor)
+        {
+            if (null != blockAttachingStrategy)
+            {
+                IsAttachedToRightBlock = blockAttachingStrategy.AttachesToRightBlock(leftNeighbor);
+            }
+        }    
+
+        public void BlockWasPlacedToFront(Block leftNeighbor)
+        {
+            if (null != blockAttachingStrategy)
+            {
+                IsAttachedToFrontBlock = blockAttachingStrategy.AttachesToFrontBlock(leftNeighbor);
+            }
+        }           
+
+        public void BlockWasPlacedToBack(Block leftNeighbor)
+        {
+            if (null != blockAttachingStrategy)
+            {
+                IsAttachedToBackBlock = blockAttachingStrategy.AttachesToBackBlock(leftNeighbor);
+            }
+        }         
+
+        public void BlockWasPlacedToTop(Block leftNeighbor)
+        {
+            if (null != blockAttachingStrategy)
+            {
+                IsAttachedToTopBlock = blockAttachingStrategy.AttachesToTopBlock(leftNeighbor);
+            }
+        }  
+
+        public void BlockWasPlacedToBottom(Block leftNeighbor)
+        {
+            if (null != blockAttachingStrategy)
+            {
+                IsAttachedToBottomBlock = blockAttachingStrategy.AttachesToBottomBlock(leftNeighbor);
+            }
+        }                
 
         public override void Visit(BlockDecoratorVisitor visitor)   
         {
