@@ -14,6 +14,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         private static AttachmentPoleBlockVisualsBuilder attachmentPoleBlockVisualsBuilder = new AttachmentPoleBlockVisualsBuilder();
 
         protected RotationStates rotationState;
+        protected BlockAttachmentState attachmentState;
 
         public static BlockVisualsBuilder FromBlockType(BlockTypes blockType)
         {
@@ -33,9 +34,15 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         public abstract BlockVisualsBuilder SetBlockToCreateDataFrom(Block value);
         public abstract BlockVisualsBuilder SetPositionOfBlockInChunk(BlockPosition value);
 
-        public BlockVisualsBuilder SetBlockRotationState(RotationStates rotationState)
+        public BlockVisualsBuilder SetBlockRotationState(RotationStates value)
         {
-            this.rotationState = rotationState;
+            rotationState = value;
+            return this;
+        }
+
+        public BlockVisualsBuilder SetBlockAttachmentState(BlockAttachmentState value)
+        {
+            attachmentState = value;
             return this;
         }
 

@@ -111,6 +111,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                 .SetBottomFaceOfBlockIsHidden(island.BlockFaceAtPositionIsHidden(BlockFaceDirections.BOTTOM, globalPosition))
                 .SetTopFaceOfBlockIsHidden(island.BlockFaceAtPositionIsHidden(BlockFaceDirections.TOP, globalPosition))
                 .SetBlockRotationState(ExtractRotationState(currentBlock))
+                .SetBlockAttachmentState(ExtractAttachmentState(currentBlock))
                 .Build();  
 
             return blockVisualsBuilder;
@@ -136,5 +137,22 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
             return RotationStates.FRONT_POINTING_UP;
         } 
+
+        private BlockAttachmentState ExtractAttachmentState(Block currentBlock)
+        {
+            BlockAttachmentState result = new BlockAttachmentState();
+
+            BlockNeighborAttachmentInfoVisitor attachmentStateExtractor = BlockNeighborAttachmentInfoVisitor.GetInstance();
+            currentBlock.Visit(attachmentStateExtractor);
+
+            result.IsAttachedToLeftNeighbor = attachmentStateExtractor.IsAttachedToLeftBlock();
+            result.IsAttachedToFrontNeighbor = attachmentStateExtractor.IsAttachedToFrontBlock();
+            result.IsAttachedToRightNeighbor = attachmentStateExtractor.IsAttachedToRightBlock();
+            result.IsAttachedToBackNeighbor = attachmentStateExtractor.IsAttachedToBackBlock();
+            result.IsAttachedToTopNeighbor = attachmentStateExtractor.IsAttachedToTopBlock();
+            result.IsAttachedToBottomNeighbor = attachmentStateExtractor.IsAttachedToBottomBlock();
+
+            return result;
+        }
     }
 }
