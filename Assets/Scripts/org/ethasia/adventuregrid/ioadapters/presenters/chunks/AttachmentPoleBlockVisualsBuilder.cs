@@ -205,6 +205,18 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
         private void BuildPositionsBuffer()
         {
+            InitPositionsBuffer();
+            SetupPositionsBuffer();
+        }
+
+        private void InitPositionsBuffer()
+        {
+            int amountOfUncoveredFaces = GetAmountOfUncoveredFaces();
+            positionsBuffer = new float[4 * 3 * amountOfUncoveredFaces];            
+        }
+
+        private void SetupPositionsBuffer()
+        {
             TranslateVertices();
             FillPositionsBuffer();
         }
@@ -217,33 +229,21 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             int faceOffset = 0;
             int currentBufferIndex = 0;
 
-            if (!frontFaceOfBlockIsHidden)
-            {
-                AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
-                currentBufferIndex += 6;
-                faceOffset += 4;
-            }
+            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+            currentBufferIndex += 6;
+            faceOffset += 4;
 
-            if (!rightFaceOfBlockIsHidden)
-            {
-                AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
-                currentBufferIndex += 6;
-                faceOffset += 4;
-            }
+            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+            currentBufferIndex += 6;
+            faceOffset += 4;
 
-            if (!backFaceOfBlockIsHidden)
-            {
-                AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
-                currentBufferIndex += 6;
-                faceOffset += 4;
-            }
+            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+            currentBufferIndex += 6;
+            faceOffset += 4;
 
-            if (!leftFaceOfBlockIsHidden)
-            {
-                AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
-                currentBufferIndex += 6;
-                faceOffset += 4;
-            }
+            AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+            currentBufferIndex += 6;
+            faceOffset += 4;
 
             if (!bottomFaceOfBlockIsHidden)
             {
@@ -258,7 +258,45 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                 currentBufferIndex += 6;
                 faceOffset += 4;
             }
+
+            if (attachmentState.IsAttachedToLeftNeighbor)
+            {
+                BuildIndicesBufferForAttachment(currentBufferIndex, faceOffset);
+                currentBufferIndex += 24;
+                faceOffset += 16;
+            }
+
+            if (attachmentState.IsAttachedToFrontNeighbor)
+            {
+                BuildIndicesBufferForAttachment(currentBufferIndex, faceOffset);
+                currentBufferIndex += 24;
+                faceOffset += 16;
+            }             
+
+            if (attachmentState.IsAttachedToRightNeighbor)
+            {
+                BuildIndicesBufferForAttachment(currentBufferIndex, faceOffset);
+                currentBufferIndex += 24;
+                faceOffset += 16;
+            }  
+
+            if (attachmentState.IsAttachedToBackNeighbor)
+            {
+                BuildIndicesBufferForAttachment(currentBufferIndex, faceOffset);
+                currentBufferIndex += 24;
+                faceOffset += 16;
+            }             
         }
+
+        private void BuildIndicesBufferForAttachment(int currentBufferIndex, int faceOffset)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                AddNextFaceIndicesToBuffer(currentBufferIndex, faceOffset);
+                currentBufferIndex += 6;
+                faceOffset += 4;
+            }
+        }        
 
         private void BuildNormalsBuffer()
         {
@@ -302,25 +340,74 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             if (!topFaceOfBlockIsHidden)
             {
                 AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 1.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;  
             }
+
+            if (attachmentState.IsAttachedToLeftNeighbor)
+            {
+                BuildNormalsBufferForLeftOrRightAttachment(currentBufferIndex);
+                currentBufferIndex += 48;  
+            }
+
+            if (attachmentState.IsAttachedToFrontNeighbor)
+            {
+                BuildNormalsBufferForFrontOrBackAttachment(currentBufferIndex);
+                currentBufferIndex += 48;
+            }             
+
+            if (attachmentState.IsAttachedToRightNeighbor)
+            {
+                BuildNormalsBufferForLeftOrRightAttachment(currentBufferIndex);
+                currentBufferIndex += 48;
+            }  
+
+            if (attachmentState.IsAttachedToBackNeighbor)
+            {
+                BuildNormalsBufferForFrontOrBackAttachment(currentBufferIndex);
+            }             
         }
 
         private void TranslateVertices()
+        {
+            Vector3f[] BV = GetBaseVertices();
+
+            TranslateVertices(BV);
+
+            if (attachmentState.IsAttachedToLeftNeighbor)
+            {
+                TranslateVertices(BVLeftAttachment);
+            }
+
+            if (attachmentState.IsAttachedToFrontNeighbor)
+            {
+                TranslateVertices(BVFrontAttachment);
+            }             
+
+            if (attachmentState.IsAttachedToRightNeighbor)
+            {
+                TranslateVertices(BVRightAttachment);
+            }  
+
+            if (attachmentState.IsAttachedToBackNeighbor)
+            {
+                TranslateVertices(BVBackAttachment);
+            }              
+        }
+
+        private void TranslateVertices(Vector3f[] vertices)
         {
             Position3 cubeCenter = new Position3(0.25f + 0.5f * blockPosition.X,
                 0.25f + 0.5f * blockPosition.Y,
                 0.25f + 0.5f * blockPosition.Z);
 
-            Vector3f[] BV = GetBaseVertices();
-
-            BV[0].AddImmutableBufferResult(cubeCenter);
-            BV[1].AddImmutableBufferResult(cubeCenter);
-            BV[2].AddImmutableBufferResult(cubeCenter);
-            BV[3].AddImmutableBufferResult(cubeCenter);
-            BV[4].AddImmutableBufferResult(cubeCenter);
-            BV[5].AddImmutableBufferResult(cubeCenter);
-            BV[6].AddImmutableBufferResult(cubeCenter);
-            BV[7].AddImmutableBufferResult(cubeCenter);
+            vertices[0].AddImmutableBufferResult(cubeCenter);
+            vertices[1].AddImmutableBufferResult(cubeCenter);
+            vertices[2].AddImmutableBufferResult(cubeCenter);
+            vertices[3].AddImmutableBufferResult(cubeCenter);
+            vertices[4].AddImmutableBufferResult(cubeCenter);
+            vertices[5].AddImmutableBufferResult(cubeCenter);
+            vertices[6].AddImmutableBufferResult(cubeCenter);
+            vertices[7].AddImmutableBufferResult(cubeCenter);                
         }
 
         private Vector3f[] GetBaseVertices()
@@ -330,50 +417,119 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
         private void FillPositionsBuffer()
         {
-            int amountOfUncoveredFaces = GetAmountOfUncoveredFaces();
-            positionsBuffer = new float[4 * 3 * amountOfUncoveredFaces];
             int currentBufferPosition = 0;
+            Vector3f[] BV = GetBaseVertices();
 
-            if (!frontFaceOfBlockIsHidden)
-            {
-                SetFrontFaceVertices(currentBufferPosition);
-                currentBufferPosition += 12;
-            }
+            SetFrontFaceVertices(currentBufferPosition, BV);
+            currentBufferPosition += 12;
 
-            if (!rightFaceOfBlockIsHidden) 
-            {
-                SetRightFaceVertices(currentBufferPosition);
-                currentBufferPosition += 12;
-            }
+            SetRightFaceVertices(currentBufferPosition, BV);
+            currentBufferPosition += 12;
 
-            if (!backFaceOfBlockIsHidden) 
-            {
-                SetBackFaceVertices(currentBufferPosition);
-                currentBufferPosition += 12;
-            }
+            SetBackFaceVertices(currentBufferPosition, BV);
+            currentBufferPosition += 12;
 
-            if (!leftFaceOfBlockIsHidden)
-            {
-                SetLeftFaceVertices(currentBufferPosition);
-                currentBufferPosition += 12;
-            }
+            SetLeftFaceVertices(currentBufferPosition, BV);
+            currentBufferPosition += 12;
 
             if (!bottomFaceOfBlockIsHidden)
             {
-                SetBottomFaceVertices(currentBufferPosition);
+                SetBottomFaceVertices(currentBufferPosition, BV);
                 currentBufferPosition += 12;
             }
 
             if (!topFaceOfBlockIsHidden)
             {
-                SetTopFaceVertices(currentBufferPosition);
+                SetTopFaceVertices(currentBufferPosition, BV);
+                currentBufferPosition += 12;
             }
+
+            if (attachmentState.IsAttachedToLeftNeighbor)
+            {
+                FillPositionsBufferLeftAttachment(currentBufferPosition);
+                currentBufferPosition += 48;
+            }
+
+            if (attachmentState.IsAttachedToFrontNeighbor)
+            {
+                FillPositionsBufferFrontAttachment(currentBufferPosition);
+                currentBufferPosition += 48;
+            } 
+
+            if (attachmentState.IsAttachedToRightNeighbor)
+            {
+                FillPositionsBufferRightAttachment(currentBufferPosition);
+                currentBufferPosition += 48;
+            }          
+
+            if (attachmentState.IsAttachedToBackNeighbor)
+            {
+                FillPositionsBufferBackAttachment(currentBufferPosition);
+            }                           
         }
 
-        private void SetFrontFaceVertices(int currentBufferPosition) 
+        private void FillPositionsBufferLeftAttachment(int currentBufferPosition)
         {
-            Vector3f[] BV = GetBaseVertices();
+            SetFrontFaceVertices(currentBufferPosition, BVLeftAttachment);
+            currentBufferPosition += 12;
 
+            SetBackFaceVertices(currentBufferPosition, BVLeftAttachment);
+            currentBufferPosition += 12;
+
+            SetBottomFaceVertices(currentBufferPosition, BVLeftAttachment);
+            currentBufferPosition += 12;
+
+            SetTopFaceVertices(currentBufferPosition, BVLeftAttachment);
+            currentBufferPosition += 12;
+        }
+
+        private void FillPositionsBufferFrontAttachment(int currentBufferPosition)
+        {
+            SetRightFaceVertices(currentBufferPosition, BVFrontAttachment);
+            currentBufferPosition += 12;
+
+            SetLeftFaceVertices(currentBufferPosition, BVFrontAttachment);
+            currentBufferPosition += 12;
+
+            SetBottomFaceVertices(currentBufferPosition, BVFrontAttachment);
+            currentBufferPosition += 12;
+
+            SetTopFaceVertices(currentBufferPosition, BVFrontAttachment);
+            currentBufferPosition += 12;
+        }        
+
+        private void FillPositionsBufferRightAttachment(int currentBufferPosition)
+        {
+            SetFrontFaceVertices(currentBufferPosition, BVRightAttachment);
+            currentBufferPosition += 12;
+
+            SetBackFaceVertices(currentBufferPosition, BVRightAttachment);
+            currentBufferPosition += 12;
+
+            SetBottomFaceVertices(currentBufferPosition, BVRightAttachment);
+            currentBufferPosition += 12;
+
+            SetTopFaceVertices(currentBufferPosition, BVRightAttachment);
+            currentBufferPosition += 12;
+        }      
+
+        private void FillPositionsBufferBackAttachment(int currentBufferPosition)
+        {
+            SetRightFaceVertices(currentBufferPosition, BVBackAttachment);
+            currentBufferPosition += 12;
+
+            SetLeftFaceVertices(currentBufferPosition, BVBackAttachment);
+            currentBufferPosition += 12;
+
+            SetBottomFaceVertices(currentBufferPosition, BVBackAttachment);
+            currentBufferPosition += 12;
+
+            SetTopFaceVertices(currentBufferPosition, BVBackAttachment);
+            currentBufferPosition += 12;
+        }           
+
+        private void SetFrontFaceVertices(int currentBufferPosition, Vector3f[] BV) 
+        {
             positionsBuffer[currentBufferPosition] = BV[0].GetBufferedResultX();
             positionsBuffer[currentBufferPosition + 1] = BV[0].GetBufferedResultY();
             positionsBuffer[currentBufferPosition + 2] = BV[0].GetBufferedResultZ();
@@ -391,10 +547,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             positionsBuffer[currentBufferPosition + 11] = BV[3].GetBufferedResultZ();              
         }
 
-        private void SetRightFaceVertices(int currentBufferPosition)
+        private void SetRightFaceVertices(int currentBufferPosition, Vector3f[] BV)
         {
-            Vector3f[] BV = GetBaseVertices();
-
             positionsBuffer[currentBufferPosition] = BV[7].GetBufferedResultX();
             positionsBuffer[currentBufferPosition + 1] = BV[7].GetBufferedResultY();
             positionsBuffer[currentBufferPosition + 2] = BV[7].GetBufferedResultZ();
@@ -412,10 +566,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             positionsBuffer[currentBufferPosition + 11] = BV[0].GetBufferedResultZ();  
         }
 
-        private void SetBackFaceVertices(int currentBufferPosition) 
+        private void SetBackFaceVertices(int currentBufferPosition, Vector3f[] BV) 
         {
-            Vector3f[] BV = GetBaseVertices();
-
             positionsBuffer[currentBufferPosition] = BV[4].GetBufferedResultX();
             positionsBuffer[currentBufferPosition + 1] = BV[4].GetBufferedResultY();
             positionsBuffer[currentBufferPosition + 2] = BV[4].GetBufferedResultZ();
@@ -433,10 +585,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             positionsBuffer[currentBufferPosition + 11] = BV[7].GetBufferedResultZ();   
         }
 
-        private void SetLeftFaceVertices(int currentBufferPosition)
+        private void SetLeftFaceVertices(int currentBufferPosition, Vector3f[] BV)
         {
-            Vector3f[] BV = GetBaseVertices();
-
             positionsBuffer[currentBufferPosition] = BV[3].GetBufferedResultX();
             positionsBuffer[currentBufferPosition + 1] = BV[3].GetBufferedResultY();
             positionsBuffer[currentBufferPosition + 2] = BV[3].GetBufferedResultZ();
@@ -454,10 +604,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             positionsBuffer[currentBufferPosition + 11] = BV[4].GetBufferedResultZ();   
         }
 
-        private void SetBottomFaceVertices(int currentBufferPosition)
+        private void SetBottomFaceVertices(int currentBufferPosition, Vector3f[] BV)
         {
-            Vector3f[] BV = GetBaseVertices();
-
             positionsBuffer[currentBufferPosition] = BV[7].GetBufferedResultX();
             positionsBuffer[currentBufferPosition + 1] = BV[7].GetBufferedResultY();
             positionsBuffer[currentBufferPosition + 2] = BV[7].GetBufferedResultZ();
@@ -475,10 +623,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             positionsBuffer[currentBufferPosition + 11] = BV[4].GetBufferedResultZ();   
         }
 
-        private void SetTopFaceVertices(int currentBufferPosition)
+        private void SetTopFaceVertices(int currentBufferPosition, Vector3f[] BV)
         {
-            Vector3f[] BV = GetBaseVertices();
-
             positionsBuffer[currentBufferPosition] = BV[1].GetBufferedResultX();
             positionsBuffer[currentBufferPosition + 1] = BV[1].GetBufferedResultY();
             positionsBuffer[currentBufferPosition + 2] = BV[1].GetBufferedResultZ();
@@ -521,6 +667,34 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             normalsBuffer[startIndex + 10] = normalY;
             normalsBuffer[startIndex + 11] = normalZ;    
         }
+
+        private void BuildNormalsBufferForLeftOrRightAttachment(int currentBufferIndex)
+        {
+            AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, 1.0f, currentBufferIndex); 
+            currentBufferIndex += 12;
+
+            AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, -1.0f, currentBufferIndex); 
+            currentBufferIndex += 12;         
+
+            AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, -1.0f, 0.0f, currentBufferIndex); 
+            currentBufferIndex += 12;         
+
+            AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 1.0f, 0.0f, currentBufferIndex); 
+        }
+
+        private void BuildNormalsBufferForFrontOrBackAttachment(int currentBufferIndex)
+        {
+            AddNormalForFaceWithGivenValuesStartingAtIndex(-1.0f, 0.0f, 0.0f, currentBufferIndex); 
+            currentBufferIndex += 12;
+
+            AddNormalForFaceWithGivenValuesStartingAtIndex(1.0f, 0.0f, 0.0f, currentBufferIndex); 
+            currentBufferIndex += 12;         
+
+            AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, -1.0f, 0.0f, currentBufferIndex); 
+            currentBufferIndex += 12;         
+
+            AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 1.0f, 0.0f, currentBufferIndex); 
+        }        
 
         private void BuildUvBuffer()
         {
@@ -604,27 +778,27 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
         private int GetAmountOfUncoveredFaces()
         {
-            int result = 0;
+            int result = 4;
 
-            if (!frontFaceOfBlockIsHidden) 
+            if (attachmentState.IsAttachedToLeftNeighbor)
             {
-                result++;
+                result += 4;
             }
 
-            if (!rightFaceOfBlockIsHidden)
+            if (attachmentState.IsAttachedToFrontNeighbor)
             {
-                result++;
-            }
+                result += 4;
+            }             
 
-            if (!backFaceOfBlockIsHidden)
+            if (attachmentState.IsAttachedToRightNeighbor)
             {
-                result++;
-            }
+                result += 4;
+            }  
 
-            if (!leftFaceOfBlockIsHidden)
+            if (attachmentState.IsAttachedToBackNeighbor)
             {
-                result++;
-            }
+                result += 4;
+            }                               
 
             if (!bottomFaceOfBlockIsHidden)
             {
