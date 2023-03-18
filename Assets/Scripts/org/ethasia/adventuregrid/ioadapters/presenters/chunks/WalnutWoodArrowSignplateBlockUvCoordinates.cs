@@ -42,6 +42,16 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         public override float[] GetBackUvCoordinates() 
         {
             return backUvCoordinates;
-        }           
+        }  
+
+        public override float[] GetUvCoordinatesForAttachmentState(BlockAttachmentState attachmentState) 
+        {                              
+            return uvCoordinates;
+        }
+    
+        public override float[] GetBackUvCoordinatesForAttachmentState(BlockAttachmentState attachmentState) 
+        {
+            return backUvCoordinates;
+        }                   
     }
 }

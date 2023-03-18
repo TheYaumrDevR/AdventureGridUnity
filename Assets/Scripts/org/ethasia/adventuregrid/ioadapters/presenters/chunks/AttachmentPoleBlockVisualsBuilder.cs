@@ -756,8 +756,17 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                 {
                     currentSourceBufferIndex = amountOfUvFloatsPerFace * 5;
                     CopyUvCoordinatesFromSourceBufferToUvBuffer(currentTargetBufferIndex, blockUvCoordinates, currentSourceBufferIndex);   
-                }                                                        
-            }
+
+                    currentTargetBufferIndex += amountOfUvFloatsPerFace;
+                }      
+
+                float[] attachmentBlocksUvCoordinates = BlockUvCoordinates.FromBlockType(blockToRender.GetBlockType()).GetUvCoordinatesForAttachmentState(attachmentState);
+
+                for (int i = 0; i < attachmentBlocksUvCoordinates.Length; i++)
+                {
+                    uvBuffer[currentTargetBufferIndex + i] = attachmentBlocksUvCoordinates[i];
+                }  
+            }                                                                 
         }
 
         private void CopyUvCoordinatesFromSourceBufferToUvBuffer(int destintationBufferStartingIndex, float[] sourceBuffer, int sourceDataStartingIndex) 

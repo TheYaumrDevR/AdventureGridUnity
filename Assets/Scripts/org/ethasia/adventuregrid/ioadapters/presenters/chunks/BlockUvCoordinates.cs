@@ -33,5 +33,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
         public abstract float[] GetUvCoordinates();    
         public abstract float[] GetBackUvCoordinates(); 
+        public abstract float[] GetUvCoordinatesForAttachmentState(BlockAttachmentState attachmentState);
+        public abstract float[] GetBackUvCoordinatesForAttachmentState(BlockAttachmentState attachmentState);
     }
 }

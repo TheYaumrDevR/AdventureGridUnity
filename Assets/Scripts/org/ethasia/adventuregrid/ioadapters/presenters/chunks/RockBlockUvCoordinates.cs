@@ -43,5 +43,15 @@
         {
             return backUvCoordinates;
         } 
+
+        public override float[] GetUvCoordinatesForAttachmentState(BlockAttachmentState attachmentState) 
+        {                              
+            return uvCoordinates;
+        }
+    
+        public override float[] GetBackUvCoordinatesForAttachmentState(BlockAttachmentState attachmentState) 
+        {
+            return backUvCoordinates;
+        }          
     }
 }
