@@ -9,12 +9,12 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         private BlockPosition blockPosition;
         private int indexBufferOffsetInChunk;
 
-        private bool frontFaceOfBlockIsHidden;
-        private bool rightFaceOfBlockIsHidden;
-        private bool backFaceOfBlockIsHidden;
-        private bool leftFaceOfBlockIsHidden;
-        private bool bottomFaceOfBlockIsHidden;
-        private bool topFaceOfBlockIsHidden;
+        protected bool frontFaceOfBlockIsHidden;
+        protected bool rightFaceOfBlockIsHidden;
+        protected bool backFaceOfBlockIsHidden;
+        protected bool leftFaceOfBlockIsHidden;
+        protected bool bottomFaceOfBlockIsHidden;
+        protected bool topFaceOfBlockIsHidden;
 
         private float[] positionsBuffer;
         private int[] indexBuffer;
@@ -184,6 +184,11 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 
             normalsBuffer = new float[amountOfUncoveredFaces * vectorsPerFace * 3];
 
+            FillNormalsBuffer();
+        }
+
+        protected virtual void FillNormalsBuffer()
+        {
             int currentBufferIndex = 0;
 
             if (!frontFaceOfBlockIsHidden)
@@ -418,7 +423,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             indexBuffer[currentBufferIndex + 5] = 0 + faceOffset + indexBufferOffsetInChunk;  
         }
 
-        private void AddNormalForFaceWithGivenValuesStartingAtIndex(float normalX, float normalY, float normalZ, int startIndex)
+        protected void AddNormalForFaceWithGivenValuesStartingAtIndex(float normalX, float normalY, float normalZ, int startIndex)
         {
             normalsBuffer[startIndex] = normalX;
             normalsBuffer[startIndex + 1] = normalY;

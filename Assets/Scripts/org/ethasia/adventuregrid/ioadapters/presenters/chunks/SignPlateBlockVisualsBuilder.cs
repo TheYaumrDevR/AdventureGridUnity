@@ -87,5 +87,144 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                     return BV;                                        
             }
         }
+
+        protected override void FillNormalsBuffer()
+        {
+            switch(rotationState)
+            {
+                case RotationStates.RIGHT_POINTING_UP:
+                    FillNormalsBufferForRightFacingRotation();
+                    break;
+                case RotationStates.BACK_POINTING_UP:
+                    FillNormalsBufferForBackFacingRotation();
+                    break;
+                case RotationStates.LEFT_POINTING_UP:
+                    FillNormalsBufferForLeftFacingRotation();
+                    break;
+                default:
+                    base.FillNormalsBuffer();      
+                    break;                                  
+            }                        
+        }
+
+        private void FillNormalsBufferForRightFacingRotation()
+        {
+            int currentBufferIndex = 0;
+
+            if (!rightFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(-1.0f, 0.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;
+            }  
+
+            if (!backFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, -1.0f, currentBufferIndex); 
+                currentBufferIndex += 12;  
+            }                     
+
+            if (!leftFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(1.0f, 0.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;   
+            }               
+
+            if (!frontFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, 1.0f, currentBufferIndex); 
+                currentBufferIndex += 12;
+            }    
+
+            if (!bottomFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, -1.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;  
+            }        
+
+            if (!topFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 1.0f, 0.0f, currentBufferIndex); 
+            }            
+        }
+
+        private void FillNormalsBufferForBackFacingRotation()
+        {
+            int currentBufferIndex = 0;
+
+            if (!backFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, -1.0f, currentBufferIndex); 
+                currentBufferIndex += 12;  
+            }     
+
+            if (!leftFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(1.0f, 0.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;   
+            } 
+
+            if (!frontFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, 1.0f, currentBufferIndex); 
+                currentBufferIndex += 12;
+            }   
+
+            if (!rightFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(-1.0f, 0.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;
+            }            
+
+            if (!bottomFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, -1.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;  
+            }        
+
+            if (!topFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 1.0f, 0.0f, currentBufferIndex); 
+            }            
+        }
+
+        private void FillNormalsBufferForLeftFacingRotation()
+        {
+            int currentBufferIndex = 0;
+
+            if (!leftFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(1.0f, 0.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;   
+            }  
+
+            if (!frontFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, 1.0f, currentBufferIndex); 
+                currentBufferIndex += 12;
+            }  
+
+            if (!rightFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(-1.0f, 0.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;
+            }       
+
+            if (!backFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 0.0f, -1.0f, currentBufferIndex); 
+                currentBufferIndex += 12;  
+            }                                         
+
+            if (!bottomFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, -1.0f, 0.0f, currentBufferIndex); 
+                currentBufferIndex += 12;  
+            }        
+
+            if (!topFaceOfBlockIsHidden)
+            {
+                AddNormalForFaceWithGivenValuesStartingAtIndex(0.0f, 1.0f, 0.0f, currentBufferIndex); 
+            }             
+        }                        
     }
 }
