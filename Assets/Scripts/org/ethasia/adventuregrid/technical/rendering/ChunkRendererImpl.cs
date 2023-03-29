@@ -27,7 +27,7 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
             CreateChunkMesh(chunkData);
         }
 
-        private ChunkMesh CreateChunkMesh(VisualChunkData chunkData)
+        private void CreateChunkMesh(VisualChunkData chunkData)
         {
             ChunkMesh result = new ChunkMesh(chunkData);
             result.SetMaterial(opaqueChunkMaterial);
@@ -35,8 +35,6 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
 
             Vector3 chunkPosition = new Vector3(chunkData.GetWorldX() * StandardIslandPresenter.CHUNK_EDGE_LENGTH_IN_BLOCKS * 0.5f, 0, chunkData.GetWorldY() * StandardIslandPresenter.CHUNK_EDGE_LENGTH_IN_BLOCKS * 0.5f);
             result.SetPosition(chunkPosition);
-
-            return result;
         }      
     }
 }
