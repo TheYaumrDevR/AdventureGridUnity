@@ -18,5 +18,6 @@ namespace Org.Ethasia.Adventuregrid.Interactors.Factories
 
         public abstract GroundedCheckInteractor CreateGroundedCheckInteractor();    
         public abstract SetupMainMenuInteractor CreateSetupMainMenuInteractor();    
+        public abstract CreateWorldInteractor CreateCreateWorldInteractor();
     }
 }

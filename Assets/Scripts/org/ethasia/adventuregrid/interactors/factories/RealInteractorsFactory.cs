@@ -14,5 +14,10 @@ namespace Org.Ethasia.Adventuregrid.Interactors.Factories
         {
             return new SetupMainMenuInteractorImpl();
         }
+
+        public override CreateWorldInteractor CreateCreateWorldInteractor()
+        {
+            return new CreateWorldInteractorImpl();
+        }
     }
 }

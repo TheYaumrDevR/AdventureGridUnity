@@ -15,5 +15,10 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Mocks
         {
             return null;
         }
+
+        public override CreateWorldInteractor CreateCreateWorldInteractor()
+        {
+            return null;
+        }
     }
 }

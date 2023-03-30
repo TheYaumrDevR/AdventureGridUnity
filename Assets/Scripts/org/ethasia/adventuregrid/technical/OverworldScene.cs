@@ -1,8 +1,7 @@
-using UnityEngine;
+using UnityEngine; 
 
-using Org.Ethasia.Adventuregrid.Core;
-using Org.Ethasia.Adventuregrid.Core.Environment;
-using Org.Ethasia.Adventuregrid.Ioadapters.Presenters;
+using Org.Ethasia.Adventuregrid.Interactors.Factories;
+using Org.Ethasia.Adventuregrid.Interactors.Input;
 
 namespace Org.Ethasia.Adventuregrid.Technical
 {
@@ -10,17 +9,8 @@ namespace Org.Ethasia.Adventuregrid.Technical
     {
         void Start()
         {
-            CreateTestIsland();
-        }
-
-        private void CreateTestIsland()
-        {
-            CoreFactory.GetInstance().InitGlobalRandomNumberGeneratorWithSeed(1726289369);
-
-            World.CreateNewWorld();
-
-            StandardIslandPresenter islandPresenter = new StandardIslandPresenter();
-            islandPresenter.PresentIsland(World.CurrentIsland());
-        }         
+            CreateWorldInteractor createWorldInteractor = InteractorsFactory.GetInstance().CreateCreateWorldInteractor();
+            createWorldInteractor.CreateAndRenderFirstIsland();
+        }        
     }
 }
