@@ -12,5 +12,10 @@
         {
             return -Floor(-x);
         }
+
+        public static bool NearlyEqual(float a, float b, float threshold)
+        {
+            return ((a < b) ? (b - a) : (a - b)) <= threshold;
+        }
     }
 }
