@@ -8,6 +8,7 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
     public class PlayerMovementControlKeyboard : MonoBehaviour
     {
         private const float JUMP_FORCE = 3.3f;
+        private static PlayerMovementControlKeyboard instance;
 
         [SerializeField]
         private Rigidbody playerCharacterRigidBody;
@@ -17,6 +18,16 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
 
         private PlayerWithWorldInteractionController playerWithWorldInteractionController;
 
+        public static PlayerMovementControlKeyboard GetInstance()
+        {
+            return instance;
+        }
+
+        void Awake()
+        {
+            instance = this;
+        }
+
         void FixedUpdate()
         {
             if ((Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.Space)) && PlayerCharacterIsGrounded()) 
@@ -25,7 +36,7 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
             }
         }
 
-        private bool PlayerCharacterIsGrounded()
+        public bool PlayerCharacterIsGrounded()
         {
             InitializePlayerWithWorldInteractionControllerIfNull();
             Position3 playerAvatarFeetPosition = new Position3(playerAvatarTransform.position.x, playerAvatarTransform.position.y, playerAvatarTransform.position.z);

@@ -12,6 +12,9 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
         [SerializeField]
         private Rigidbody playerCharacterRigidBody;
 
+        [SerializeField]
+        private AudioSource grassFootStepsSound;
+
         void FixedUpdate()
         {
             if (Input.GetMouseButton(InputControlConstants.LEFT_MOUSE_BUTTON) && Input.GetMouseButton(InputControlConstants.RIGHT_MOUSE_BUTTON))
@@ -23,7 +26,20 @@ namespace Org.Ethasia.Adventuregrid.Technical.Inputcontrols
 
                 playerCharacterRigidBody.MovePosition(currentPlayerCharacterPosition + movementDirectionVector * Time.deltaTime * PLAYER_MOVEMENT_SPEED);
                 playerCharacterRigidBody.MoveRotation(rotationMovement);
+
+                if (PlayerMovementControlKeyboard.GetInstance().PlayerCharacterIsGrounded())
+                {
+                    grassFootStepsSound.enabled = true;
+                }
+                else
+                {
+                    grassFootStepsSound.enabled = false;
+                }
             }
-        }
+            else
+            {
+                grassFootStepsSound.enabled = false;
+            }
+        }       
     }
 }
