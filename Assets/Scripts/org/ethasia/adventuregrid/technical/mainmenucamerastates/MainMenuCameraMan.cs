@@ -46,9 +46,9 @@ namespace Org.Ethasia.Adventuregrid.Technical.Mainmenucamerastates
 
         public bool IsMovingCamera()
         {
-            return !FastMath.NearlyEqual(mainMenuCameraTransform.position.x, cameraState.GetTargetPosition().x, 0.01f) 
-                || !FastMath.NearlyEqual(mainMenuCameraTransform.position.y, cameraState.GetTargetPosition().y, 0.01f) 
-                || !FastMath.NearlyEqual(mainMenuCameraTransform.position.z, cameraState.GetTargetPosition().z, 0.01f);
+            return !FastMath.NearlyEqual(mainMenuCameraTransform.position.x, cameraState.GetTargetPosition().x, 0.3f) 
+                || !FastMath.NearlyEqual(mainMenuCameraTransform.position.y, cameraState.GetTargetPosition().y, 0.3f) 
+                || !FastMath.NearlyEqual(mainMenuCameraTransform.position.z, cameraState.GetTargetPosition().z, 0.3f);
         }
     }
 }
