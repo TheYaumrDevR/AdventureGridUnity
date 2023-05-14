@@ -17,6 +17,7 @@ namespace Org.Ethasia.Adventuregrid.Interactors.Factories
             return instance;
         }
 
-        public abstract IslandPresenter CreateIslandPresenter();        
+        public abstract IslandPresenter CreateIslandPresenter();     
+        public abstract PlayerCharacterPresenter CreatePlayerCharacterPresenter();   
     }
 }

@@ -9,5 +9,10 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Mocks
         {
             return new ChunkRendererMock();
         }
+
+        public override PlayerRenderer GetPlayerRendererInstance()
+        {
+            return new PlayerRendererMock();
+        }
     }
 }

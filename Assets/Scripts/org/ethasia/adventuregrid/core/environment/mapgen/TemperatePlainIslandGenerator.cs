@@ -9,14 +9,16 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 {
     public class TemperatePlainIslandGenerator : IslandGenerator
     {
-
         public override Island GenerateIsland(int edgeLength, HashSet<BlockPosition> coastlineHeightMap) 
         {
             result =  new Island(edgeLength);
             this.coastlineHeightMap = coastlineHeightMap;
+
+            PlayerSpawnPointFinder playerSpawnPointFinder = new PlayerSpawnPointFinder();
         
             CreateHeightMap();
             DisplaceHeightMapByLowestPointOfCoastline();
+            playerSpawnPointFinder.DeterminePlayerSpawnPoint(result, heightMap);
             CreateBlocksBasedOnHeightMap();
         
             return result;
@@ -65,6 +67,6 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                     }
                 }            
             }
-        }                  
+        }                                   
     }
 }

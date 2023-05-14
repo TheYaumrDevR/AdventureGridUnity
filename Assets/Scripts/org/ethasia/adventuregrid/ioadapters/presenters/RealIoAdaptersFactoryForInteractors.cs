@@ -9,5 +9,10 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters
         {
             return new StandardIslandPresenter();
         }
+
+        public override PlayerCharacterPresenter CreatePlayerCharacterPresenter()
+        {
+            return new StandardPlayerCharacterPresenter();
+        }        
     }
 }

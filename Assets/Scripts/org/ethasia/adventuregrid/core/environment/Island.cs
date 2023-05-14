@@ -11,6 +11,12 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
         private readonly int xzDimension;
         private readonly Block[,,] blocks;
 
+        public BlockPosition PlayerSpawnPosition
+        {
+            get;
+            set;
+        }
+
         public bool IsEditable
         {
             get;

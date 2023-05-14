@@ -17,5 +17,6 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters
         }
 
         public abstract ChunkRenderer GetChunkRendererInstance();
+        public abstract PlayerRenderer GetPlayerRendererInstance();
     }
 }

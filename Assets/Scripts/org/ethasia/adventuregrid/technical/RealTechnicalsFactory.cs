@@ -8,8 +8,14 @@ namespace Org.Ethasia.Adventuregrid.Technical
     {
         private ChunkRenderer chunkRenderer;
 
-        public override ChunkRenderer GetChunkRendererInstance() {
+        public override ChunkRenderer GetChunkRendererInstance() 
+        {
             return ChunkRendererImpl.GetInstance();
+        }
+
+        public override PlayerRenderer GetPlayerRendererInstance() 
+        {
+            return PlayerRendererImpl.GetInstance();
         }
     }
 }
