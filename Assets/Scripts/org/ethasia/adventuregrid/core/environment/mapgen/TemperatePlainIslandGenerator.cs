@@ -19,6 +19,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             CreateHeightMap();
             DisplaceHeightMapByLowestPointOfCoastline();
             playerSpawnPointFinder.DeterminePlayerSpawnPoint(result, heightMap);
+            CreateHeightMapForBottomSpikes();
             CreateBlocksBasedOnHeightMap();
         
             return result;

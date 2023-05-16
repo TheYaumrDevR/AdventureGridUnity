@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using UnityEngine;
+
 using Org.Ethasia.Adventuregrid.Core.Environment;
 using Org.Ethasia.Adventuregrid.Core.Math;
 
@@ -9,12 +11,14 @@ namespace Org.Ethasia.Adventuregrid.Core.InputInterfaces
     {
         protected Island result;
         protected int[,] heightMap;
+        protected int[,] bottomSpikesHeightMap;
         protected HashSet<BlockPosition> coastlineHeightMap;
 
         public abstract Island GenerateIsland(int edgeLength, HashSet<BlockPosition> coastlineHeightMap);
 
         protected void DisplaceHeightMapByLowestPointOfCoastline()
         {
+            bottomSpikesHeightMap = new int[result.GetXzDimension(), result.GetXzDimension()];
             int maximumHeightDifference = CalculateMaximumHeightDifference();
             OffsetHeightMapByCoastlineHeightDifference(maximumHeightDifference);          
         }
@@ -64,6 +68,19 @@ namespace Org.Ethasia.Adventuregrid.Core.InputInterfaces
             } 
         }
 
+        protected void CreateHeightMapForBottomSpikes()
+        {
+            for (int i = 0; i < result.GetXzDimension(); i++) 
+            {
+                for (int j = 0; j < result.GetXzDimension(); j++) 
+                {
+                    float heightValue = ((float)SimplexNoise.Noise(i * 0.02f, j * 0.02f) + 1) * 0.4f * Island.HALF_HEIGHT_IN_BLOCKS;
+                    int heightValueCeil = Mathf.CeilToInt(heightValue);
+                    bottomSpikesHeightMap[i, j] = heightValueCeil;
+                }
+            }
+        }
+
         protected void CreateBlocksBasedOnHeightMap() 
         {
             for (int i = 0; i < heightMap.GetLength(0); i++) 
@@ -76,17 +93,20 @@ namespace Org.Ethasia.Adventuregrid.Core.InputInterfaces
                     {
                         BlockPosition blockPosition = new BlockPosition(i, k, j);
 
-                        if (k < blockPillarHeight - 2) 
+                        if (k > bottomSpikesHeightMap[i, j])
                         {
-                            result.PlaceBlockAt(RockBlock.GetInstance(), blockPosition);
-                        } 
-                        else if (k < blockPillarHeight - 1) 
-                        {
-                            result.PlaceBlockAt(EarthBlock.GetInstance(), blockPosition);
-                        } 
-                        else 
-                        {
-                            result.PlaceBlockAt(GrassyEarthBlock.GetInstance(), blockPosition);
+                            if (k < blockPillarHeight - 2) 
+                            {
+                                result.PlaceBlockAt(RockBlock.GetInstance(), blockPosition);
+                            } 
+                            else if (k < blockPillarHeight - 1) 
+                            {
+                                result.PlaceBlockAt(EarthBlock.GetInstance(), blockPosition);
+                            } 
+                            else 
+                            {
+                                result.PlaceBlockAt(GrassyEarthBlock.GetInstance(), blockPosition);
+                            }
                         }
                     }
                 }
