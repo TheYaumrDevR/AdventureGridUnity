@@ -70,11 +70,16 @@ namespace Org.Ethasia.Adventuregrid.Core.InputInterfaces
 
         protected void CreateHeightMapForBottomSpikes()
         {
+            IRandomNumberGenerator randomNumberGenerator = CoreFactory.GetInstance().GetRandomNumberGeneratorInstance();
+
+            int randomPerlinNoiseOffsetX = randomNumberGenerator.GenerateIntegerBetweenAnd(-100000, 100000);
+            int randomPerlinNoiseOffsetY = randomNumberGenerator.GenerateIntegerBetweenAnd(-100000, 100000);
+
             for (int i = 0; i < result.GetXzDimension(); i++) 
             {
                 for (int j = 0; j < result.GetXzDimension(); j++) 
                 {
-                    float heightValue = ((float)SimplexNoise.Noise(i * 0.02f, j * 0.02f) + 1) * 0.4f * Island.HALF_HEIGHT_IN_BLOCKS;
+                    float heightValue = ((float)SimplexNoise.Noise((i + randomPerlinNoiseOffsetX) * 0.02f, (j + randomPerlinNoiseOffsetY) * 0.02f) + 1) * 0.4f * Island.HALF_HEIGHT_IN_BLOCKS;
                     int heightValueCeil = Mathf.CeilToInt(heightValue);
                     bottomSpikesHeightMap[i, j] = heightValueCeil;
                 }

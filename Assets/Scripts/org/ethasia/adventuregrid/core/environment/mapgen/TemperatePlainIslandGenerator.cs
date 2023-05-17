@@ -27,7 +27,11 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
         private void CreateHeightMap() 
         {
+            IRandomNumberGenerator randomNumberGenerator = CoreFactory.GetInstance().GetRandomNumberGeneratorInstance();
             heightMap = new int[result.GetXzDimension(), result.GetXzDimension()];
+
+            int randomPerlinNoiseOffsetX = randomNumberGenerator.GenerateIntegerBetweenAnd(-100000, 100000);
+            int randomPerlinNoiseOffsetY = randomNumberGenerator.GenerateIntegerBetweenAnd(-100000, 100000);
         
             for (int i = 0; i < result.GetXzDimension(); i++) 
             {
@@ -36,23 +40,23 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                     BlockPosition coastLineHeightMapDeletedPosition = new BlockPosition(i, -1, j);
                     if (!coastlineHeightMap.Contains(coastLineHeightMapDeletedPosition))
                     {
-                        float scaledI = (i + 7023) * 4 / 16384.0f;
-                        float scaledJ = (j + 4359) * 4 / 16384.0f;
+                        float scaledI = (i + 7023 + randomPerlinNoiseOffsetX) * 4 / 16384.0f;
+                        float scaledJ = (j + 4359 + randomPerlinNoiseOffsetY) * 4 / 16384.0f;
                 
-                        float scaledI2 = (i + 4067) * 8 / 8192.0f;
-                        float scaledJ2 = (j + 6638) * 8 / 8192.0f;
+                        float scaledI2 = (i + 4067 + randomPerlinNoiseOffsetX) * 8 / 8192.0f;
+                        float scaledJ2 = (j + 6638 + randomPerlinNoiseOffsetY) * 8 / 8192.0f;
                 
-                        float scaledI3 = (i + 7650) * 16 / 4096.0f;
-                        float scaledJ3 = (j + 4014) * 16 / 4096.0f;
+                        float scaledI3 = (i + 7650 + randomPerlinNoiseOffsetX) * 16 / 4096.0f;
+                        float scaledJ3 = (j + 4014 + randomPerlinNoiseOffsetY) * 16 / 4096.0f;
                 
-                        float scaledI4 = (i + 7648) * 32 / 2048.0f;
-                        float scaledJ4 = (j + 3730) * 32 / 2048.0f;
+                        float scaledI4 = (i + 7648 + randomPerlinNoiseOffsetX) * 32 / 2048.0f;
+                        float scaledJ4 = (j + 3730 + randomPerlinNoiseOffsetY) * 32 / 2048.0f;
                 
-                        float scaledI5 = (i + 7066) * 64 / 1024.0f;
-                        float scaledJ5 = (j + 149) * 64 / 1024.0f;   
+                        float scaledI5 = (i + 7066 + randomPerlinNoiseOffsetX) * 64 / 1024.0f;
+                        float scaledJ5 = (j + 149 + randomPerlinNoiseOffsetY) * 64 / 1024.0f;   
 
-                        float scaledI6 = (i + 1399) * 128 / 512.0f;
-                        float scaledJ6 = (j + 9036) * 128 / 512.0f;                                  
+                        float scaledI6 = (i + 1399 + randomPerlinNoiseOffsetX) * 128 / 512.0f;
+                        float scaledJ6 = (j + 9036 + randomPerlinNoiseOffsetY) * 128 / 512.0f;                                  
                 
                         float normalizedNoise = (float)((SimplexNoise.Noise(scaledI, scaledJ) + 1) * 0.5f);
                         float normalizedNoise2 = (float)((SimplexNoise.Noise(scaledI2, scaledJ2) + 1) * 0.25f);
