@@ -20,6 +20,7 @@ namespace Org.Ethasia.Adventuregrid
         private static void InjectCoreDependencies()
         {
             CoreFactory.SetInstance(new RealCoreFactory());
+            InteractorsFactoryForCore.SetInstance(new RealInteractorsFactoryForCore());
         }
 
         private static void InjectInteractorDependencies()

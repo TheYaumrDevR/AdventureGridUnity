@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 
-using UnityEngine;
-
 using Org.Ethasia.Adventuregrid.Core.Environment.Blockdecorators;
 using Org.Ethasia.Adventuregrid.Core.InputInterfaces;
 using Org.Ethasia.Adventuregrid.Core.Math;
+using Org.Ethasia.Adventuregrid.Core.OutputInterfaces;
 
 namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 {
@@ -41,6 +40,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
         private void CreateHeightMap() 
         {
             heightMap = new int[result.GetXzDimension(), result.GetXzDimension()];
+            MathInteractor mathInteractor = InteractorsFactoryForCore.GetInstance().CreateMathInteractorInstance();
         
             for (int i = 0; i < result.GetXzDimension(); i++) 
             {
@@ -50,7 +50,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                     if (!coastlineHeightMap.Contains(coastLineHeightMapDeletedPosition))
                     {
                         float islandHeightNoise = ((float)SimplexNoise.Noise(i * 0.0001f, j * 0.0001f) + 1) * 0.1f * Island.HALF_HEIGHT_IN_BLOCKS;
-                        heightMap[i, j] = Mathf.CeilToInt(islandHeightNoise);             
+                        heightMap[i, j] = mathInteractor.CeilToInt(islandHeightNoise);             
                     }
                 }            
             }

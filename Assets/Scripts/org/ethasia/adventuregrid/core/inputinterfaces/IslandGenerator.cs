@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 
-using UnityEngine;
-
 using Org.Ethasia.Adventuregrid.Core.Environment;
 using Org.Ethasia.Adventuregrid.Core.Math;
+using Org.Ethasia.Adventuregrid.Core.OutputInterfaces;
 
 namespace Org.Ethasia.Adventuregrid.Core.InputInterfaces
 {
@@ -71,6 +70,7 @@ namespace Org.Ethasia.Adventuregrid.Core.InputInterfaces
         protected void CreateHeightMapForBottomSpikes()
         {
             IRandomNumberGenerator randomNumberGenerator = CoreFactory.GetInstance().GetRandomNumberGeneratorInstance();
+            MathInteractor mathInteractor = InteractorsFactoryForCore.GetInstance().CreateMathInteractorInstance();
 
             int randomPerlinNoiseOffsetX = randomNumberGenerator.GenerateIntegerBetweenAnd(-100000, 100000);
             int randomPerlinNoiseOffsetY = randomNumberGenerator.GenerateIntegerBetweenAnd(-100000, 100000);
@@ -80,7 +80,7 @@ namespace Org.Ethasia.Adventuregrid.Core.InputInterfaces
                 for (int j = 0; j < result.GetXzDimension(); j++) 
                 {
                     float heightValue = ((float)SimplexNoise.Noise((i + randomPerlinNoiseOffsetX) * 0.02f, (j + randomPerlinNoiseOffsetY) * 0.02f) + 1) * 0.4f * Island.HALF_HEIGHT_IN_BLOCKS;
-                    int heightValueCeil = Mathf.CeilToInt(heightValue);
+                    int heightValueCeil = mathInteractor.CeilToInt(heightValue);
                     bottomSpikesHeightMap[i, j] = heightValueCeil;
                 }
             }

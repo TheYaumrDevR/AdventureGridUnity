@@ -1,5 +1,6 @@
 using Org.Ethasia.Adventuregrid.Interactors.Factories;
 using Org.Ethasia.Adventuregrid.Interactors.Output;
+using Org.Ethasia.Adventuregrid.Ioadapters.Gateways;
 
 namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters 
 {
@@ -14,5 +15,10 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters
         {
             return new StandardPlayerCharacterPresenter();
         }        
+
+        public override MathGateway CreateMathGateway()
+        {
+            return new MathGatewayImpl();
+        }
     }
 }

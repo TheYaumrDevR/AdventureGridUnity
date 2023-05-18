@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 
-using UnityEngine;
-
 using Org.Ethasia.Adventuregrid.Core.InputInterfaces;
 using Org.Ethasia.Adventuregrid.Core.Math;
+using Org.Ethasia.Adventuregrid.Core.OutputInterfaces;
 
 namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 {
@@ -27,6 +26,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
 
         private void CreateHeightMap() 
         {
+            MathInteractor mathInteractor = InteractorsFactoryForCore.GetInstance().CreateMathInteractorInstance();
             IRandomNumberGenerator randomNumberGenerator = CoreFactory.GetInstance().GetRandomNumberGeneratorInstance();
             heightMap = new int[result.GetXzDimension(), result.GetXzDimension()];
 
@@ -66,9 +66,9 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                         float normalizedNoise6 = (float)((SimplexNoise.Noise(scaledI6, scaledJ6) + 1) * 0.015625f);
                 
                         float finalNoise = (normalizedNoise + normalizedNoise2 + normalizedNoise3 + normalizedNoise4 + normalizedNoise5 + normalizedNoise6) / 6.0f;
-                        float redistirbutedNoise = Mathf.Pow(finalNoise, 2.0f);
+                        float redistirbutedNoise = mathInteractor.Pow(finalNoise, 2.0f);
                 
-                        heightMap[i, j] = Mathf.CeilToInt(redistirbutedNoise * Island.HEIGHT_IN_BLOCKS);                        
+                        heightMap[i, j] = mathInteractor.CeilToInt(redistirbutedNoise * Island.HEIGHT_IN_BLOCKS);                        
                     }
                 }            
             }
