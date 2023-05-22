@@ -25,7 +25,9 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                 case BlockTypes.WALNUT_WOOD_ARROW_SIGNPLATE:
                     return WalnutWoodArrowSignplateBlockUvCoordinates.GetInstance();       
                 case BlockTypes.WALNUT_WOOD_ATTACHMENT_POLE:
-                    return WalnutAttachmentPoleBlockUvCoordinates.GetInstance();             
+                    return WalnutAttachmentPoleBlockUvCoordinates.GetInstance(); 
+                case BlockTypes.CHICKWEED_CROP:
+                    return ChickweedCropBlockUvCoordinates.GetInstance();
                 default:
                     throw new NotSupportedException("UV coordinates for block type " + blockType + " not found. Please add them.");
             }

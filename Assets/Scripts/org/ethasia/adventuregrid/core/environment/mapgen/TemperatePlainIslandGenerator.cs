@@ -20,6 +20,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             playerSpawnPointFinder.DeterminePlayerSpawnPoint(result, heightMap);
             CreateHeightMapForBottomSpikes();
             CreateBlocksBasedOnHeightMap();
+            GenerateCrops();
         
             return result;
         }      
@@ -72,6 +73,31 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
                     }
                 }            
             }
+        }
+
+        private void GenerateCrops()
+        {
+            MathInteractor mathInteractor = InteractorsFactoryForCore.GetInstance().CreateMathInteractorInstance();
+            IRandomNumberGenerator randomNumberGenerator = CoreFactory.GetInstance().GetRandomNumberGeneratorInstance();
+
+            for (int i = 0; i < result.GetXzDimension(); i++) 
+            {
+                for (int j = 0; j < result.GetXzDimension(); j++) 
+                {
+                    int randomNumber = randomNumberGenerator.GenerateRandomPositiveInteger(256);
+
+                    if (256 == randomNumber)
+                    {
+                        int blockPillarHeight = heightMap[i, j];
+
+                        if (blockPillarHeight < Island.HEIGHT_IN_BLOCKS && blockPillarHeight > 0)
+                        {
+                            BlockPosition blockPosition = new BlockPosition(i, blockPillarHeight, j);
+                            result.PlaceBlockAt(ChickweedCropBlock.GetInstance(), blockPosition);
+                        }
+                    }
+                }
+            }                        
         }                                   
     }
 }

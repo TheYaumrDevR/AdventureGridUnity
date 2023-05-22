@@ -12,6 +12,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
         private static PoleBlockVisualsBuilder poleBlockVisualsBuilder = new PoleBlockVisualsBuilder();
         private static SignPlateBlockVisualsBuilder signPlateBlockVisualsBuilder = new SignPlateBlockVisualsBuilder();
         private static AttachmentPoleBlockVisualsBuilder attachmentPoleBlockVisualsBuilder = new AttachmentPoleBlockVisualsBuilder();
+        private static ChickweedCropBlockVisualsBuilder chickWeedCropBlockVisualsBuilder = new ChickweedCropBlockVisualsBuilder();
 
         protected RotationStates rotationState;
         protected BlockAttachmentState attachmentState;
@@ -26,6 +27,8 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                     return signPlateBlockVisualsBuilder;
                 case BlockTypes.WALNUT_WOOD_ATTACHMENT_POLE:
                     return attachmentPoleBlockVisualsBuilder;
+                case BlockTypes.CHICKWEED_CROP:
+                    return chickWeedCropBlockVisualsBuilder;
                 default:
                     return standardBlockVisualsBuilder;
             }
