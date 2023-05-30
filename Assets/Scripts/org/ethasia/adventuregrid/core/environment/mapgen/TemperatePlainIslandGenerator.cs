@@ -80,13 +80,15 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment.Mapgen
             MathInteractor mathInteractor = InteractorsFactoryForCore.GetInstance().CreateMathInteractorInstance();
             IRandomNumberGenerator randomNumberGenerator = CoreFactory.GetInstance().GetRandomNumberGeneratorInstance();
 
+            int cropPlacementNumber = 256;
+
             for (int i = 0; i < result.GetXzDimension(); i++) 
             {
                 for (int j = 0; j < result.GetXzDimension(); j++) 
                 {
-                    int randomNumber = randomNumberGenerator.GenerateRandomPositiveInteger(256);
+                    int randomNumber = randomNumberGenerator.GenerateRandomPositiveInteger(cropPlacementNumber);
 
-                    if (256 == randomNumber)
+                    if (cropPlacementNumber == randomNumber)
                     {
                         int blockPillarHeight = heightMap[i, j];
 

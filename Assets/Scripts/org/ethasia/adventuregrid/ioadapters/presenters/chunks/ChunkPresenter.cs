@@ -11,38 +11,65 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
 {
     public class ChunkPresenter
     {
+        private static readonly HashSet<BlockTypes> FOLIAGE_BLOCK_TYPES;
+
         private readonly List<float[]> floatBuffersOfOpaqueBlocksInChunk;
         private readonly List<int[]> intBuffersOfOpaqueBlocksInChunk;   
+
+        private readonly List<float[]> floatBuffersOfFoliageBlocksInChunk;
+        private readonly List<int[]> intBuffersOfFoliageBlocksInChunk;
+
+        static ChunkPresenter()
+        {
+            FOLIAGE_BLOCK_TYPES = new HashSet<BlockTypes>();
+            FOLIAGE_BLOCK_TYPES.Add(BlockTypes.CHICKWEED_CROP);
+        }
 
         public ChunkPresenter() 
         {
             floatBuffersOfOpaqueBlocksInChunk = new List<float[]>();
-            intBuffersOfOpaqueBlocksInChunk = new List<int[]>();             
+            intBuffersOfOpaqueBlocksInChunk = new List<int[]>();  
+
+            floatBuffersOfFoliageBlocksInChunk = new List<float[]>();
+            intBuffersOfFoliageBlocksInChunk = new List<int[]>();                        
         }
 
         public void PresentChunk(Island island, int chunkCoordinateX, int chunkCoordinateY)
         {
-            VisualChunkData chunkRenderData = ClearRenderDataForNewChunk();
+            ClearRenderDataForNewChunk();
+
+            VisualChunkData opaqueChunkRenderData = new VisualChunkData();
+            VisualChunkData foliageChunkRenderData = new VisualChunkData();
+
+            opaqueChunkRenderData.ChunkType = ChunkTypes.STANDARD;
+            foliageChunkRenderData.ChunkType = ChunkTypes.FOLIAGE;
 
             FillRenderDataForOneChunk(island, chunkCoordinateX, chunkCoordinateY);
 
             if (intBuffersOfOpaqueBlocksInChunk.Count > 0) 
             {
-                RenderChunk(chunkRenderData, chunkCoordinateX, chunkCoordinateY);
+                RenderOpaqueChunk(opaqueChunkRenderData, chunkCoordinateX, chunkCoordinateY);
             }
+
+            if (intBuffersOfFoliageBlocksInChunk.Count > 0) 
+            {
+                RenderFoliageChunk(foliageChunkRenderData, chunkCoordinateX, chunkCoordinateY);
+            }            
         }
 
-        private VisualChunkData ClearRenderDataForNewChunk()
+        private void ClearRenderDataForNewChunk()
         {
             floatBuffersOfOpaqueBlocksInChunk.Clear();
             intBuffersOfOpaqueBlocksInChunk.Clear();
 
-            return new VisualChunkData();
+            floatBuffersOfFoliageBlocksInChunk.Clear();
+            intBuffersOfFoliageBlocksInChunk.Clear();            
         }
 
         private void FillRenderDataForOneChunk(Island island, int chunkCoordinateX, int chunkCoordinateY) 
         {
-            int amountOfBlockVerticesAdded = 0;
+            int amountOfOpaqueBlockVerticesAdded = 0;
+            int amountOfFoliageBlockVerticesAdded = 0;
 
             for (int islandX = CHUNK_EDGE_LENGTH_IN_BLOCKS * chunkCoordinateX; islandX < CHUNK_EDGE_LENGTH_IN_BLOCKS * (chunkCoordinateX + 1); islandX++) 
             {
@@ -59,12 +86,28 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
                                 int inChunkX = islandX - CHUNK_EDGE_LENGTH_IN_BLOCKS * chunkCoordinateX;
                                 int inChunkZ = islandZ - CHUNK_EDGE_LENGTH_IN_BLOCKS * chunkCoordinateY;
 
-                                BlockVisualsBuilder blockVisualsBuilder = BuildBlockVisualsFromBlock(island, globalPosition, inChunkX, inChunkZ, amountOfBlockVerticesAdded);
+                                BlockVisualsBuilder blockVisualsBuilder;
+                                if (FOLIAGE_BLOCK_TYPES.Contains(island.GetBlockAt(globalPosition).GetBlockType()))
+                                {
+                                    blockVisualsBuilder = BuildBlockVisualsFromBlock(island, globalPosition, inChunkX, inChunkZ, amountOfFoliageBlockVerticesAdded);
+                                }
+                                else
+                                {
+                                    blockVisualsBuilder = BuildBlockVisualsFromBlock(island, globalPosition, inChunkX, inChunkZ, amountOfOpaqueBlockVerticesAdded);
+                                }
                             
                                 if (blockVisualsBuilder.GetShapePositions().Length > 0) 
                                 {   
-                                    FillOpaqueBlockBuffersWithVisualRenderData(blockVisualsBuilder);
-                                    amountOfBlockVerticesAdded += blockVisualsBuilder.GetNumberOfAddedVertices();
+                                    if (FOLIAGE_BLOCK_TYPES.Contains(island.GetBlockAt(globalPosition).GetBlockType()))
+                                    {
+                                        FillFoliageBlockBuffersWithVisualRenderData(blockVisualsBuilder);
+                                        amountOfFoliageBlockVerticesAdded += blockVisualsBuilder.GetNumberOfAddedVertices();
+                                    }
+                                    else
+                                    {
+                                        FillOpaqueBlockBuffersWithVisualRenderData(blockVisualsBuilder);
+                                        amountOfOpaqueBlockVerticesAdded += blockVisualsBuilder.GetNumberOfAddedVertices();
+                                    }
                                 }
                             }
                         }
@@ -73,7 +116,7 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             }
         }
 
-        private void RenderChunk(VisualChunkData chunkToRender, int chunkPositionX, int chunkPositionY)
+        private void RenderOpaqueChunk(VisualChunkData chunkToRender, int chunkPositionX, int chunkPositionY)
         {
             ChunkRenderer chunkRenderer = TechnicalsFactory.GetInstance().GetChunkRendererInstance();
             chunkToRender.SetUpWithNumberOfBlocksInChunk(intBuffersOfOpaqueBlocksInChunk.Count);
@@ -94,6 +137,28 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             chunkToRender.BuildChunkData();
             chunkRenderer.RenderChunk(chunkToRender);
         }
+
+        private void RenderFoliageChunk(VisualChunkData chunkToRender, int chunkPositionX, int chunkPositionY)
+        {
+            ChunkRenderer chunkRenderer = TechnicalsFactory.GetInstance().GetChunkRendererInstance();
+            chunkToRender.SetUpWithNumberOfBlocksInChunk(intBuffersOfFoliageBlocksInChunk.Count);
+            chunkToRender.SetWorldPosition(chunkPositionX, chunkPositionY);
+
+            for (int k = 0; k < floatBuffersOfFoliageBlocksInChunk.Count; k += 3) 
+            {
+                chunkToRender.AddVerticesToTemporaryBuffer(floatBuffersOfFoliageBlocksInChunk[k]);
+                chunkToRender.AddNormalsToTemporaryBuffer(floatBuffersOfFoliageBlocksInChunk[k + 1]);
+                chunkToRender.AddUvCoordinatesToTemporaryBuffer(floatBuffersOfFoliageBlocksInChunk[k + 2]);
+            }
+
+            for (int k = 0; k < intBuffersOfFoliageBlocksInChunk.Count; k++) 
+            {
+                chunkToRender.AddIndicesToTemporaryBuffer(intBuffersOfFoliageBlocksInChunk[k]);
+            }
+
+            chunkToRender.BuildChunkData();
+            chunkRenderer.RenderChunk(chunkToRender);
+        }        
 
         private BlockVisualsBuilder BuildBlockVisualsFromBlock(Island island, BlockPosition globalPosition, int inChunkX, int inChunkZ, int currentBlockRenderIndex) 
         {
@@ -123,6 +188,14 @@ namespace Org.Ethasia.Adventuregrid.Ioadapters.Presenters.Chunks
             floatBuffersOfOpaqueBlocksInChunk.Add(blockRenderDataBuilder.GetShapeNormals());
             floatBuffersOfOpaqueBlocksInChunk.Add(blockRenderDataBuilder.GetShapeUvCoordinates());
             intBuffersOfOpaqueBlocksInChunk.Add(blockRenderDataBuilder.GetShapeIndices()); 
+        }
+
+        private void FillFoliageBlockBuffersWithVisualRenderData(BlockVisualsBuilder blockRenderDataBuilder)
+        {
+            floatBuffersOfFoliageBlocksInChunk.Add(blockRenderDataBuilder.GetShapePositions());
+            floatBuffersOfFoliageBlocksInChunk.Add(blockRenderDataBuilder.GetShapeNormals());
+            floatBuffersOfFoliageBlocksInChunk.Add(blockRenderDataBuilder.GetShapeUvCoordinates());
+            intBuffersOfFoliageBlocksInChunk.Add(blockRenderDataBuilder.GetShapeIndices()); 
         }
 
         private RotationStates ExtractRotationState(Block currentBlock)

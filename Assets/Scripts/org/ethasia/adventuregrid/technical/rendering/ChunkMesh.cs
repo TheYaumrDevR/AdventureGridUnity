@@ -20,12 +20,10 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
 
         public ChunkMesh(VisualChunkData chunkData)
         {
-            InitMeshComponents();
-
             this.chunkData = chunkData;
 
+            InitMeshComponents();
             chunkRoot.name = GetUniqueChunkName();
-
             UpdateMeshBasedOnChunkData();
         }
 
@@ -49,7 +47,11 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
             chunkRoot = new GameObject();
             meshFilter = chunkRoot.AddComponent<MeshFilter>();
             meshRenderer = chunkRoot.AddComponent<MeshRenderer>();
-            meshCollider = chunkRoot.AddComponent<MeshCollider>();
+
+            if (chunkData.ChunkType == ChunkTypes.STANDARD)
+            {
+                meshCollider = chunkRoot.AddComponent<MeshCollider>();
+            }
         } 
 
         private void UpdateMeshBasedOnChunkData()
@@ -58,7 +60,11 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
             UpdateGeometry(mesh);
 
             meshFilter.mesh = mesh;
-            meshCollider.sharedMesh = mesh;
+
+            if (chunkData.ChunkType == ChunkTypes.STANDARD)
+            {
+                meshCollider.sharedMesh = mesh;
+            }
         }
 
         private void UpdateGeometry(Mesh mesh)
@@ -105,9 +111,24 @@ namespace Org.Ethasia.Adventuregrid.Technical.Rendering
             int chunkPositionX = chunkData.GetWorldX();
             int chunkPositionY = chunkData.GetWorldY();
         
-            string prefix = "Opaque Chunk: ";
+            string prefix = GetPrefixBasedOnChunkType(chunkData.ChunkType);
         
             return prefix + chunkPositionX + ", " + chunkPositionY;        
-        }                        
+        }      
+
+        private string GetPrefixBasedOnChunkType(ChunkTypes chunkType)
+        {
+            switch (chunkType)
+            {
+                case ChunkTypes.STANDARD:
+                    return "Opaque Chunk: ";
+                case ChunkTypes.FOLIAGE:
+                    return "Foliage Chunk: ";
+                case ChunkTypes.LIQUID:
+                    return "Liquid Chunk: ";
+            }
+
+            return "";
+        }                  
     }
 }

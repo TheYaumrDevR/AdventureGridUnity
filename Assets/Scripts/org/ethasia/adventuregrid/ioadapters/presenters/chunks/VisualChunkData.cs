@@ -31,7 +31,7 @@
 
         #region Methods
 
-        public bool IsOpaqueChunk
+        public ChunkTypes ChunkType
         {
             get;
             set;
