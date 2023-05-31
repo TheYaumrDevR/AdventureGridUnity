@@ -66,70 +66,60 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
             int y = position.Y;
             int z = position.Z;
 
+            Block currentBlock = blocks[x, y, z];
+            Block neighborBlock = null;
+
             switch(faceType)
             {
                 case BlockFaceDirections.LEFT:
                     if (x < xzDimension - 1) 
                     {
-                        Block currentBlock = blocks[x, y, z];
-                        Block neighborBlock = blocks[x + 1, y, z];              
-        
-                        return currentBlock.GetFaceHidingStrategy().FaceIsHidden(currentBlock, neighborBlock, faceType);
+                        neighborBlock = blocks[x + 1, y, z];              
                     } 
 
                     break;
                 case BlockFaceDirections.FRONT:
                     if (z < xzDimension - 1) 
                     {
-                        Block currentBlock = blocks[x, y, z];
-                        Block neighborBlock = blocks[x, y, z + 1];
-                
-                        return currentBlock.GetFaceHidingStrategy().FaceIsHidden(currentBlock, neighborBlock, faceType);                   
+                        neighborBlock = blocks[x, y, z + 1];                
                     }
                 
                     break; 
                 case BlockFaceDirections.RIGHT:
                     if (x > 0) 
                     {
-                        Block currentBlock = blocks[x, y, z];
-                        Block neighborBlock = blocks[x - 1, y, z];
-                
-                        return currentBlock.GetFaceHidingStrategy().FaceIsHidden(currentBlock, neighborBlock, faceType);                   
+                        neighborBlock = blocks[x - 1, y, z];                  
                     }
                 
                     break;    
                 case BlockFaceDirections.BACK:
                     if (z > 0) 
                     {
-                        Block currentBlock = blocks[x, y, z];
-                        Block neighborBlock = blocks[x, y, z - 1];
-                
-                        return currentBlock.GetFaceHidingStrategy().FaceIsHidden(currentBlock, neighborBlock, faceType);     
+                        neighborBlock = blocks[x, y, z - 1];    
                     }
                 
                     break;  
                 case BlockFaceDirections.BOTTOM:
                     if (y > 0) 
                     {
-                        Block currentBlock = blocks[x, y, z];
-                        Block neighborBlock = blocks[x, y - 1, z];
-                
-                        return currentBlock.GetFaceHidingStrategy().FaceIsHidden(currentBlock, neighborBlock, faceType);                    
+                        neighborBlock = blocks[x, y - 1, z];                   
                     }
                 
                     break;      
                 case BlockFaceDirections.TOP:                
                     if (y < HEIGHT_IN_BLOCKS - 1) 
                     {
-                        Block currentBlock = blocks[x, y, z];
-                        Block neighborBlock = blocks[x, y + 1, z];
-                    
-                        return currentBlock.GetFaceHidingStrategy().FaceIsHidden(currentBlock, neighborBlock, faceType);                    
+                        neighborBlock = blocks[x, y + 1, z];                   
                     }
                    
                     break;                                                                    
             }
 
+            if (null != neighborBlock)
+            {
+                return currentBlock.GetFaceHidingStrategy().FaceIsHidden(currentBlock, neighborBlock, faceType);
+            }
+            
             return false;
         }
 
