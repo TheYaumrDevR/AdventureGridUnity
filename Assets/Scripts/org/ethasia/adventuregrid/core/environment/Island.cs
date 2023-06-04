@@ -51,7 +51,8 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
                 ThrowExceptionIfBlockPositionIsOutOfBounds(position);
                 blocks[position.X, position.Y, position.Z] = toPlace;
 
-                AttachEligibleBlocksToNeighborBlock(position);
+                BlockAttacher blockAttacher = new BlockAttacher(this);
+                blockAttacher.AttachEligibleBlocksToNeighborBlock(position);
             }
         }
 
@@ -141,102 +142,6 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
                     }
                 }
             }
-        }
-
-        private void AttachEligibleBlocksToNeighborBlock(BlockPosition position)
-        {
-            Block middleBlock = blocks[position.X, position.Y, position.Z];
-
-            AttachEligibleLeftNeighborBlock(position, middleBlock);
-            AttachEligibleRightNeighborBlock(position, middleBlock);
-            AttachEligibleFrontNeighborBlock(position, middleBlock);
-            AttachEligibleBackNeighborBlock(position, middleBlock);
-            AttachEligibleTopNeighborBlock(position, middleBlock);
-            AttachEligibleBottomNeighborBlock(position, middleBlock);
-        }
-
-        private void AttachEligibleLeftNeighborBlock(BlockPosition position, Block middleBlock)
-        {
-            BlockNeighborPlacingVisitor neighborBlockAttachingVisitor = BlockNeighborPlacingVisitor.GetInstance();
-
-            if (!PositionIsOutOfIslandBounds(new BlockPosition(position.X + 1, position.Y, position.Z))) 
-            {
-                Block leftBlock = blocks[position.X + 1, position.Y, position.Z];
-                middleBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToLeft(leftBlock);
-                leftBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToRight(middleBlock);
-            }            
-        }
-
-        private void AttachEligibleRightNeighborBlock(BlockPosition position, Block middleBlock)
-        {
-            BlockNeighborPlacingVisitor neighborBlockAttachingVisitor = BlockNeighborPlacingVisitor.GetInstance();
-
-            if (!PositionIsOutOfIslandBounds(new BlockPosition(position.X - 1, position.Y, position.Z))) 
-            {
-                Block rightBlock = blocks[position.X - 1, position.Y, position.Z];
-                middleBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToRight(rightBlock);
-                rightBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToLeft(middleBlock); 
-            }          
-        }
-
-        private void AttachEligibleFrontNeighborBlock(BlockPosition position, Block middleBlock)
-        {
-            BlockNeighborPlacingVisitor neighborBlockAttachingVisitor = BlockNeighborPlacingVisitor.GetInstance();
-
-            if (!PositionIsOutOfIslandBounds(new BlockPosition(position.X, position.Y, position.Z + 1))) 
-            {
-                Block frontBlock = blocks[position.X, position.Y, position.Z + 1];
-                middleBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToFront(frontBlock);
-                frontBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToBack(middleBlock);  
-            }       
-        }
-
-        private void AttachEligibleBackNeighborBlock(BlockPosition position, Block middleBlock)
-        {
-            BlockNeighborPlacingVisitor neighborBlockAttachingVisitor = BlockNeighborPlacingVisitor.GetInstance();
-
-            if (!PositionIsOutOfIslandBounds(new BlockPosition(position.X, position.Y, position.Z - 1))) 
-            {
-                Block backBlock = blocks[position.X, position.Y, position.Z - 1];
-                middleBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToBack(backBlock);
-                backBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToFront(middleBlock);   
-            }     
-        }    
-
-        private void AttachEligibleTopNeighborBlock(BlockPosition position, Block middleBlock)
-        {
-            BlockNeighborPlacingVisitor neighborBlockAttachingVisitor = BlockNeighborPlacingVisitor.GetInstance();
-
-            if (!PositionIsOutOfIslandBounds(new BlockPosition(position.X, position.Y + 1, position.Z))) 
-            {
-                Block topBlock = blocks[position.X, position.Y + 1, position.Z];
-                middleBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToTop(topBlock);
-                topBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToBottom(middleBlock); 
-            } 
-        }    
-
-        private void AttachEligibleBottomNeighborBlock(BlockPosition position, Block middleBlock)
-        {
-            BlockNeighborPlacingVisitor neighborBlockAttachingVisitor = BlockNeighborPlacingVisitor.GetInstance();
-
-            if (!PositionIsOutOfIslandBounds(new BlockPosition(position.X, position.Y - 1, position.Z))) 
-            {
-                Block bottomBlock = blocks[position.X, position.Y - 1, position.Z];
-                middleBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToBottom(bottomBlock);
-                bottomBlock.Visit(neighborBlockAttachingVisitor);
-                neighborBlockAttachingVisitor.BlockWasPlacedToTop(middleBlock);  
-            }
         }                    
         
         private void ThrowExceptionIfBlockPositionIsOutOfBounds(BlockPosition position) 
@@ -247,7 +152,7 @@ namespace Org.Ethasia.Adventuregrid.Core.Environment
             }            
         }
 
-        private bool PositionIsOutOfIslandBounds(BlockPosition position)
+        public bool PositionIsOutOfIslandBounds(BlockPosition position)
         {
             return position.X >= xzDimension
                 || position.Y >= HEIGHT_IN_BLOCKS
